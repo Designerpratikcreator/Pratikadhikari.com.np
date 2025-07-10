@@ -37,7 +37,7 @@ body {
 
 a {
     text-decoration: none;
-    color: var(--primary-color);
+    color: var(--light-color);
 }
 
 ul {
@@ -45,7 +45,7 @@ ul {
 }
 
 h1, h2, h3, h4 {
-    color: var(--dark-color);
+    color: var(--primary-color);
     margin-bottom: 1rem;
     line-height: 1.2;
 }
@@ -89,8 +89,8 @@ h2::after {
 }
 
 .primary-btn:hover {
-    background-color: darken(var(--light-color), 10%); /* This won't work in pure CSS, use a slightly darker color */
-    background-color: #0056b3; /* Example darker blue */
+    background-color: Lighten(var(--light-color), 100%); /* This won't work in pure CSS, use a slightly darker color */
+    background-color: lighten(var(--light-color); /* Example darker blue */
 }
 
 .secondary-btn {
