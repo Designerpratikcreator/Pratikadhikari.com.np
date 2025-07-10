@@ -3,7 +3,7 @@
 :root {
     --primary-color: #000000; /* Deep black for high contrast */
     --secondary-color: #6c757d; /* Neutral gray */
-    --accent-color: #28a745; /* Green for highlights */
+    --accent-color: #FF0000; /* Red for highlights */
     --dark-color: #212529; /* Dark gray for text */
     --light-color: #f8f9fa; /* Soft white for backgrounds */
     --white-color: #ffffff;
