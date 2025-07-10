@@ -89,7 +89,7 @@ h2::after {
 }
 
 .primary-btn:hover {
-    background-color: darken(var(--primary-color), 10%); /* This won't work in pure CSS, use a slightly darker color */
+    background-color: darken(var(--light-color), 10%); /* This won't work in pure CSS, use a slightly darker color */
     background-color: #0056b3; /* Example darker blue */
 }
 
@@ -101,7 +101,7 @@ h2::after {
 }
 
 .secondary-btn:hover {
-    background-color: var(--primary-color);
+    background-color: var(--light-color);
     color: var(--white-color);
 }
 
