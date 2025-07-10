@@ -323,6 +323,24 @@ section {
 .application-form .submit-btn:hover {
     background-color: var(--accent-color);
 }
+.form-icons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.form-icons a {
+    font-size: 2rem;
+    color: var(--primary-color);
+    transition: color var(--transition-speed), transform var(--transition-speed);
+}
+
+.form-icons a:hover {
+    color: var(--accent-color);
+    transform: scale(1.2);
+}
+
 
 .reference-link {
     display: block;
