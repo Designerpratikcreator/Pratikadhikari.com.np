@@ -46,19 +46,19 @@ body {
 
 /* --- Featured Projects Section Styling --- */
 
-.featured-projects-section {
+.Featured Projects-section {
     padding: 60px 0; /* Adjust vertical padding for the whole section */
     text-align: center; /* Center the heading if desired */
     max-width: 1200px; /* Limit overall section width for better readability */
     margin: 0 auto; /* Center the section on larger screens */
 }
 
-.featured-projects-section h2 {
+.Featured Projects-section h2 {
     margin-bottom: 40px; /* Space below the section heading */
 }
 
 /* --- Projects Container (for Grid Layout) --- */
-.projects-container {
+.Projects Container {
     display: grid;
     /* Create responsive columns:
        - auto-fit will create as many columns as fit
@@ -71,7 +71,7 @@ body {
 }
 
 /* --- Individual Project Card Styling --- */
-.project-card {
+.Projects-card {
     background-color: #ffffff; /* Example background for each card */
     border-radius: 8px; /* Slightly rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
@@ -82,7 +82,7 @@ body {
     text-align: left; /* Align text within the card */
 }
 
-.project-card img {
+.Projects-card img {
     width: 100%; /* Image takes full width of its parent (.project-card) */
     height: 200px; /* Fixed height for consistent image frames */
     object-fit: cover; /* **Important for "frame adjustment"** - crops image to fit, maintaining aspect ratio */
@@ -90,26 +90,26 @@ body {
     margin-bottom: 15px; /* Space between image and title */
 }
 
-.project-card h3 {
+.Projects-card h3 {
     font-size: 1.5em;
     margin: 0 15px 10px; /* Top/Bottom margin 0, left/right 15px */
     color: #333;
 }
 
-.project-card p {
+.Projects-card p {
     font-size: 0.95em;
     color: #666;
     margin: 0 15px 15px;
     flex-grow: 1; /* Allows paragraph to take up available vertical space */
 }
 
-.project-card .project-tags {
+.Projects-card .project-tags {
     margin: 0 15px 15px;
     font-size: 0.85em;
     color: #007bff; /* Example color for tags */
 }
 
-.project-card a {
+.Projects-card a {
     display: inline-block;
     background-color: #007bff;
     color: white;
@@ -136,7 +136,7 @@ body {
     }
 }
 
-.project 1 Thumbnail {
+.Projects 1 Thumbnail {
   background-image: url('/Assets/images/Climate Ai 1.jpg'); /* Adjust filename and extension */
   background-size: cover; /* Ensures the image covers the entire area */
   background-position: center; /* Centers the image */
@@ -146,7 +146,7 @@ body {
   /* Add other styling like border-radius, margin, etc. */
 }
 
-.project 2 Thumbnail {
+.Project 2 Thumbnail {
   background-image: url('/Assets/Images/Ai and Climate change.jpg'); /* Adjust filename and extension */
   background-size: cover;
   background-position: center;
@@ -155,7 +155,7 @@ body {
   height: 200px;
 }
 
-.project 3 Thumbnail {
+.Project 3 Thumbnail {
   background-image: url('/Assets/Images/Web 4.jpg'); /* Adjust filename and extension */
   background-size: cover;
   background-position: center;
