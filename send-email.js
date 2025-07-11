@@ -31,7 +31,7 @@ export default async function handler(req, res) {
       from: 'Your Portfolio <onboarding@yourdomain.com>', // Replace 'yourdomain.com' with a domain you have verified in Resend.
                                                          // If you don't have a custom domain, you might need to use a generic
                                                          // Resend domain provided during setup, or use a verified email address.
-      to: 'your.email@example.com', // Replace with the actual email address where you want to receive messages
+      to: 'Pratik_mhnrs2023@kusoa.edu.np.com', // Replace with the actual email address where you want to receive messages
       subject: `Portfolio Inquiry: ${subject || 'No Subject'}`,
       html: `
         <p><strong>Name:</strong> ${name || 'N/A'}</p>
