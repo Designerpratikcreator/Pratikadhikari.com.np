@@ -42,7 +42,19 @@ body {
   transition: background 0.5s ease, color 0.5s ease;
   line-height: 1.6;
   scroll-behavior: smooth;
-} 
+}  
+
+.Featured Projects Grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Creates a responsive, proportional grid */
+    gap: 20px; /* Provides consistent spacing between grid items */
+}
+
+.Featured Projects Grid.project-item {
+    /* This represents each individual project's styling */
+    padding: 10px;
+    /* You can add any other styling here, but the grid handles the layout */
+}
 /* In your CSS file (e.g., style.css or a dedicated projects.css) */
 
 .project 1 Thumbnail {
