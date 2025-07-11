@@ -42,6 +42,9 @@ body {
   transition: background 0.5s ease, color 0.5s ease;
   line-height: 1.6;
   scroll-behavior: smooth;
+} 
+.my-element {
+  background-image: url('/Assets/images/pratik-profile.jpg');
 }
 
 .container {
