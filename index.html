@@ -3,143 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pratik Adhikari - Portfolio</title>
+    <title>Pratik Adhikari - Web Designer Portfolio</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome for icons -->
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Font - Inter -->
+    <!-- Google Fonts - Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"> 
     </head>
-<body class="light">
-    <!-- Navigation Bar -->
-    <nav class="fixed w-full z-50 bg-white shadow-md py-4 transition-colors duration-300 dark:bg-gray-900 dark:shadow-lg">
-        <div class="container mx-auto flex justify-between items-center px-4">
-            <a href="#home" class="text-2xl font-bold text-blue-600 dark:text-blue-400">Pratik Adhikari</a>
-            <div class="hidden md:flex space-x-6">
-                <a href="#home" class="text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors duration-300">Home</a>
-                <a href="#about" class="text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors duration-300">About</a>
-                <a href="#gallery" class="text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors duration-300">Gallery</a>
-                <a href="#skills" class="text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors duration-300">Skills</a>
-                <a href="#contact" class="text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors duration-300">Contact</a>
-            </div>
-            <div class="flex items-center space-x-4">
-                <!-- Light/Dark Mode Toggle -->
-                <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <i class="fas fa-moon hidden dark:block"></i>
-                    <i class="fas fa-sun block dark:hidden"></i>
-                </button>
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 py-2 shadow-lg">
-            <a href="#home" class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300">Home</a>
-            <a href="#about" class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300">About</a>
-            <a href="#gallery" class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300">Gallery</a>
-            <a href="#skills" class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300">Skills</a>
-            <a href="#contact" class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300">Contact</a>
-        </div>
-    </nav>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
 
-    <main class="pt-16">
-        <!-- Cover Page (Hero Section) -->
-        <section id="home" class="relative h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600 dark:from-gray-800 dark:to-gray-900 text-white overflow-hidden">
-            <!-- Background pattern or image (optional, using simple gradient for now) -->
-            <div class="absolute inset-0 opacity-10 dark:opacity-20 bg-pattern-dots"></div>
-            <div class="text-center z-10 px-4">
-                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-4 animate-fade-in-up">
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 w-full bg-white shadow-md dark:bg-gray-800 dark:shadow-lg z-50">
+        <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#home" class="flex items-center space-x-2 text-2xl font-bold text-indigo-600 dark:text-indigo-400">
+                <i class="fas fa-code"></i>
+                <span>Pratik Adhikari</span>
+            </a>
+
+            <!-- Navigation Links -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#about" class="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 transition duration-300">
+                    <i class="fas fa-user mr-2"></i>About
+                </a>
+                <a href="#skills" class="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 transition duration-300">
+                    <i class="fas fa-laptop-code mr-2"></i>Skills
+                </a>
+                <a href="#gallery" class="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 transition duration-300">
+                    <i class="fas fa-images mr-2"></i>Gallery
+                </a>
+                <a href="#application" class="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 transition duration-300">
+                    <i class="fas fa-file-alt mr-2"></i>Application
+                </a>
+                <a href="#contact" class="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 transition duration-300">
+                    <i class="fas fa-envelope mr-2"></i>Contact
+                </a>
+            </div>
+
+            <!-- Dark/Light Mode Toggle & Mobile Menu Button -->
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <i class="fas fa-moon" id="theme-icon"></i>
+                </button>
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 py-4 shadow-inner">
+            <a href="#about" class="block px-6 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 transition duration-300">
+                <i class="fas fa-user mr-2"></i>About
+            </a>
+            <a href="#skills" class="block px-6 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 transition duration-300">
+                <i class="fas fa-laptop-code mr-2"></i>Skills
+            </a>
+            <a href="#gallery" class="block px-6 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 transition duration-300">
+                <i class="fas fa-images mr-2"></i>Gallery
+            </a>
+            <a href="#application" class="block px-6 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 transition duration-300">
+                <i class="fas fa-file-alt mr-2"></i>Application
+            </a>
+            <a href="#contact" class="block px-6 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 transition duration-300">
+                <i class="fas fa-envelope mr-2"></i>Contact
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section (Home) -->
+        <section id="home" class="relative h-screen flex items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-600 dark:from-indigo-800 dark:to-purple-900 text-white text-center overflow-hidden">
+            <div class="absolute inset-0 z-0 opacity-10">
+                <!-- Background pattern/shapes -->
+                <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+                    <defs>
+                        <pattern id="pattern-circles" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+                            <circle cx="5" cy="5" r="1" fill="rgba(255,255,255,0.2)"></circle>
+                        </pattern>
+                    </defs>
+                    <rect x="0" y="0" width="100%" height="100%" fill="url(#pattern-circles)"></rect>
+                </svg>
+            </div>
+            <div class="z-10 p-6 max-w-3xl mx-auto">
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-4 leading-tight">
                     Hi, I'm <span class="text-yellow-300">Pratik Adhikari</span>
                 </h1>
-                <p class="text-xl md:text-2xl font-light mb-8 animate-fade-in-up delay-200">
-                    Crafting immersive web experiences with passion and precision.
+                <p class="text-xl md:text-2xl mb-8">
+                    A passionate Web Designer crafting beautiful and functional digital experiences.
                 </p>
-                <a href="#contact" class="inline-block bg-white text-blue-600 dark:bg-blue-600 dark:text-white px-8 py-3 rounded-full text-lg font-semibold shadow-lg hover:bg-gray-100 dark:hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 animate-fade-in-up delay-400">
-                    Get in Touch
+                <a href="#about" class="inline-block bg-white text-indigo-600 px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:bg-gray-200 transition duration-300 transform hover:scale-105">
+                    Learn More <i class="fas fa-arrow-right ml-2"></i>
                 </a>
             </div>
         </section>
 
         <!-- About Section -->
-        <section id="about" class="py-16 md:py-24 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
-            <div class="container mx-auto px-4 max-w-4xl">
-                <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white">About Me</h2>
-                <div class="flex flex-col md:flex-row items-center md:space-x-10">
+        <section id="about" class="section-padding bg-white dark:bg-gray-800">
+            <div class="container mx-auto px-6 py-12">
+                <h2 class="text-4xl font-bold text-center mb-12 text-indigo-600 dark:text-indigo-400">
+                    <i class="fas fa-user-circle mr-3"></i>About Me
+                </h2>
+                <div class="flex flex-col md:flex-row items-center md:space-x-12">
                     <div class="md:w-1/3 mb-8 md:mb-0">
-                        <img src="/Assets/images/pratik-profile.jpg" alt="Pratik Adhikari" class="rounded-full shadow-lg border-4 border-blue-300 dark:border-blue-500 mx-auto md:mx-0 w-48 h-48 md:w-64 md:h-64 object-cover">
+                        <img src="https://placehold.co/400x400/A78BFA/FFFFFF?text=Pratik+Profile" alt="Pratik Adhikari Profile" class="rounded-full shadow-lg w-64 h-64 object-cover mx-auto border-4 border-indigo-500 dark:border-indigo-400">
                     </div>
-                    <div class="md:w-2/3 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                    <div class="md:w-2/3 text-lg leading-relaxed">
                         <p class="mb-4">
-                            Hello! I'm Pratik Adhikari, a passionate and dedicated web developer with a keen eye for detail and a love for creating intuitive, dynamic, and visually appealing web applications. My journey in web development began with a fascination for how digital experiences are built, and it has evolved into a commitment to mastering the craft.
+                            Hello! I'm Pratik Adhikari, a dedicated and creative web designer with a passion for building intuitive, engaging, and visually stunning websites. With a strong foundation in both front-end development and user experience (UX) principles, I strive to create digital solutions that not only look great but also perform exceptionally.
                         </p>
                         <p class="mb-4">
-                            I specialize in front-end development, bringing designs to life with clean, efficient, and responsive code. My expertise spans across modern JavaScript frameworks like React, ensuring robust and scalable user interfaces. I also have a solid understanding of backend technologies and database management, allowing me to build full-stack solutions.
+                            My journey into web design began with a fascination for how design impacts user interaction. I love transforming complex ideas into simple, elegant, and effective web interfaces. I'm proficient in modern web technologies and always eager to learn new tools and techniques to stay at the forefront of the industry.
                         </p>
                         <p class="mb-4">
-                            Beyond coding, I'm deeply interested in user experience (UX) and user interface (UI) design principles. I believe that a great website isn't just functional; it's also a pleasure to use. I constantly strive to learn new technologies and best practices to deliver cutting-edge solutions that exceed client expectations.
+                            I believe in a collaborative approach, working closely with clients to understand their vision and translate it into a compelling online presence. Whether it's a sleek portfolio, a robust e-commerce platform, or a dynamic web application, I'm committed to delivering high-quality, pixel-perfect designs that exceed expectations.
                         </p>
                         <p>
-                            When I'm not coding, you can find me exploring new design trends, contributing to open-source projects, or enjoying a good book. I'm always open to new challenges and collaborations, so feel free to reach out!
+                            When I'm not coding or designing, you can find me exploring new design trends, reading tech blogs, or enjoying a good cup of coffee. Let's connect and bring your next web project to life!
                         </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Gallery Section -->
-        <section id="gallery" class="py-16 md:py-24 bg-white dark:bg-gray-900 transition-colors duration-300">
-            <div class="container mx-auto px-4">
-                <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white">My Work & Projects</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Gallery Item 1 -->
-                    <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <img src="/Assets/images/template 1.jpg" alt="Project Alpha" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-white">E-commerce Platform</h3>
-                            <p class="text-gray-700 dark:text-gray-300 text-sm">A responsive e-commerce site built with React and Node.js, featuring product listings, shopping cart, and secure checkout.</p>
-                        </div>
-                    </div>
-                    <!-- Gallery Item 2 -->
-                    <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <img src="/Assets/images/templates 2.jpg" alt="Project Beta" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Portfolio Website</h3>
-                            <p class="text-gray-700 dark:text-gray-300 text-sm">A sleek and modern personal portfolio showcasing various design and development projects.</p>
-                        </div>
-                    </div>
-                    <!-- Gallery Item 3 -->
-                    <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <img src="/Assets/images/template 3.png" alt="Project Gamma" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Task Management App</h3>
-                            <p class="text-gray-700 dark:text-gray-300 text-sm">A full-stack task management application with user authentication and real-time updates.</p>
-                        </div>
-                    </div>
-                    <!-- Gallery Item 4 -->
-                    <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <img src="/Assets/images/templates 4.jpeg" alt="Project Delta" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Blog Platform</h3>
-                            <p class="text-gray-700 dark:text-gray-300 text-sm">A content-rich blog platform with admin panel for post creation and management.</p>
-                        </div>
-                    </div>
-                    <!-- Gallery Item 5 -->
-                    <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <img src="/Assets/images/template 5.png" alt="Project Epsilon" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Landing Page Design</h3>
-                            <p class="text-gray-700 dark:text-gray-300 text-sm">A high-converting landing page designed for a marketing campaign, focusing on user engagement.</p>
-                        </div>
-                    </div>
-                    <!-- Gallery Item 6 -->
-                    <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <img src="/Assets/images/template 6.jpg" alt="Project Zeta" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Mobile-First Web App</h3>
-                            <p class="text-gray-700 dark:text-gray-300 text-sm">A web application designed and optimized primarily for mobile devices, then scaled up.</p>
+                        <div class="mt-8 flex justify-center md:justify-start space-x-4">
+                            <a href="#contact" class="px-6 py-3 bg-indigo-600 text-white rounded-lg shadow-md hover:bg-indigo-700 transition duration-300 transform hover:scale-105">
+                                <i class="fas fa-paper-plane mr-2"></i>Hire Me
+                            </a>
+                            <a href="#" class="px-6 py-3 border border-indigo-600 text-indigo-600 rounded-lg shadow-md hover:bg-indigo-50 dark:border-indigo-400 dark:text-indigo-400 dark:hover:bg-gray-700 transition duration-300 transform hover:scale-105">
+                                <i class="fas fa-download mr-2"></i>Download CV
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -147,103 +136,399 @@
         </section>
 
         <!-- Skills Section -->
-        <section id="skills" class="py-16 md:py-24 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
-            <div class="container mx-auto px-4 max-w-4xl">
-                <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white">My Skills</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Frontend Skills -->
-                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-600">
-                        <h3 class="text-2xl font-semibold mb-4 text-blue-600 dark:text-blue-400">Frontend Development</h3>
-                        <ul class="space-y-3 text-gray-700 dark:text-gray-300">
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> HTML5 & CSS3</li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> JavaScript (ES6+)</li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> React.js & Redux</li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Tailwind CSS & Bootstrap</li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Responsive Web Design</li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Web Performance Optimization</li>
+        <section id="skills" class="section-padding bg-gray-50 dark:bg-gray-900">
+            <div class="container mx-auto px-6 py-12">
+                <h2 class="text-4xl font-bold text-center mb-12 text-indigo-600 dark:text-indigo-400">
+                    <i class="fas fa-tools mr-3"></i>My Skills
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+                    <!-- Front-End Development -->
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <h3 class="text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-200 flex items-center">
+                            <i class="fas fa-code mr-3 text-indigo-500"></i>Front-End Development
+                        </h3>
+                        <ul class="space-y-4 text-lg">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>HTML5 & CSS3
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 ml-4">
+                                    <div class="skill-bar-fill bg-blue-600 h-2.5 rounded-full" style="--skill-level: 95%;"></div>
+                                </div>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>JavaScript (ES6+)
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 ml-4">
+                                    <div class="skill-bar-fill bg-yellow-500 h-2.5 rounded-full" style="--skill-level: 90%;"></div>
+                                </div>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>React.js
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 ml-4">
+                                    <div class="skill-bar-fill bg-cyan-500 h-2.5 rounded-full" style="--skill-level: 85%;"></div>
+                                </div>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>Tailwind CSS & Bootstrap
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 ml-4">
+                                    <div class="skill-bar-fill bg-teal-500 h-2.5 rounded-full" style="--skill-level: 92%;"></div>
+                                </div>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>Responsive Design
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 ml-4">
+                                    <div class="skill-bar-fill bg-purple-500 h-2.5 rounded-full" style="--skill-level: 98%;"></div>
+                                </div>
+                            </li>
                         </ul>
                     </div>
-                    <!-- Backend Skills -->
-                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-600">
-                        <h3 class="text-2xl font-semibold mb-4 text-blue-600 dark:text-blue-400">Backend Development</h3>
-                        <ul class="space-y-3 text-gray-700 dark:text-gray-300">
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Node.js & Express.js</li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Python & Django/Flask</li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> RESTful APIs</li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> MongoDB & PostgreSQL</li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Firebase</li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Authentication & Authorization</li>
+
+                    <!-- UI/UX Design -->
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <h3 class="text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-200 flex items-center">
+                            <i class="fas fa-palette mr-3 text-pink-500"></i>UI/UX Design
+                        </h3>
+                        <ul class="space-y-4 text-lg">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>Figma & Adobe XD
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 ml-4">
+                                    <div class="skill-bar-fill bg-red-500 h-2.5 rounded-full" style="--skill-level: 90%;"></div>
+                                </div>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>Wireframing & Prototyping
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 ml-4">
+                                    <div class="skill-bar-fill bg-orange-500 h-2.5 rounded-full" style="--skill-level: 88%;"></div>
+                                </div>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>User Research
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 ml-4">
+                                    <div class="skill-bar-fill bg-lime-500 h-2.5 rounded-full" style="--skill-level: 80%;"></div>
+                                </div>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>Usability Testing
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 ml-4">
+                                    <div class="skill-bar-fill bg-emerald-500 h-2.5 rounded-full" style="--skill-level: 82%;"></div>
+                                </div>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>Information Architecture
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 ml-4">
+                                    <div class="skill-bar-fill bg-violet-500 h-2.5 rounded-full" style="--skill-level: 85%;"></div>
+                                </div>
+                            </li>
                         </ul>
                     </div>
+
                     <!-- Other Skills -->
-                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-600">
-                        <h3 class="text-2xl font-semibold mb-4 text-blue-600 dark:text-blue-400">Other Skills</h3>
-                        <ul class="space-y-3 text-gray-700 dark:text-gray-300">
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Git & GitHub</li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> UI/UX Design Principles</li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Figma & Adobe XD</li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Agile Methodologies</li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Problem Solving</li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Communication</li>
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <h3 class="text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-200 flex items-center">
+                            <i class="fas fa-cogs mr-3 text-gray-500"></i>Other Skills
+                        </h3>
+                        <ul class="space-y-4 text-lg">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>Git & GitHub
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 ml-4">
+                                    <div class="skill-bar-fill bg-gray-600 h-2.5 rounded-full" style="--skill-level: 88%;"></div>
+                                </div>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>SEO Best Practices
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 ml-4">
+                                    <div class="skill-bar-fill bg-indigo-600 h-2.5 rounded-full" style="--skill-level: 75%;"></div>
+                                </div>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>Web Performance Optimization
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 ml-4">
+                                    <div class="skill-bar-fill bg-green-600 h-2.5 rounded-full" style="--skill-level: 80%;"></div>
+                                </div>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>Cross-Browser Compatibility
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 ml-4">
+                                    <div class="skill-bar-fill bg-blue-600 h-2.5 rounded-full" style="--skill-level: 90%;"></div>
+                                </div>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>Problem Solving
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 ml-4">
+                                    <div class="skill-bar-fill bg-red-600 h-2.5 rounded-full" style="--skill-level: 95%;"></div>
+                                </div>
+                            </li>
                         </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="section-padding bg-white dark:bg-gray-800">
+            <div class="container mx-auto px-6 py-12">
+                <h2 class="text-4xl font-bold text-center mb-12 text-indigo-600 dark:text-indigo-400">
+                    <i class="fas fa-folder-open mr-3"></i>My Web Design Gallery
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Gallery Item 1 -->
+                    <div class="bg-gray-50 dark:bg-gray-900 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/600x400/3B82F6/FFFFFF?text=Project+Alpha" alt="Project Alpha" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">E-commerce Redesign</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                                A complete overhaul of an existing e-commerce platform, focusing on improved user experience, modern aesthetics, and mobile responsiveness.
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-xs">
+                                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full dark:bg-indigo-700 dark:text-indigo-100">UI/UX</span>
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full dark:bg-green-700 dark:text-green-100">Responsive</span>
+                                <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full dark:bg-purple-700 dark:text-purple-100">Shopify</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 2 -->
+                    <div class="bg-gray-50 dark:bg-gray-900 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/600x400/10B981/FFFFFF?text=Project+Beta" alt="Project Beta" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">SaaS Landing Page</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                                Designed a high-converting landing page for a new SaaS product, emphasizing clear calls-to-action and engaging visuals.
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-xs">
+                                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full dark:bg-indigo-700 dark:text-indigo-100">Landing Page</span>
+                                <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full dark:bg-yellow-700 dark:text-yellow-100">Conversion Focus</span>
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full dark:bg-blue-700 dark:text-blue-100">Figma</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 3 -->
+                    <div class="bg-gray-50 dark:bg-gray-900 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/600x400/EF4444/FFFFFF?text=Project+Gamma" alt="Project Gamma" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Portfolio Website</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                                Created a minimalist and elegant portfolio website for a photographer, showcasing their work with a clean gallery layout.
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-xs">
+                                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full dark:bg-indigo-700 dark:text-indigo-100">Personal Site</span>
+                                <span class="bg-red-100 text-red-800 px-2 py-1 rounded-full dark:bg-red-700 dark:text-red-100">Photography</span>
+                                <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full dark:bg-gray-700 dark:text-gray-100">Clean Design</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 4 -->
+                    <div class="bg-gray-50 dark:bg-gray-900 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/600x400/8B5CF6/FFFFFF?text=Project+Delta" alt="Project Delta" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Mobile App UI Design</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                                Designed the user interface for a fitness tracking mobile application, focusing on intuitive navigation and visual appeal.
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-xs">
+                                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full dark:bg-indigo-700 dark:text-indigo-100">Mobile UI</span>
+                                <span class="bg-pink-100 text-pink-800 px-2 py-1 rounded-full dark:bg-pink-700 dark:text-pink-100">App Design</span>
+                                <span class="bg-teal-100 text-teal-800 px-2 py-1 rounded-full dark:bg-teal-700 dark:text-teal-100">Health & Fitness</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 5 -->
+                    <div class="bg-gray-50 dark:bg-gray-900 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/600x400/EC4899/FFFFFF?text=Project+Epsilon" alt="Project Epsilon" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Blog Platform Development</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                                Developed a custom blog platform with a clean, readable layout and easy content management features.
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-xs">
+                                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full dark:bg-indigo-700 dark:text-indigo-100">Blog</span>
+                                <span class="bg-cyan-100 text-cyan-800 px-2 py-1 rounded-full dark:bg-cyan-700 dark:text-cyan-100">CMS Integration</span>
+                                <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full dark:bg-orange-700 dark:text-orange-100">Content Focused</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 6 -->
+                    <div class="bg-gray-50 dark:bg-gray-900 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/600x400/6B7280/FFFFFF?text=Project+Zeta" alt="Project Zeta" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Corporate Website</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                                Designed and developed a professional corporate website for a consulting firm, focusing on brand identity and service presentation.
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-xs">
+                                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full dark:bg-indigo-700 dark:text-indigo-100">Corporate</span>
+                                <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full dark:bg-gray-700 dark:text-gray-100">Brand Identity</span>
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full dark:bg-blue-700 dark:text-blue-100">Service Showcase</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Application Form (Contact Section) -->
-        <section id="contact" class="py-16 md:py-24 bg-white dark:bg-gray-900 transition-colors duration-300">
-            <div class="container mx-auto px-4 max-w-2xl">
-                <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white">Get in Touch / Book a Consultation</h2>
-                <form id="contact-form" class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md p-8 border border-gray-200 dark:border-gray-700">
-                    <div class="mb-6">
-                        <label for="name" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Name:</label>
-                        <input type="text" id="name" name="name" required class="form-input w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300">
+        <!-- Application Form Section -->
+        <section id="application" class="section-padding bg-gray-50 dark:bg-gray-900">
+            <div class="container mx-auto px-6 py-12">
+                <h2 class="text-4xl font-bold text-center mb-12 text-indigo-600 dark:text-indigo-400">
+                    <i class="fas fa-clipboard-list mr-3"></i>Client Application Form
+                </h2>
+                <div class="max-w-3xl mx-auto bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+                    <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 text-center">
+                        Please fill out the form below to tell me more about your web design project.
+                    </p>
+                    <form id="client-application-form" class="space-y-6">
+                        <div>
+                            <label for="fullName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Full Name</label>
+                            <input type="text" id="fullName" name="fullName" required class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 dark:bg-gray-700 dark:text-gray-200">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email Address</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 dark:bg-gray-700 dark:text-gray-200">
+                        </div>
+                        <div>
+                            <label for="companyName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Company Name (Optional)</label>
+                            <input type="text" id="companyName" name="companyName" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 dark:bg-gray-700 dark:text-gray-200">
+                        </div>
+                        <div>
+                            <label for="projectType" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Type of Project</label>
+                            <select id="projectType" name="projectType" required class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 dark:bg-gray-700 dark:text-gray-200">
+                                <option value="">Select a project type</option>
+                                <option value="newWebsite">New Website Design</option>
+                                <option value="websiteRedesign">Website Redesign</option>
+                                <option value="eCommerce">E-commerce Store</option>
+                                <option value="landingPage">Landing Page</option>
+                                <option value="webApplication">Web Application UI/UX</option>
+                                <option value="other">Other (Please specify below)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="budget" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Estimated Budget</label>
+                            <select id="budget" name="budget" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 dark:bg-gray-700 dark:text-gray-200">
+                                <option value="">Select your budget range</option>
+                                <option value="under1k">Under $1,000</option>
+                                <option value="1k-3k">$1,000 - $3,000</option>
+                                <option value="3k-5k">$3,000 - $5,000</option>
+                                <option value="5k-10k">$5,000 - $10,000</option>
+                                <option value="over10k">Over $10,000</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="projectDescription" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Project Description</label>
+                            <textarea id="projectDescription" name="projectDescription" rows="5" required class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 dark:bg-gray-700 dark:text-gray-200"></textarea>
+                            <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Please provide as much detail as possible about your project, goals, and any specific requirements.</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Preferred Communication Method(s)</label>
+                            <div class="flex flex-wrap gap-4">
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="commEmail" name="communication" value="email" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="commEmail" class="ml-2 text-sm text-gray-700 dark:text-gray-300">Email</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="commPhone" name="communication" value="phone" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="commPhone" class="ml-2 text-sm text-gray-700 dark:text-gray-300">Phone Call</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="commVideo" name="communication" value="video" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="commVideo" class="ml-2 text-sm text-gray-700 dark:text-gray-300">Video Conference</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="deadline" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Desired Project Deadline (Optional)</label>
+                            <input type="date" id="deadline" name="deadline" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 dark:bg-gray-700 dark:text-gray-200">
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="termsAgree" name="termsAgree" required class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="termsAgree" class="ml-2 block text-sm text-gray-900 dark:text-gray-300">
+                                I agree to the <a href="#" class="text-indigo-600 hover:underline dark:text-indigo-400">terms and conditions</a>.
+                            </label>
+                        </div>
+                        <button type="submit" class="w-full bg-indigo-600 text-white py-3 px-4 rounded-md font-semibold text-lg hover:bg-indigo-700 transition duration-300 shadow-md transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900">
+                            Submit Application <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                    <div id="form-message" class="mt-4 p-3 rounded-md text-center hidden"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section-padding bg-white dark:bg-gray-800">
+            <div class="container mx-auto px-6 py-12">
+                <h2 class="text-4xl font-bold text-center mb-12 text-indigo-600 dark:text-indigo-400">
+                    <i class="fas fa-headset mr-3"></i>Get In Touch
+                </h2>
+                <div class="flex flex-col md:flex-row items-center justify-center md:space-x-12 space-y-8 md:space-y-0">
+                    <!-- Contact Info -->
+                    <div class="md:w-1/2 bg-gray-50 dark:bg-gray-900 p-8 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-200">Contact Information</h3>
+                        <ul class="space-y-4 text-lg text-gray-700 dark:text-gray-300">
+                            <li class="flex items-center">
+                                <i class="fas fa-envelope mr-4 text-indigo-500"></i>
+                                <span>pratik.adhikari@example.com</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-phone-alt mr-4 text-indigo-500"></i>
+                                <span>+977 98XXXXXXXX</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-map-marker-alt mr-4 text-indigo-500"></i>
+                                <span>Lalitpur, Bagmati Province, Nepal</span>
+                            </li>
+                        </ul>
+                        <div class="mt-8">
+                            <h4 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Follow Me</h4>
+                            <div class="flex space-x-6">
+                                <a href="https://linkedin.com/in/pratikadhikari" target="_blank" class="text-gray-600 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 transition duration-300">
+                                    <i class="fab fa-linkedin text-3xl"></i>
+                                </a>
+                                <a href="https://github.com/pratikadhikari" target="_blank" class="text-gray-600 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 transition duration-300">
+                                    <i class="fab fa-github text-3xl"></i>
+                                </a>
+                                <a href="https://twitter.com/pratikadhikari" target="_blank" class="text-gray-600 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 transition duration-300">
+                                    <i class="fab fa-twitter text-3xl"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="mb-6">
-                        <label for="email" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Email:</label>
-                        <input type="email" id="email" name="email" required class="form-input w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300">
+
+                    <!-- Simple Contact Form (Alternative to application form if needed) -->
+                    <div class="md:w-1/2 bg-gray-50 dark:bg-gray-900 p-8 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-200">Send Me a Message</h3>
+                        <form id="contact-form" class="space-y-4">
+                            <div>
+                                <label for="contactName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Name</label>
+                                <input type="text" id="contactName" name="contactName" required class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 dark:bg-gray-700 dark:text-gray-200">
+                            </div>
+                            <div>
+                                <label for="contactEmail" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Email</label>
+                                <input type="email" id="contactEmail" name="contactEmail" required class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 dark:bg-gray-700 dark:text-gray-200">
+                            </div>
+                            <div>
+                                <label for="contactMessage" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Message</label>
+                                <textarea id="contactMessage" name="contactMessage" rows="5" required class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 dark:bg-gray-700 dark:text-gray-200"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-indigo-600 text-white py-3 px-4 rounded-md font-semibold text-lg hover:bg-indigo-700 transition duration-300 shadow-md transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900">
+                                Send Message <i class="fas fa-paper-plane ml-2"></i>
+                            </button>
+                        </form>
+                        <div id="contact-form-message" class="mt-4 p-3 rounded-md text-center hidden"></div>
                     </div>
-                    <div class="mb-6">
-                        <label for="interest" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">I am interested in:</label>
-                        <select id="interest" name="interest" required class="form-input w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300">
-                            <option value="">-- Please select --</option>
-                            <option value="website_design">Website Design</option>
-                            <option value="website_development">Website Development</option>
-                            <option value="consultation">Consultation / Booking</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="mb-6">
-                        <label for="message" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Your Message:</label>
-                        <textarea id="message" name="message" rows="5" required class="form-textarea w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300"></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-blue-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-700 transition-colors duration-300 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900">
-                        Send Message
-                    </button>
-                </form>
-                <div id="form-message" class="mt-6 p-4 rounded-md text-center hidden"></div>
+                </div>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-8 transition-colors duration-300">
-        <div class="container mx-auto px-4 text-center">
-            <div class="flex justify-center space-x-6 mb-6">
-                <a href="https://www.facebook.com/yourprofile" target="_blank" aria-label="Facebook" class="text-gray-400 hover:text-blue-500 transition-colors duration-300 text-3xl">
-                    <i class="fab fa-facebook"></i>
-                </a>
-                <a href="https://www.instagram.com/yourprofile" target="_blank" aria-label="Instagram" class="text-gray-400 hover:text-pink-500 transition-colors duration-300 text-3xl">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://github.com/yourusername" target="_blank" aria-label="GitHub" class="text-gray-400 hover:text-gray-300 transition-colors duration-300 text-3xl">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/yourprofile" target="_blank" aria-label="LinkedIn" class="text-gray-400 hover:text-blue-700 transition-colors duration-300 text-3xl">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-            </div>
-            <p>&copy; 2024 Pratik Adhikari. All rights reserved.</p>
+    <footer class="bg-gray-800 dark:bg-gray-900 text-white py-8 text-center">
+        <div class="container mx-auto px-6">
+            <p>&copy; 2025 Pratik Adhikari. All rights reserved.</p>
+            <p class="mt-2 text-sm">Designed with <i class="fas fa-heart text-red-500"></i> by Pratik Adhikari</p>
         </div>
     </footer>
