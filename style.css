@@ -2,7 +2,7 @@
 
 /* Root Variables for Light Theme */
 :root {
-  --bg-color-primary: #f8f9fa;
+  --bg-color-primary: #2522c3;
   --bg-color-secondary: #F89598; /* For alternating sections */
   --text-color: #000000;
   --heading-color: #343a40;
@@ -10,11 +10,11 @@
   --accent-dark: #0056b3; /* Darker blue for hover */
   --shadow-light: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   --shadow-medium: rgba(0, 0, 0, 0.15) 0px 8px 24px;
-  --card-bg: #ffffff;
+  --card-bg: #ffd400; 
   --border-color: #dee2e6;
-  --input-bg: #ffffff;
+  --input-bg: #ffd400;
   --input-border: #ced4da;
-}
+} 
 
 /* Dark Theme Variables */
 body.dark {
@@ -165,7 +165,7 @@ body.dark .navbar {
   align-items: center;
   justify-content: center;
   min-height: 90vh; /* Use min-height for flexibility */
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1920x1080?text=Developer+Background') center/cover no-repeat;
+  background:linear-gradient(0deg,rgba(37, 34, 195, 1) 0%, rgba(204, 45, 253, 1) 100%);url('https://via.placeholder.com/1920x1080?text=Developer+Background') center/cover no-repeat;
   text-align: center;
   color: white;
   position: relative;
