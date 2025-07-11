@@ -141,29 +141,62 @@
     </ul>
 </section>
 
-<div class="container">
-  <h1>FormSubmit Demo</h1>
-  <form target="_blank" action="https://formsubmit.co/pratik_mhnrs2023@kusoa.edu.np" method="POST">
-    <div class="form-group">
-      <div class="form-row">
-        <div class="col">
-          <input type="text" name="name" class="form-control" placeholder="Full Name" required>
-        </div>
-        <div class="col">
-          <input type="email" name="email" class="form-control" placeholder="Email Address" required>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <textarea placeholder="Your Message" class="form-control" name="message" rows="10" required></textarea>
-    </div>
-    <button type="submit" class="btn btn-lg btn-dark btn-block">Submit Form</button>
+<section id="application" class="p-6 bg-white dark:bg-gray-900 rounded-xl shadow-md max-w-3xl mx-auto mt-12">
+  <h2 class="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Apply for a Course</h2>
+  <form action="https://formspree.io/f/pratik_mhnrs2023@kusoa.edu.np" method="POST" class="space-y-4">
+    
+    <!-- Name -->
+    <input type="text" name="name" placeholder="Full Name" required class="w-full p-3 rounded-md border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white" />
+
+    <!-- Email -->
+    <input type="email" name="email" placeholder="Email Address" required class="w-full p-3 rounded-md border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white" />
+
+    <!-- Age -->
+    <input type="number" name="age" placeholder="Age" min="10" required class="w-full p-3 rounded-md border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white" />
+
+    <!-- Education -->
+    <input type="text" name="education" placeholder="Current Education Level (e.g. Bachelor's in Environmental Science)" required class="w-full p-3 rounded-md border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white" />
+
+    <!-- Course Selection -->
+    <select name="course" required class="w-full p-3 rounded-md border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
+      <option value="" disabled selected>Select a Course</option>
+      <option value="Climate Studies">Climate Studies</option>
+      <option value="Design for Sustainability">Design for Sustainability</option>
+    </select>
+
+    <!-- Duration -->
+    <select name="duration" required class="w-full p-3 rounded-md border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
+      <option value="" disabled selected>Select Duration</option>
+      <option value="1 Month">1 Month</option>
+      <option value="3 Months">3 Months</option>
+      <option value="6 Months">6 Months</option>
+    </select>
+
+    <!-- Scholarship Option -->
+    <label class="flex items-center space-x-3 text-gray-700 dark:text-gray-300">
+      <input type="checkbox" name="scholarship" class="h-5 w-5 text-blue-600 rounded border-gray-300 dark:bg-gray-800" />
+      <span>Request Scholarship</span>
+    </label>
+
+    <!-- Message -->
+    <textarea name="message" rows="4" placeholder="Tell us why you want to join..." class="w-full p-3 rounded-md border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white"></textarea>
+
+    <!-- Payment Gateway -->
+    <a href="https://https://esewa.com.np/#/make_payment/BALTXN/Fund%20Transfer" target="_blank" class="block text-center bg-green-600 text-white py-3 rounded-md hover:bg-green-700 transition">
+      Proceed to Payment
+    </a>
+
+    <!-- Submit -->
+    <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 transition">
+      Submit Application
+    </button>
+
   </form>
-</div>
+</section>
 
 
 <div class="form-icons">
-    <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+    <a href="https://https://www.facebook.com/DreamerPratik/" target="_blank" aria-label="Facebook">
         <i class="fab fa-facebook-f"></i>
     </a>
     <a href="https://twitter.com" target="_blank" aria-label="Twitter">
@@ -172,8 +205,8 @@
     <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
         <i class="fab fa-linkedin-in"></i>
     </a>
-    <a href="mailto:info@example.com" aria-label="Email">
-        <i class="fas fa-envelope"></i>
+    <a href="https://www.instagram.com/adhikari_pratik/" aria-label="Instagram">
+        <i class="fas fa-instagram"></i>
     </a>
 </div>
 
