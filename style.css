@@ -1,3 +1,5 @@
+/* style.css */
+
 :root {
   --bg-color: #fff;
   --text-color: #222;
@@ -173,6 +175,22 @@ body.dark .card {
   padding: 4rem 2rem;
   background: var(--bg-color);
   text-align: center;
+}
+
+.about {
+  max-width: 900px;
+  margin: auto;
+  line-height: 1.8;
+  font-size: 1.125rem;
+}
+
+.about h2 {
+  font-size: 2.25rem;
+  margin-bottom: 1rem;
+}
+
+.about p {
+  margin-bottom: 1rem;
 }
 
 .contact-form {
