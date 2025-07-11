@@ -141,58 +141,295 @@
     </ul>
 </section>
 
-<section id="application" class="p-6 bg-white dark:bg-gray-900 rounded-xl shadow-md max-w-3xl mx-auto mt-12">
-  <h2 class="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Apply for a Course</h2>
-  <form action="https://formspree.io/f/pratik_mhnrs2023@kusoa.edu.np" method="POST" class="space-y-4">
-    
-    <!-- Name -->
-    <input type="text" name="name" placeholder="Full Name" required class="w-full p-3 rounded-md border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white" />
-
-    <!-- Email -->
-    <input type="email" name="email" placeholder="Email Address" required class="w-full p-3 rounded-md border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white" />
-
-    <!-- Age -->
-    <input type="number" name="age" placeholder="Age" min="10" required class="w-full p-3 rounded-md border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white" />
-
-    <!-- Education -->
-    <input type="text" name="education" placeholder="Current Education Level (e.g. Bachelor's in Environmental Science)" required class="w-full p-3 rounded-md border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white" />
-
-    <!-- Course Selection -->
-    <select name="course" required class="w-full p-3 rounded-md border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
-      <option value="" disabled selected>Select a Course</option>
-      <option value="Climate Studies">Climate Studies</option>
-      <option value="Design for Sustainability">Design for Sustainability</option>
-    </select>
-
-    <!-- Duration -->
-    <select name="duration" required class="w-full p-3 rounded-md border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
-      <option value="" disabled selected>Select Duration</option>
-      <option value="1 Month">1 Month</option>
-      <option value="3 Months">3 Months</option>
-      <option value="6 Months">6 Months</option>
-    </select>
-
-    <!-- Scholarship Option -->
-    <label class="flex items-center space-x-3 text-gray-700 dark:text-gray-300">
-      <input type="checkbox" name="scholarship" class="h-5 w-5 text-blue-600 rounded border-gray-300 dark:bg-gray-800" />
-      <span>Request Scholarship</span>
-    </label>
-
-    <!-- Message -->
-    <textarea name="message" rows="4" placeholder="Tell us why you want to join..." class="w-full p-3 rounded-md border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white"></textarea>
-
-    <!-- Payment Gateway -->
-    <a href="https://https://esewa.com.np/#/make_payment/BALTXN/Fund%20Transfer" target="_blank" class="block text-center bg-green-600 text-white py-3 rounded-md hover:bg-green-700 transition">
-      Proceed to Payment
-    </a>
-
-    <!-- Submit -->
-    <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 transition">
-      Submit Application
-    </button>
-
-  </form>
-</section>
+<form
+  action="https://formspree.io/f/{FORM_ID}"
+  class="fs-form fs-layout__2-column"
+  target="_top"
+  method="POST"
+>
+  <fieldset>
+    <legend class="fs-fieldset-title">Requester Information</legend>
+    <div class="fs-field">
+      <label class="fs-label" for="requestor-name">Requestor Name</label>
+      <input
+        class="fs-input"
+        id="requestor-name"
+        name="requestor-name"
+        placeholder="Enter your name"
+        required
+      />
+    </div>
+    <div class="fs-field">
+      <label class="fs-label" for="department-team">Department / Team</label>
+      <input
+        class="fs-input"
+        id="department-team"
+        name="department-team"
+        placeholder="Enter your department or team"
+        required
+      />
+    </div>
+    <div class="fs-field">
+      <label class="fs-label" for="email-address">Email Address</label>
+      <input
+        class="fs-input"
+        id="email-address"
+        name="email-address"
+        placeholder="Enter your email address"
+        required
+      />
+    </div>
+    <div class="fs-field">
+      <label class="fs-label" for="phone-number">Phone Number</label>
+      <input
+        class="fs-input"
+        id="phone-number"
+        name="phone-number"
+        placeholder="Enter your phone number (optional)"
+      />
+    </div>
+    <div class="fs-field">
+      <label class="fs-label" for="date-of-request">Date of Request</label>
+      <input
+        class="fs-input"
+        id="date-of-request"
+        name="date-of-request"
+        placeholder="Enter the date of request (e.g., MM/DD/YYYY)"
+        required
+      />
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend class="fs-fieldset-title">Change Details</legend>
+    <div class="fs-field">
+      <label class="fs-label" for="project-system-name">
+        Project or System Name
+      </label>
+      <input
+        class="fs-input"
+        id="project-system-name"
+        name="project-system-name"
+        placeholder="Enter the project or system name"
+        required
+      />
+    </div>
+    <div class="fs-field">
+      <label class="fs-label" for="change-type">Type of Change Requested</label>
+      <select class="fs-select" id="change-type" name="change-type" required>
+        <option value="feature-update">Feature Update</option>
+        <option value="bug-fix">Bug Fix</option>
+        <option value="process-change">Process Change</option>
+        <option value="infrastructure-change">Infrastructure Change</option>
+      </select>
+    </div>
+    <div class="fs-field">
+      <label class="fs-label">Priority Level</label>
+      <div class="fs-radio-group">
+        <div class="fs-radio-field">
+          <div class="fs-radio-wrapper">
+            <input
+              class="fs-radio"
+              id="priority-level-low"
+              name="priority-level"
+              required
+              type="radio"
+              value="low"
+            />
+          </div>
+          <div>
+            <label class="fs-label" for="priority-level-low">Low</label>
+          </div>
+        </div>
+        <div class="fs-radio-field">
+          <div class="fs-radio-wrapper">
+            <input
+              class="fs-radio"
+              id="priority-level-medium"
+              name="priority-level"
+              required
+              type="radio"
+              value="medium"
+            />
+          </div>
+          <div>
+            <label class="fs-label" for="priority-level-medium">Medium</label>
+          </div>
+        </div>
+        <div class="fs-radio-field">
+          <div class="fs-radio-wrapper">
+            <input
+              class="fs-radio"
+              id="priority-level-high"
+              name="priority-level"
+              required
+              type="radio"
+              value="high"
+            />
+          </div>
+          <div>
+            <label class="fs-label" for="priority-level-high">High</label>
+          </div>
+        </div>
+        <div class="fs-radio-field">
+          <div class="fs-radio-wrapper">
+            <input
+              class="fs-radio"
+              id="priority-level-critical"
+              name="priority-level"
+              required
+              type="radio"
+              value="critical"
+            />
+          </div>
+          <div>
+            <label class="fs-label" for="priority-level-critical">
+              Critical
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fs-field">
+      <label class="fs-label" for="requested-completion-date">
+        Requested Completion Date
+      </label>
+      <input
+        class="fs-input"
+        id="requested-completion-date"
+        name="requested-completion-date"
+        placeholder="Select the requested completion date"
+        required
+      />
+    </div>
+    <div class="fs-field">
+      <label class="fs-label" for="change-description">
+        Description of the Requested Change
+      </label>
+      <textarea
+        class="fs-textarea"
+        id="change-description"
+        name="change-description"
+        placeholder="Describe the requested change"
+        required
+      ></textarea>
+    </div>
+    <div class="fs-field">
+      <label class="fs-label" for="reason-for-change">
+        Reason for the Change
+      </label>
+      <textarea
+        class="fs-textarea"
+        id="reason-for-change"
+        name="reason-for-change"
+        placeholder="Explain why the change is needed"
+        required
+      ></textarea>
+    </div>
+    <div class="fs-field">
+      <label class="fs-label" for="expected-benefits">
+        Expected Benefits / Impact
+      </label>
+      <textarea
+        class="fs-textarea"
+        id="expected-benefits"
+        name="expected-benefits"
+        placeholder="Describe the benefits or impact"
+        required
+      ></textarea>
+    </div>
+    <div class="fs-field">
+      <label class="fs-label" for="potential-risks">
+        Potential Risks / Challenges
+      </label>
+      <textarea
+        class="fs-textarea"
+        id="potential-risks"
+        name="potential-risks"
+        placeholder="List any potential risks or challenges (optional)"
+      ></textarea>
+    </div>
+    <div class="fs-field col-span-full">
+      <label class="fs-label" for="attachments">
+        Attachments or Supporting Documents
+      </label>
+      <input
+        class="fs-input"
+        id="attachments"
+        name="attachments"
+        placeholder="Add links after uploading files to Google Drive, Dropbox, etc."
+      />
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend class="fs-fieldset-title">Approval and Follow-Up</legend>
+    <div class="fs-field">
+      <label class="fs-label" for="approval-required-from">
+        Approval Required From
+      </label>
+      <input
+        class="fs-input"
+        id="approval-required-from"
+        name="approval-required-from"
+        placeholder="Enter approver (e.g., Manager, IT Department)"
+        required
+      />
+    </div>
+    <div class="fs-field">
+      <label class="fs-label">Have You Discussed This With Stakeholders?</label>
+      <div class="fs-radio-group">
+        <div class="fs-radio-field">
+          <div class="fs-radio-wrapper">
+            <input
+              class="fs-radio"
+              id="stakeholder-discussion-yes"
+              name="stakeholder-discussion"
+              required
+              type="radio"
+              value="yes"
+            />
+          </div>
+          <div>
+            <label class="fs-label" for="stakeholder-discussion-yes">Yes</label>
+          </div>
+        </div>
+        <div class="fs-radio-field">
+          <div class="fs-radio-wrapper">
+            <input
+              class="fs-radio"
+              id="stakeholder-discussion-no"
+              name="stakeholder-discussion"
+              required
+              type="radio"
+              value="no"
+            />
+          </div>
+          <div>
+            <label class="fs-label" for="stakeholder-discussion-no">No</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fs-checkbox-field col-span-full">
+      <div class="fs-checkbox-wrapper">
+        <input
+          class="fs-checkbox"
+          id="updates-opt-in"
+          name="updates-opt-in"
+          type="checkbox"
+          value="yes"
+        />
+      </div>
+      <div>
+        <label class="fs-label" for="updates-opt-in">
+          Would You Like Updates on This Request?
+        </label>
+      </div>
+    </div>
+    <div class="fs-button-group">
+      <button class="fs-button" type="submit">Submit</button>
+    </div>
+  </fieldset>
+</form>
 
 
 <div class="form-icons">
