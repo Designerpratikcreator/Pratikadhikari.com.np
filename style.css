@@ -3,7 +3,7 @@
 /* Root Variables for Light Theme */
 :root {
   --bg-color-primary: #f8f9fa;
-  --bg-color-secondary: #e9ecef; /* For alternating sections */
+  --bg-color-secondary: #F89598; /* For alternating sections */
   --text-color: #212529;
   --heading-color: #343a40;
   --accent-color: #007bff; /* Primary blue */
