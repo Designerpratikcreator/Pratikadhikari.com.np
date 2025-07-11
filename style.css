@@ -43,9 +43,6 @@ body {
   line-height: 1.6;
   scroll-behavior: smooth;
 } 
-.my-element {
-  background-image: url('/Assets/images/pratik-profile.jpg');
-}
 
 .container {
   max-width: 1200px;
