@@ -1,5 +1,10 @@
 /* style.css */
 
+/* Global Box Sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 /* Root Variables for Light Theme */
 :root {
   --bg-color-primary: #2522c3;
@@ -10,12 +15,15 @@
   --accent-dark: #0056b3; /* Darker blue for hover */
   --shadow-light: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   --shadow-medium: rgba(0, 0, 0, 0.15) 0px 8px 24px;
-  --card-bg: #ffd400; 
-  --application-bg: #000000; 
+  --card-bg: #ffd400;
+  --application-bg: #000000;
   --border-color: #dee2e6;
   --input-bg: #ffd400;
   --input-border: #ced4da;
-} 
+
+  /* To get RGB values from hex for rgba() - for light theme */
+  --accent-color-rgb: 0, 123, 255; /* #007bff */
+}
 
 /* Dark Theme Variables */
 body.dark {
@@ -31,6 +39,9 @@ body.dark {
   --border-color: #3a3a50;
   --input-bg: #2a2a40;
   --input-border: #4a4a60;
+
+  /* To get RGB values from hex for rgba() - for dark theme */
+  --accent-color-rgb: 140, 122, 230; /* #8c7ae6 */
 }
 
 /* Base Styles */
@@ -42,138 +53,8 @@ body {
   transition: background 0.5s ease, color 0.5s ease;
   line-height: 1.6;
   scroll-behavior: smooth;
-}  
-
-/* --- Featured Projects Section Styling --- */
-
-.Featured Projects-section {
-    padding: 60px 0; /* Adjust vertical padding for the whole section */
-    text-align: center; /* Center the heading if desired */
-    max-width: 1200px; /* Limit overall section width for better readability */
-    margin: 0 auto; /* Center the section on larger screens */
 }
 
-.Featured Projects-section h2 {
-    margin-bottom: 40px; /* Space below the section heading */
-}
-
-/* --- Projects Container (for Grid Layout) --- */
-.Projects Container {
-    display: grid;
-    /* Create responsive columns:
-       - auto-fit will create as many columns as fit
-       - minmax(280px, 1fr) ensures each column is at least 280px wide,
-         but will expand proportionally (1fr) to fill available space.
-         Adjust 280px based on your desired minimum card width. */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px; /* Space between project cards */
-    padding: 0 20px; /* Horizontal padding for the container itself, if needed */
-}
-
-/* --- Individual Project Card Styling --- */
-.Projects-card {
-    background-color: #ffffff; /* Example background for each card */
-    border-radius: 8px; /* Slightly rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    overflow: hidden; /* Important: Hides content that spills outside the border-radius */
-    display: flex; /* Use flexbox for content within the card */
-    flex-direction: column; /* Stack content vertically */
-    padding-bottom: 20px; /* Padding inside the card at the bottom */
-    text-align: left; /* Align text within the card */
-}
-
-.Projects-card img {
-    width: 100%; /* Image takes full width of its parent (.project-card) */
-    height: 200px; /* Fixed height for consistent image frames */
-    object-fit: cover; /* **Important for "frame adjustment"** - crops image to fit, maintaining aspect ratio */
-    display: block; /* Remove extra space below image */
-    margin-bottom: 15px; /* Space between image and title */
-}
-
-.Projects-card h3 {
-    font-size: 1.5em;
-    margin: 0 15px 10px; /* Top/Bottom margin 0, left/right 15px */
-    color: #333;
-}
-
-.Projects-card p {
-    font-size: 0.95em;
-    color: #666;
-    margin: 0 15px 15px;
-    flex-grow: 1; /* Allows paragraph to take up available vertical space */
-}
-
-.Projects-card .project-tags {
-    margin: 0 15px 15px;
-    font-size: 0.85em;
-    color: #007bff; /* Example color for tags */
-}
-
-.Projects-card a {
-    display: inline-block;
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    margin: 0 15px; /* Adjust margin to align with content */
-    align-self: flex-start; /* Aligns the button to the start of the flex container */
-}
-
-/* --- Responsive Adjustments (Optional but Recommended) --- */
-@media (max-width: 768px) {
-    .projects-container {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust min width for smaller screens */
-    }
-}
-
-@media (max-width: 480px) {
-    .projects-container {
-        grid-template-columns: 1fr; /* Stack projects vertically on very small screens */
-    }
-    .project-card {
-        margin: 0 15px; /* Add horizontal margin if cards stack */
-    }
-}
-
-.Projects 1 Thumbnail {
-  background-image: url('/Assets/images/Climate Ai 1.jpg'); /* Adjust filename and extension */
-  background-size: cover; /* Ensures the image covers the entire area */
-  background-position: center; /* Centers the image */
-  background-repeat: no-repeat; /* Prevents image from repeating */
-  width: 100%; /* Or a specific width */
-  height: 200px; /* Or a specific height for your thumbnails */
-  /* Add other styling like border-radius, margin, etc. */
-}
-
-.Project 2 Thumbnail {
-  background-image: url('/Assets/Images/Ai and Climate change.jpg'); /* Adjust filename and extension */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 200px;
-}
-
-.Project 3 Thumbnail {
-  background-image: url('/Assets/Images/Web 4.jpg'); /* Adjust filename and extension */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 200px;
-} 
-
-.project 4 Thumbnail {
-  background-image: url('/Assets/Images/Web 4.jpg'); /* Adjust filename and extension */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 200px;
-} 
-
-/* ... and so on for other project images ... */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -290,21 +171,21 @@ body.dark .navbar {
   transform: scale(1.1);
 }
 
-
-
 /* Hero Section */
 .hero {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 90vh; /* Use min-height for flexibility */
-  background:linear-gradient(0deg,rgba(37, 34, 195, 1) 0%, rgba(204, 45, 253, 1) 100%);url('https://via.placeholder.com/1920x1080?text=Developer+Background') center/cover no-repeat;
+  /* Corrected hero background syntax for multiple backgrounds */
+  background:
+    linear-gradient(0deg, rgba(37, 34, 195, 1) 0%, rgba(204, 45, 253, 1) 100%),
+    url('https://via.placeholder.com/1920x1080?text=Developer+Background') center/cover no-repeat;
   text-align: center;
   color: white;
   position: relative;
   overflow: hidden; /* To contain fade-in animations */
 }
-
 
 .hero-content {
   position: relative;
@@ -546,7 +427,7 @@ body.dark .experience-item::before {
   font-weight: bold;
 }
 
-/* Portfolio/Projects Section */
+/* Portfolio/Projects Section (Fixed) */
 .portfolio {
   padding: 6rem 0;
 }
@@ -561,19 +442,21 @@ body.dark .experience-item::before {
 
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2.5rem;
+  /* Creates responsive columns: at least 280px, expands proportionally */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px; /* Space between project cards */
   margin-top: 3rem;
+  padding: 0 20px; /* Horizontal padding for the grid container itself */
 }
 
 .card {
   background: var(--card-bg);
   border-radius: 1rem;
-  overflow: hidden;
+  overflow: hidden; /* Hides image overflow from border-radius */
   box-shadow: var(--shadow-light);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
+  display: flex; /* Use flex for content within the card */
+  flex-direction: column; /* Stack content vertically */
   border: 1px solid var(--border-color);
 }
 
@@ -583,17 +466,18 @@ body.dark .experience-item::before {
 }
 
 .card img {
-  width: 100%;
-  height: 200px; /* Fixed height for consistent card appearance */
-  object-fit: cover; /* Ensures images cover the area without distortion */
-  display: block;
+  width: 100%; /* Image takes full width of its parent (.card) */
+  height: 200px; /* Fixed height for consistent image frames */
+  object-fit: cover; /* IMPORTANT: Crops image to fit, maintaining aspect ratio */
+  display: block; /* Removes extra space below image */
 }
 
 .card-content {
   padding: 1.5rem;
-  flex-grow: 1; /* Allows content to expand */
+  flex-grow: 1; /* Allows content to expand to fill space */
   display: flex;
   flex-direction: column;
+  text-align: left; /* Align content text to the left within the card */
 }
 
 .card-content h3 {
@@ -627,18 +511,9 @@ body.dark .experience-item::before {
   font-weight: 500;
 }
 
-/* To get RGB values from hex for rgba() */
-body:not(.dark) { /* Light theme */
-  --accent-color-rgb: 0, 123, 255; /* #007bff */
-}
-body.dark { /* Dark theme */
-  --accent-color-rgb: 140, 122, 230; /* #8c7ae6 */
-}
-
-
 .card-content .btn-secondary {
-  align-self: flex-start; /* Align button to the start */
-  margin-top: auto; /* Push button to the bottom */
+  align-self: flex-start; /* Align button to the start of the card content */
+  margin-top: auto; /* Push button to the bottom if content varies in height */
 }
 
 .view-more {
