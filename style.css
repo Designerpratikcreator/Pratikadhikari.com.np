@@ -1,131 +1,227 @@
-/* ========== FORM STYLES ========== */
-
-form.application-form {
-  background-color: #ffffff;
-  border-radius: 1rem;
-  padding: 2rem;
-  max-width: 700px;
-  margin: 4rem auto;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  transition: background-color 0.3s ease;
+:root {
+  --bg-color: #fff;
+  --text-color: #222;
+  --accent-color: #1e90ff;
+  --shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
-form.application-form.dark {
-  background-color: #1f2937;
-  color: #e5e7eb;
+body.dark {
+  --bg-color: #111;
+  --text-color: #eee;
+  --accent-color: #1e90ff;
+  --shadow: rgba(255, 255, 255, 0.1) 0px 4px 12px;
 }
 
-form.application-form h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  color: #111827;
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  transition: background 0.3s, color 0.3s;
 }
 
-form.application-form.dark h2 {
-  color: #f9fafb;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+  box-shadow: var(--shadow);
+  transition: background 0.3s;
 }
 
-form.application-form label {
+body.dark .navbar {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--accent-color);
+}
+
+.nav-links a {
+  margin-left: 1.5rem;
+  text-decoration: none;
+  color: var(--text-color);
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
   display: block;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #374151;
+  height: 2px;
+  background: var(--accent-color);
+  transition: width 0.3s;
+  width: 0;
+  position: absolute;
+  bottom: -4px;
+  left: 0;
 }
 
-form.application-form.dark label {
-  color: #d1d5db;
-}
-
-form.application-form input,
-form.application-form select,
-form.application-form textarea {
+.nav-links a:hover::after {
   width: 100%;
-  padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
-  border: 1px solid #d1d5db;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  background-color: #f9fafb;
-  color: #111827;
-  transition: border 0.3s;
 }
 
-form.application-form.dark input,
-form.application-form.dark select,
-form.application-form.dark textarea {
-  background-color: #374151;
-  border-color: #4b5563;
-  color: #f3f4f6;
+#themeToggle {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--text-color);
 }
 
-form.application-form input:focus,
-form.application-form select:focus,
-form.application-form textarea:focus {
-  outline: none;
-  border-color: #2563eb;
-}
-
-form.application-form .checkbox-label {
+.hero {
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
-  font-size: 1rem;
-  color: #374151;
-}
-
-form.application-form.dark .checkbox-label {
-  color: #d1d5db;
-}
-
-form.application-form .checkbox-label input {
-  margin-right: 0.5rem;
-  transform: scale(1.2);
-}
-
-form.application-form button,
-form.application-form .payment-link {
-  display: inline-block;
-  width: 100%;
+  justify-content: center;
+  height: 90vh;
+  background: url('cover.jpg') center/cover no-repeat;
   text-align: center;
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
-  font-weight: 600;
+  color: white;
+  position: relative;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.btn-primary, .btn-secondary {
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;
   cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, background 0.3s;
   text-decoration: none;
-  transition: background-color 0.3s;
+  display: inline-block;
 }
 
-form.application-form .payment-link {
-  background-color: #059669;
-  color: #fff;
-  margin-top: 1rem;
+.btn-primary:hover, .btn-secondary:hover {
+  transform: scale(1.05);
+  background: #1570c7;
 }
 
-form.application-form .payment-link:hover {
-  background-color: #047857;
+.portfolio {
+  padding: 4rem 2rem;
+  background: var(--bg-color);
+  text-align: center;
 }
 
-form.application-form button {
-  background-color: #2563eb;
-  color: #fff;
-  border: none;
-  margin-top: 0.5rem;
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
 }
 
-form.application-form button:hover {
-  background-color: #1d4ed8;
+.card {
+  background: #f9f9f9;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s;
 }
 
-/* Responsive */
-@media screen and (max-width: 600px) {
-  form.application-form {
-    padding: 1.5rem;
-  }
+body.dark .card {
+  background: #222;
+}
 
-  form.application-form h2 {
-    font-size: 1.5rem;
-  }
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+}
+
+.card-content {
+  padding: 1rem;
+}
+
+.card-content h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.about, .contact {
+  padding: 4rem 2rem;
+  background: var(--bg-color);
+  text-align: center;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+  margin: auto;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-size: 1rem;
+  transition: border 0.2s;
+}
+
+body.dark .contact-form input,
+body.dark .contact-form textarea {
+  background: #333;
+  color: white;
+  border: 1px solid #444;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+footer {
+  background: #111;
+  color: #eee;
+  padding: 2rem;
+  text-align: center;
+}
+
+.footer-links a,
+.social-icons a {
+  color: #ccc;
+  margin: 0 0.5rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover,
+.social-icons a:hover {
+  color: var(--accent-color);
 }
