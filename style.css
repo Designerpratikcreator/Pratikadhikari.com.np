@@ -46,7 +46,7 @@ body {
 
 .Featured Projects Grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Creates a responsive, proportional grid */
+    grid-template-columns: grid(auto-fit, minmax(300px, 1fr)); /* Creates a responsive, proportional grid */
     gap: 20px; /* Provides consistent spacing between grid items */
 }
 
