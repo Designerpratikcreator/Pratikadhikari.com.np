@@ -44,18 +44,97 @@ body {
   scroll-behavior: smooth;
 }  
 
-.Featured Projects Grid {
-    display: grid;
-    grid-template-columns: grid(auto-fit, minmax(300px, 1fr)); /* Creates a responsive, proportional grid */
-    gap: 20px; /* Provides consistent spacing between grid items */
+/* --- Featured Projects Section Styling --- */
+
+.featured-projects-section {
+    padding: 60px 0; /* Adjust vertical padding for the whole section */
+    text-align: center; /* Center the heading if desired */
+    max-width: 1200px; /* Limit overall section width for better readability */
+    margin: 0 auto; /* Center the section on larger screens */
 }
 
-.Featured Projects Grid.project-item {
-    /* This represents each individual project's styling */
-    padding: 10px;
-    /* You can add any other styling here, but the grid handles the layout */
+.featured-projects-section h2 {
+    margin-bottom: 40px; /* Space below the section heading */
 }
-/* In your CSS file (e.g., style.css or a dedicated projects.css) */
+
+/* --- Projects Container (for Grid Layout) --- */
+.projects-container {
+    display: grid;
+    /* Create responsive columns:
+       - auto-fit will create as many columns as fit
+       - minmax(280px, 1fr) ensures each column is at least 280px wide,
+         but will expand proportionally (1fr) to fill available space.
+         Adjust 280px based on your desired minimum card width. */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px; /* Space between project cards */
+    padding: 0 20px; /* Horizontal padding for the container itself, if needed */
+}
+
+/* --- Individual Project Card Styling --- */
+.project-card {
+    background-color: #ffffff; /* Example background for each card */
+    border-radius: 8px; /* Slightly rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    overflow: hidden; /* Important: Hides content that spills outside the border-radius */
+    display: flex; /* Use flexbox for content within the card */
+    flex-direction: column; /* Stack content vertically */
+    padding-bottom: 20px; /* Padding inside the card at the bottom */
+    text-align: left; /* Align text within the card */
+}
+
+.project-card img {
+    width: 100%; /* Image takes full width of its parent (.project-card) */
+    height: 200px; /* Fixed height for consistent image frames */
+    object-fit: cover; /* **Important for "frame adjustment"** - crops image to fit, maintaining aspect ratio */
+    display: block; /* Remove extra space below image */
+    margin-bottom: 15px; /* Space between image and title */
+}
+
+.project-card h3 {
+    font-size: 1.5em;
+    margin: 0 15px 10px; /* Top/Bottom margin 0, left/right 15px */
+    color: #333;
+}
+
+.project-card p {
+    font-size: 0.95em;
+    color: #666;
+    margin: 0 15px 15px;
+    flex-grow: 1; /* Allows paragraph to take up available vertical space */
+}
+
+.project-card .project-tags {
+    margin: 0 15px 15px;
+    font-size: 0.85em;
+    color: #007bff; /* Example color for tags */
+}
+
+.project-card a {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin: 0 15px; /* Adjust margin to align with content */
+    align-self: flex-start; /* Aligns the button to the start of the flex container */
+}
+
+/* --- Responsive Adjustments (Optional but Recommended) --- */
+@media (max-width: 768px) {
+    .projects-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust min width for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .projects-container {
+        grid-template-columns: 1fr; /* Stack projects vertically on very small screens */
+    }
+    .project-card {
+        margin: 0 15px; /* Add horizontal margin if cards stack */
+    }
+}
 
 .project 1 Thumbnail {
   background-image: url('/Assets/images/Climate Ai 1.jpg'); /* Adjust filename and extension */
