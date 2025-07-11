@@ -1,141 +1,69 @@
-/* Custom CSS for smooth scrolling and animations */
-html {
-    scroll-behavior: smooth;
-}
+ <style>
+        /* Custom styles for light/dark mode transitions and general aesthetics */
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .dark {
+            background-color: #1a202c; /* Dark background */
+            color: #e2e8f0; /* Light text */
+        }
+        .light {
+            background-color: #ffffff; /* Light background */
+            color: #2d3748; /* Dark text */
+        }
+        .dark .text-gray-800 {
+            color: #e2e8f0;
+        }
+        .dark .bg-white {
+            background-color: #2d3748;
+        }
+        .dark .border-gray-200 {
+            border-color: #4a5568;
+        }
+        .dark .shadow-md {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.12);
+        }
+        .dark .hover\:bg-gray-100:hover {
+            background-color: #4a5568;
+        }
+        .dark .form-input, .dark .form-textarea {
+            background-color: #4a5568;
+            border-color: #6a768a;
+            color: #e2e8f0;
+        }
+        .dark .form-input::placeholder, .dark .form-textarea::placeholder {
+            color: #a0aec0;
+        }
 
-/* Base body styles are handled by Tailwind classes in HTML */
-body {
-    font-family: 'Inter', sans-serif;
-    /* Tailwind classes: bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-200 transition-colors duration-500 */
-}
+        /* Smooth scroll for navigation links */
+        html {
+            scroll-behavior: smooth;
+        }
 
-.section-heading {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 2rem;
-    font-size: 2.5rem; /* Larger heading */
-    font-weight: 700;
-    /* Tailwind classes: text-gray-800 dark:text-gray-100 */
-}
-
-.section-heading::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -8px; /* Adjust as needed */
-    width: 60%; /* Shorter underline */
-    height: 4px;
-    background-color: #6366f1; /* Indigo underline */
-    border-radius: 2px;
-}
-
-.nav-link:hover {
-    color: #6366f1; /* Indigo on hover */
-    transform: translateY(-2px);
-    transition: all 0.2s ease-in-out;
-}
-
-.btn-primary {
-    background-color: #6366f1; /* Indigo button */
-    color: white;
-    padding: 0.75rem 2rem;
-    border-radius: 0.5rem;
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.btn-primary:hover {
-    background-color: #4f46e5; /* Darker indigo on hover */
-    transform: translateY(-2px);
-}
-
-.btn-secondary {
-    background-color: #e0e7ff; /* Light indigo button */
-    color: #4f46e5; /* Darker indigo text */
-    padding: 0.75rem 2rem;
-    border-radius: 0.5rem;
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.btn-secondary:hover {
-    background-color: #c7d2fe; /* Slightly darker light indigo on hover */
-    transform: translateY(-2px);
-}
-
-.card {
-    /* Tailwind classes: bg-white dark:bg-gray-800 shadow-sm dark:shadow-md */
-    border-radius: 0.75rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-}
-
-.skill-badge {
-    /* Tailwind classes: bg-indigo-100 text-indigo-700 dark:bg-indigo-700 dark:text-indigo-100 */
-    padding: 0.4rem 0.8rem;
-    border-radius: 0.5rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    display: inline-block;
-    margin: 0.25rem;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Modal styles */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1000; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.7); /* Black w/ opacity */
-    align-items: center;
-    justify-content: center;
-}
-.modal-content {
-    /* Tailwind classes: bg-white dark:bg-gray-800 dark:text-gray-100 */
-    margin: auto;
-    padding: 2rem;
-    border-radius: 1rem;
-    width: 90%;
-    max-width: 800px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    position: relative;
-    animation-name: animatetop;
-    animation-duration: 0.4s;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-/* Add Animation */
-@keyframes animatetop {
-    from {top: -300px; opacity: 0}
-    to {top: 0; opacity: 1}
-}
-.close-button {
-    /* Tailwind classes: text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-100 */
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    position: absolute;
-    top: 1rem;
-    right: 1.5rem;
-    cursor: pointer;
-}
-.close-button:hover,
-.close-button:focus {
-    text-decoration: none;
-    cursor: pointer;
-}
-.portfolio-item-image {
-    width: 100%;
-    height: 250px; /* Fixed height for consistency */
-    object-fit: cover; /* Ensures image covers the area without distortion */
-    border-radius: 0.5rem;
-}
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .dark::-webkit-scrollbar-track {
+            background: #2d3748;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        .dark::-webkit-scrollbar-thumb {
+            background: #555;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        .dark::-webkit-scrollbar-thumb:hover {
+            background: #777;
+        }
+    </style>
