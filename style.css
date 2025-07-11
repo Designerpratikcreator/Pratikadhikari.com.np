@@ -160,6 +160,11 @@ body.dark .navbar {
   transform: scale(1.1);
 }
 
+.header_wrapper
+{
+    background-image: url(/public/Assets/pratik-profile.jpeg); 
+}
+
 /* Hero Section */
 .hero {
   display: flex;
@@ -172,6 +177,7 @@ body.dark .navbar {
   position: relative;
   overflow: hidden; /* To contain fade-in animations */
 }
+
 
 .hero-content {
   position: relative;
