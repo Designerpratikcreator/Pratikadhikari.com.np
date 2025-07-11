@@ -72,9 +72,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = Object.fromEntries(formData.entries());
 
       try {
-        // This is a placeholder for a real API endpoint
-        // You would replace 'YOUR_FORM_SUBMISSION_ENDPOINT' with your actual backend URL
-        const response = await fetch('YOUR_FORM_SUBMISSION_ENDPOINT', {
+        // --- START OF MODIFICATION ---
+        // Replace 'YOUR_FORM_SUBMISSION_ENDPOINT' with your actual backend URL
+        const response = await fetch('/api/send-email', { // Using a Vercel API route
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -89,8 +89,10 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           // Attempt to read error message from response
           const errorData = await response.json().catch(() => ({ message: 'An unknown error occurred.' }));
-          alert(`Failed to send message: ${errorData.message || response.statusText}`);
+          console.error("Form submission error details:", errorData); // Log the error
+          alert(`Failed to send message: ${errorData.message || response.statusText || 'Please check console for details.'}`);
         }
+        // --- END OF MODIFICATION ---
       } catch (error) {
         console.error('Error submitting form:', error);
         alert('There was a problem sending your message. Please try again later.');
