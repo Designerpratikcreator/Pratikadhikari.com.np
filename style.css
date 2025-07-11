@@ -440,24 +440,23 @@ body.dark .experience-item::before {
   text-align: center;
 }
 
-.card-grid {
-  display: grid;
-  /* Creates responsive columns: at least 280px, expands proportionally */
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 70px; /* Space between project cards */
-  margin-top: 3rem;
-  padding: 0 20px; /* Horizontal padding for the grid container itself */
-}
+.featured-section {
+    display: flex;
+    flex-wrap: wrap; /* Allows cards to wrap to the next line */
+    justify-content: space-around; /* Distributes space around items */
+    align-items: stretch; /* Makes all cards the same height */
+    gap: 20px; /* Adds space between cards (horizontal and vertical) */
+    /* Or use margin for older browser compatibility */
+    /* margin: 0 -10px; for negative margin on container to offset card margins */
+} 
 
-.card {
-  background: var(--card-bg);
-  border-radius: 1rem;
-  overflow: hidden; /* Hides image overflow from border-radius */
-  box-shadow: var(--shadow-light);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex; /* Use flex for content within the card */
-  flex-direction: column; /* Stack content vertically */
-  border: 1px solid var(--border-color);
+.featured-card {
+    flex: 1 1 calc(25% - 20px); /* Adjust 25% for 4 cards per row, 20px for gap */
+    /* Or use width and margin for older browser compatibility */
+    /* width: calc(25% - 20px); */
+    /* margin: 10px; */
+    box-sizing: border-box; /* Includes padding and border in the element's total width and height */
+    /* Add other styling for your cards (padding, border, background, etc.) */
 }
 
 .card:hover {
@@ -466,7 +465,7 @@ body.dark .experience-item::before {
 }
 
 .card img {
-  width: 50%; /* Image takes full width of its parent (.card) */
+  width: 100%; /* Image takes full width of its parent (.card) */
   height: 200px; /* Fixed height for consistent image frames */
   object-fit: cover; /* IMPORTANT: Crops image to fit, maintaining aspect ratio */
   display: block; /* Removes extra space below image */
