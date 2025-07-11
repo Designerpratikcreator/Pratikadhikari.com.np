@@ -45,7 +45,7 @@ export default async function handler(req, res) {
 
 public class Main {
     public static void main(String[] args) {
-        Resend resend = new Resend("re_YGvnuHjM_HwrimjhSxZVNSECiPCHrtRWA");
+        Resend resend = new Resend("RESEND_API_KEY");
 
         SendEmailRequest sendEmailRequest = SendEmailRequest.builder()
                 .from("onboarding@resend.dev")
