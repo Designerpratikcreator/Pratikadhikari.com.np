@@ -168,7 +168,7 @@ body.dark .navbar {
   align-items: center;
   justify-content: center;
   min-height: 90vh; /* Use min-height for flexibility */
-  background-image: url(/public/Assets/pratik-profile.jpeg); 
+  background:linear-gradient(0deg,rgba(37, 34, 195, 1) 0%, rgba(204, 45, 253, 1) 100%);url('https://via.placeholder.com/1920x1080?text=Developer+Background') center/cover no-repeat;
   text-align: center;
   color: white;
   position: relative;
