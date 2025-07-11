@@ -40,7 +40,23 @@ export default async function handler(req, res) {
         <p><strong>Message:</strong></p>
         <p>${message}</p>
       `,
-    });
+    }); 
+    import com.resend.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Resend resend = new Resend("re_YGvnuHjM_HwrimjhSxZVNSECiPCHrtRWA");
+
+        SendEmailRequest sendEmailRequest = SendEmailRequest.builder()
+                .from("onboarding@resend.dev")
+                .to("Pratik_mhnrs2023@kusoa.edu.np")
+                .subject("Hello World")
+                .html("<p>Congrats on sending your <strong>first email</strong>!</p>")
+                .build();
+
+        SendEmailResponse data = resend.emails().send(sendEmailRequest);
+    }
+}
 
     if (error) {
       // Log the error from Resend for debugging
