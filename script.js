@@ -1,84 +1,134 @@
- <script>
-        // JavaScript for Theme Toggle, Mobile Menu, and Form Submission
+ <!-- JavaScript -->
+    <script>
+        // Theme Toggle
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const html = document.documentElement;
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const themeToggleBtn = document.getElementById('theme-toggle');
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const contactForm = document.getElementById('contact-form');
-            const formMessage = document.getElementById('form-message');
+        // Check local storage for theme preference
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'dark') {
+            html.classList.add('dark');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        } else {
+            html.classList.remove('dark');
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        }
 
-            // --- Theme Toggle Logic ---
-            // Check for saved theme preference in localStorage
-            const currentTheme = localStorage.getItem('theme');
-            if (currentTheme) {
-                document.body.classList.add(currentTheme);
+        themeToggleBtn.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            if (html.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
             } else {
-                // Default to light theme if no preference is found
-                document.body.classList.add('light');
+                localStorage.setItem('theme', 'light');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    // Calculate offset for fixed header
+                    const headerOffset = document.querySelector('header').offsetHeight;
+                    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = elementPosition - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
+
+        // Form Submission Handling (Client Application Form)
+        const applicationForm = document.getElementById('client-application-form');
+        const applicationFormMessage = document.getElementById('form-message');
+
+        applicationForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission
+
+            const formData = new FormData(applicationForm);
+            const data = {};
+            for (let [key, value] of formData.entries()) {
+                if (key === 'communication') {
+                    if (!data[key]) {
+                        data[key] = [];
+                    }
+                    data[key].push(value);
+                } else {
+                    data[key] = value;
+                }
             }
 
-            themeToggleBtn.addEventListener('click', () => {
-                if (document.body.classList.contains('light')) {
-                    document.body.classList.remove('light');
-                    document.body.classList.add('dark');
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    document.body.classList.remove('dark');
-                    document.body.classList.add('light');
-                    localStorage.setItem('theme', 'light');
-                }
-            });
+            console.log('Client Application Form Data:', data);
 
-            // --- Mobile Menu Toggle Logic ---
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
+            // Simulate form submission success/failure
+            applicationFormMessage.classList.remove('hidden');
+            applicationFormMessage.classList.remove('bg-red-100', 'text-red-800', 'bg-green-100', 'text-green-800');
 
-            // Close mobile menu when a link is clicked
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                });
-            });
+            // In a real application, you would send this data to a server.
+            // For this example, we'll just show a success message.
+            setTimeout(() => {
+                applicationFormMessage.classList.add('bg-green-100', 'text-green-800');
+                applicationFormMessage.textContent = 'Application submitted successfully! I will get back to you soon.';
+                applicationForm.reset(); // Clear the form
+            }, 500);
 
-            // --- Form Submission Logic ---
-            contactForm.addEventListener('submit', async (event) => {
-                event.preventDefault(); // Prevent default form submission
+            // You could also show an error:
+            // applicationFormMessage.classList.add('bg-red-100', 'text-red-800');
+            // applicationFormMessage.textContent = 'There was an error submitting your application. Please try again.';
+        });
 
-                // Basic client-side validation
-                const name = document.getElementById('name').value.trim();
-                const email = document.getElementById('email').value.trim();
-                const interest = document.getElementById('interest').value;
-                const message = document.getElementById('message').value.trim();
+        // Form Submission Handling (Contact Form)
+        const contactForm = document.getElementById('contact-form');
+        const contactFormMessage = document.getElementById('contact-form-message');
 
-                if (!name || !email || !interest || !message) {
-                    formMessage.textContent = 'Please fill in all required fields.';
-                    formMessage.className = 'mt-6 p-4 rounded-md text-center bg-red-100 text-red-700';
-                    formMessage.classList.remove('hidden');
-                    return;
-                }
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission
 
-                // Simulate form submission (e.g., to a backend or just log)
-                console.log('Form Submitted:', {
-                    name,
-                    email,
-                    interest,
-                    message
-                });
+            const formData = new FormData(contactForm);
+            const data = {};
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
 
-                // Display success message
-                formMessage.textContent = 'Thank you for your message! We will get back to you soon.';
-                formMessage.className = 'mt-6 p-4 rounded-md text-center bg-green-100 text-green-700';
-                formMessage.classList.remove('hidden');
+            console.log('Contact Form Data:', data);
 
-                // Clear the form
-                contactForm.reset();
+            // Simulate form submission success/failure
+            contactFormMessage.classList.remove('hidden');
+            contactFormMessage.classList.remove('bg-red-100', 'text-red-800', 'bg-green-100', 'text-green-800');
 
-                // Hide message after a few seconds
-                setTimeout(() => {
-                    formMessage.classList.add('hidden');
-                }, 5000);
-            });
+            setTimeout(() => {
+                contactFormMessage.classList.add('bg-green-100', 'text-green-800');
+                contactFormMessage.textContent = 'Message sent successfully! I will get back to you soon.';
+                contactForm.reset(); // Clear the form
+            }, 500);
         });
     </script>
