@@ -55,7 +55,83 @@
   <section class="about" id="about">
     <h2>About Me</h2>
     <p>I’m a passionate designer and developer focused on creating meaningful digital experiences through research, design, and code.</p>
-  </section>
+  </section> 
+   <h3>Skill Set</h3>
+  <div class="skills-grid">
+    <label class="skill-box">
+      <input type="checkbox" checked disabled>
+      <span class="skill-name">HTML5 & CSS3</span>
+    </label>
+    <label class="skill-box">
+      <input type="checkbox" checked disabled>
+      <span class="skill-name">JavaScript ES6+</span>
+    </label>
+    <label class="skill-box">
+      <input type="checkbox" checked disabled>
+      <span class="skill-name">React & Next.js</span>
+    </label>
+    <label class="skill-box">
+      <input type="checkbox" checked disabled>
+      <span class="skill-name">Node.js</span>
+    </label>
+    <label class="skill-box">
+      <input type="checkbox" checked disabled>
+      <span class="skill-name">Figma / UI Design</span>
+    </label>
+    <label class="skill-box">
+      <input type="checkbox" checked disabled>
+      <span class="skill-name">Responsive Design</span>
+    </label>
+    <label class="skill-box">
+      <input type="checkbox" checked disabled>
+      <span class="skill-name">Git & GitHub</span>
+    </label>
+    <label class="skill-box">
+      <input type="checkbox" checked disabled>
+      <span class="skill-name">API Integration</span>
+    </label>
+  </div>
+</section>
+
+<style>
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.skill-box {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(0, 123, 255, 0.05);
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease;
+}
+
+body.dark .skill-box {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.skill-box:hover {
+  transform: scale(1.02);
+}
+
+.skill-box input[type="checkbox"] {
+  accent-color: var(--accent-color);
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.skill-name {
+  font-weight: 500;
+  font-size: 1rem;
+}
+</style>
 
   <section class="contact" id="contact">
     <h2>Application / Contact Form</h2>
