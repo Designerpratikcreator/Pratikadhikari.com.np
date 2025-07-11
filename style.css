@@ -4,7 +4,7 @@
 :root {
   --bg-color-primary: #f8f9fa;
   --bg-color-secondary: #F89598; /* For alternating sections */
-  --text-color: #fc59a3;
+  --text-color: #000000;
   --heading-color: #343a40;
   --accent-color: #007bff; /* Primary blue */
   --accent-dark: #0056b3; /* Darker blue for hover */
