@@ -2,7 +2,7 @@
 const projects = {
     project1: {
         title: "Modern E-commerce Store",
-        image: url(/Assets/images/template 1.jpg),
+        image: url('/Assets/images/template 1.jpg'),
         description: "A comprehensive e-commerce template built with a focus on user experience and modern design principles. Features include a product catalog, shopping cart, user authentication, and a responsive layout for all devices.",
         technologies: "HTML5, CSS3, JavaScript, React.js, Tailwind CSS",
         liveDemo: "https://example.com/ecommerce-demo",
@@ -10,7 +10,7 @@ const projects = {
     },
     project2: {
         title: "Creative Agency Landing Page",
-        image: url(/Assets/images/templates 2.jpg),
+        image: url('/Assets/images/templates 2.jpg'),
         description: "A vibrant and engaging single-page landing page template designed for creative agencies. It features smooth animations, a clear call-to-action, and sections for services, portfolio, and client testimonials.",
         technologies: "HTML5, CSS3, JavaScript, Bootstrap, Animation Libraries",
         liveDemo: "https://example.com/agency-demo",
@@ -18,7 +18,7 @@ const projects = {
     },
     project3: {
         title: "Minimalist Blog Layout",
-        image: url(/Assets/images/template 3.png),
+        image: url('/Assets/images/template 3.png'),
         description: "A clean, minimalist, and highly readable blog template. Optimized for content consumption, it includes features like a responsive article layout, category filtering, and a simple search function.",
         technologies: "HTML5, CSS3, JavaScript, Markdown Integration",
         liveDemo: "https://example.com/blog-demo",
@@ -26,7 +26,7 @@ const projects = {
     },
     project4: {
         title: "Personal Portfolio Showcase",
-        image: url(/Assets/images/template 4.png),
+        image: url('/Assets/images/template 4.png'),
         description: "A modern and responsive personal portfolio template designed to showcase projects, skills, and contact information effectively. It features a clean layout and smooth navigation.",
         technologies: "HTML5, CSS3, JavaScript, Responsive Design",
         liveDemo: "https://example.com/portfolio-demo",
@@ -34,7 +34,7 @@ const projects = {
     },
     project5: {
         title: "Elegant Restaurant Website",
-        image: url(/Assets/images/template 5.png),
+        image: url('/Assets/images/template 5.png'),
         description: "A sophisticated website template for restaurants, featuring an appealing design, interactive menu, online reservation system integration, and a gallery section to showcase the ambiance.",
         technologies: "HTML5, CSS3, JavaScript, Swiper.js",
         liveDemo: "https://example.com/restaurant-demo",
@@ -42,7 +42,7 @@ const projects = {
     },
     project6: {
         title: "SaaS Product Landing Page",
-        image: url(/Assets/images/template 6.jpg),
+        image: url('/Assets/images/template 6.jpg'),
         description: "A high-converting landing page template specifically designed for Software-as-a-Service (SaaS) products. It includes sections for features, pricing, testimonials, and a clear call-to-action.",
         technologies: "HTML5, CSS3, JavaScript, Form Validation",
         liveDemo: "https://example.com/saas-demo",
