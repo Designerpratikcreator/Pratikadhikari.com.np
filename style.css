@@ -444,7 +444,7 @@ body.dark .experience-item::before {
   display: grid;
   /* Creates responsive columns: at least 280px, expands proportionally */
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px; /* Space between project cards */
+  gap: 70px; /* Space between project cards */
   margin-top: 3rem;
   padding: 0 20px; /* Horizontal padding for the grid container itself */
 }
@@ -466,7 +466,7 @@ body.dark .experience-item::before {
 }
 
 .card img {
-  width: 100%; /* Image takes full width of its parent (.card) */
+  width: 50%; /* Image takes full width of its parent (.card) */
   height: 200px; /* Fixed height for consistent image frames */
   object-fit: cover; /* IMPORTANT: Crops image to fit, maintaining aspect ratio */
   display: block; /* Removes extra space below image */
