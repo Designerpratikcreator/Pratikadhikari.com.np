@@ -1,210 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pratik Adhikari - Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet"></noscript>
-  <link rel="stylesheet" href="style.css" /> 
-  <script defer src="script.js"></script>
-  </head>
-<body>
-  <header class="navbar">
-    <div class="logo">Pratik</div>
-    <nav class="nav-links">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <button id="themeToggle" aria-label="Toggle theme">🌙</button>
-  </header>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Welcome to Pratik </title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Link to custom CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="text-gray-700 bg-gray-50 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-500">
 
-  <section class="hero" id="home">
-    <div class="hero-content fade-in-up">
-      <div className={styles.header_wrapper} style={{ "backgroundImage": url('/Assets/images/pratik-profile.jpeg')}}>
-      <h1>Hello, I'm Pratik Adhikari</h1>
-      <p class="tagline">Crafting engaging digital experiences through design, development, and research.</p>
-      <div class="hero-buttons">
-        <a href="#projects" class="btn-primary">View My Work</a>
-        <a href="#contact" class="btn-secondary">Get in Touch</a>
-      </div>
-    </div>
-  </section>
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-sm py-4 fixed top-0 left-0 w-full z-50 dark:bg-gray-800 dark:shadow-lg transition-colors duration-500">
+        <nav class="container mx-auto flex justify-between items-center px-4 md:px-8">
+            <a href="#" class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">Your Name</a>
+            <div class="flex items-center space-x-6">
+                <div class="hidden md:flex space-x-6">
+                    <a href="#home" class="nav-link text-gray-600 hover:text-indigo-600 font-medium dark:text-gray-300 dark:hover:text-indigo-400">Home</a>
+                    <a href="#about" class="nav-link text-gray-600 hover:text-indigo-600 font-medium dark:text-gray-300 dark:hover:text-indigo-400">About</a>
+                    <a href="#skills" class="nav-link text-gray-600 hover:text-indigo-600 font-medium dark:text-gray-300 dark:hover:text-indigo-400">Skills</a>
+                    <a href="#portfolio" class="nav-link text-gray-600 hover:text-indigo-600 font-medium dark:text-gray-300 dark:hover:text-indigo-400">Portfolio</a>
+                    <a href="#contact" class="nav-link text-gray-600 hover:text-indigo-600 font-medium dark:text-gray-300 dark:hover:text-indigo-400">Contact</a>
+                </div>
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" class="text-gray-600 dark:text-gray-300 text-xl focus:outline-none ml-4 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300">
+                    <i class="fas fa-moon" id="theme-toggle-icon"></i>
+                </button>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-600 dark:text-gray-300 text-2xl focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-4 shadow-md dark:bg-gray-800 transition-colors duration-500">
+            <a href="#home" class="block py-2 text-gray-600 hover:text-indigo-600 font-medium dark:text-gray-300 dark:hover:text-indigo-400">Home</a>
+            <a href="#about" class="block py-2 text-gray-600 hover:text-indigo-600 font-medium dark:text-gray-300 dark:hover:text-indigo-400">About</a>
+            <a href="#skills" class="block py-2 text-gray-600 hover:text-indigo-600 font-medium dark:text-gray-300 dark:hover:text-indigo-400">Skills</a>
+            <a href="#portfolio" class="block py-2 text-gray-600 hover:text-indigo-600 font-medium dark:text-gray-300 dark:hover:text-indigo-400">Portfolio</a>
+            <a href="#contact" class="block py-2 text-gray-600 hover:text-indigo-600 font-medium dark:text-gray-300 dark:hover:text-indigo-400">Contact</a>
+        </div>
+    </header>
 
-  <section class="about section-alt" id="about">
-    <div class="container fade-in-up">
-      <h2>About Me</h2>
-      <p>I am a passionate designer and developer with a strong focus on creating meaningful and user-centric digital products. My journey began with a curiosity for how things work, leading me to dive deep into front-end development, UI/UX design principles, and robust back-end solutions. I thrive in environments where I can leverage both my creative and technical skills to solve complex problems and deliver intuitive experiences.</p>
-      <p>My approach is rooted in continuous learning and adapting to new technologies. I believe in clean code, elegant design, and the power of collaboration to bring innovative ideas to life. When I'm not coding or designing, you can find me exploring new research papers, enjoying nature, or contributing to open-source projects.</p>
-    </div>
-  </section>
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section id="home" class="relative h-screen flex items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-600 text-white p-4">
+            <div class="text-center max-w-4xl mx-auto">
+                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-4 animate-fade-in-up">
+                    Hi, I'm <span class="text-yellow-300">Pratik Adhikari</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 animate-fade-in-up delay-200">
+                    A passionate Web Designer & Developer crafting beautiful and functional digital experiences.
+                </p>
+                <div class="space-x-4 animate-fade-in-up delay-400">
+                    <a href="#portfolio" class="btn-primary inline-block">View My Work</a>
+                    <a href="#contact" class="btn-secondary inline-block">Get in Touch</a>
+                </div>
+            </div>
+        </section>
 
-  <section class="skills" id="skills">
-    <div class="container">
-      <h2>My Skill Set</h2>
-      <p class="section-description">A comprehensive overview of the technologies and tools I'm proficient with.</p>
-      <div class="skills-grid">
-        <div class="skill-item fade-in">
-          <span class="skill-name">HTML5 & CSS3</span>
-        </div>
-        <div class="skill-item fade-in">
-          <span class="skill-name">JavaScript (ES6+)</span>
-        </div>
-        <div class="skill-item fade-in">
-          <span class="skill-name">React & Next.js</span>
-        </div>
-        <div class="skill-item fade-in">
-          <span class="skill-name">Node.js & Express.js</span>
-        </div>
-        <div class="skill-item fade-in">
-          <span class="skill-name">MongoDB / PostgreSQL</span>
-        </div>
-        <div class="skill-item fade-in">
-          <span class="skill-name">Figma / UI/UX Design</span>
-        </div>
-        <div class="skill-item fade-in">
-          <span class="skill-name">Responsive Design</span>
-        </div>
-        <div class="skill-item fade-in">
-          <span class="skill-name">Git & GitHub</span>
-        </div>
-        <div class="skill-item fade-in">
-          <span class="skill-name">RESTful APIs</span>
-        </div>
-        <div class="skill-item fade-in">
-          <span class="skill-name">Data Structures & Algorithms</span>
-        </div>
-      </div>
-    </div>
-  </section>
+        <!-- About Section -->
+        <section id="about" class="py-16 bg-gray-50 dark:bg-gray-900 p-4 md:p-8 transition-colors duration-500">
+            <div class="container mx-auto text-center">
+                <h2 class="section-heading mx-auto mb-10 text-gray-800 dark:text-gray-100">About Me</h2>
+                <div class="max-w-3xl mx-auto text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+                    <p class="mb-4">
+                        Hello! I'm Pratik, a dedicated web designer and front-end developer with a strong passion for creating intuitive, engaging, and visually appealing websites. My journey in web development began with a fascination for how design and code come together to build impactful digital products.
+                    </p>
+                    <p class="mb-4">
+                        I specialize in transforming complex ideas into simple, elegant, and user-friendly interfaces. My expertise spans across modern front-end technologies, responsive design principles, and a keen eye for detail, ensuring every pixel is in its place.
+                    </p>
+                    <p>
+                        When I'm not coding or designing, you can find me exploring new design trends, learning new programming languages, or contributing to open-source projects. I believe in continuous learning and always strive to improve my craft.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-  <section class="experience section-alt" id="experience">
-    <div class="container">
-      <h2>Professional Experience</h2>
-      <p class="section-description">My journey in the professional world, showcasing key roles and responsibilities.</p>
-      <div class="experience-timeline">
-        <div class="experience-item fade-in-up">
-          <h3 class="job-title">Senior Front-End Developer</h3>
-          <p class="company">Tech Innovators Inc. <span class="duration">Jan 2023 - Present</span></p>
-          <ul>
-            <li>Led the development of a new responsive web application using React and Next.js, improving performance by 30%.</li>
-            <li>Collaborated with UX/UI designers to translate wireframes into high-fidelity user interfaces.</li>
-            <li>Mentored junior developers and conducted code reviews to ensure best practices.</li>
-          </ul>
-        </div>
-        <div class="experience-item fade-in-up">
-          <h3 class="job-title">Junior Web Developer</h3>
-          <p class="company">Digital Solutions Co. <span class="duration">July 2021 - Dec 2022</span></p>
-          <ul>
-            <li>Developed and maintained client websites using HTML, CSS, and JavaScript.</li>
-            <li>Implemented new features and debugged existing codebases.</li>
-            <li>Assisted in the migration of legacy systems to modern web technologies.</li>
-          </ul>
-        </div>
-        <div class="experience-item fade-in-up">
-          <h3 class="job-title">UI/UX Design Intern</h3>
-          <p class="company">Creative Minds Studio <span class="duration">Mar 2021 - June 2021</span></p>
-          <ul>
-            <li>Assisted in user research, wireframing, and prototyping for various web and mobile applications.</li>
-            <li>Contributed to design system documentation and component libraries.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+        <!-- Skills Section -->
+        <section id="skills" class="py-16 bg-white dark:bg-gray-800 p-4 md:p-8 transition-colors duration-500">
+            <div class="container mx-auto text-center">
+                <h2 class="section-heading mx-auto mb-10 text-gray-800 dark:text-gray-100">My Skills</h2>
+                <div class="max-w-4xl mx-auto flex flex-wrap justify-center gap-4">
+                    <div class="skill-badge bg-indigo-100 text-indigo-700 dark:bg-indigo-700 dark:text-indigo-100">HTML5</div>
+                    <div class="skill-badge bg-indigo-100 text-indigo-700 dark:bg-indigo-700 dark:text-indigo-100">CSS3</div>
+                    <div class="skill-badge bg-indigo-100 text-indigo-700 dark:bg-indigo-700 dark:text-indigo-100">JavaScript (ES6+)</div>
+                    <div class="skill-badge bg-indigo-100 text-indigo-700 dark:bg-indigo-700 dark:text-indigo-100">React.js</div>
+                    <div class="skill-badge bg-indigo-100 text-indigo-700 dark:bg-indigo-700 dark:text-indigo-100">Next.js</div>
+                    <div class="skill-badge bg-indigo-100 text-indigo-700 dark:bg-indigo-700 dark:text-indigo-100">Tailwind CSS</div>
+                    <div class="skill-badge bg-indigo-100 text-indigo-700 dark:bg-indigo-700 dark:text-indigo-100">Bootstrap</div>
+                    <div class="skill-badge bg-indigo-100 text-indigo-700 dark:bg-indigo-700 dark:text-indigo-100">UI/UX Design</div>
+                    <div class="skill-badge bg-indigo-100 text-indigo-700 dark:bg-indigo-700 dark:text-indigo-100">Figma</div>
+                    <div class="skill-badge bg-indigo-100 text-indigo-700 dark:bg-indigo-700 dark:text-indigo-100">Responsive Design</div>
+                    <div class="skill-badge bg-indigo-100 text-indigo-700 dark:bg-indigo-700 dark:text-indigo-100">Git & GitHub</div>
+                    <div class="skill-badge bg-indigo-100 text-indigo-700 dark:bg-indigo-700 dark:text-indigo-100">Web Performance Optimization</div>
+                    <div class="skill-badge bg-indigo-100 text-indigo-700 dark:bg-indigo-700 dark:text-indigo-100">Accessibility (A11y)</div>
+                    <div class="skill-badge bg-indigo-100 text-indigo-700 dark:bg-indigo-700 dark:text-indigo-100">SEO Basics</div>
+                </div>
+            </div>
+        </section>
 
-  <section class="portfolio" id="projects">
-    <div class="container">
-      <h2>Featured Projects</h2>
-      <p class="section-description">A showcase of some of my recent work and personal projects.</p>
-        <div class="Project 1 Thumbnail"></div>
-        <div class="card fade-in">
-        <div class="project-card">
-            <img src="/Assets/images/Ai and Climate change.jpg" alt="Project 1 Thumbnail">
-            <h3>AI Dashboard</h3>
-            <p>A full-stack blog...</p>
-            <div class="project-tags">#Next.js #GraphQL #PostgreSQL</div>
-            <a href="#">View Details</a>
-        </div>
-     </div>
-</section>
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="py-16 bg-gray-50 dark:bg-gray-900 p-4 md:p-8 transition-colors duration-500">
+            <div class="container mx-auto text-center">
+                <h2 class="section-heading mx-auto mb-10 text-gray-800 dark:text-gray-100">My Web Design Templates</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-       
-         <div class="Project 2 Thumbnail"></div>
-        <div class="card fade-in">
-        <div class="project-card">
-            <img src="/Assets/images/Climate Change Ai.png" alt="Project 1 Thumbnail">
-            <h3>AI Dashboard</h3>
-            <p>A full-stack blog...</p>
-            <div class="project-tags">#Next.js #GraphQL #PostgreSQL</div>
-            <a href="#">View Details</a>
-        </div>
-     </div>
-          <div class="Project 3 Thumbnail"></div>
-        <div class="card fade-in">
-        <div class="project-card">
-            <img src="/Assets/images/Climate Ai 1.jpg" alt="Project 1 Thumbnail">
-            <h3>AI Dashboard</h3>
-            <p>A full-stack blog...</p>
-            <div class="project-tags">#Next.js #GraphQL #PostgreSQL</div>
-            <a href="#">View Details</a>
-        </div>
-     </div>
-         <div class="Project 4 Thumbnail"></div>
-        <div class="card fade-in">
-        <div class="project-card">
-            <img src="/Assets/images/web 2.jpeg" alt="Project 1 Thumbnail">
-            <h3>AI Dashboard</h3>
-            <p>A full-stack blog...</p>
-            <div class="project-tags">#Next.js #GraphQL #PostgreSQL</div>
-            <a href="#">View Details</a>
-        </div>
-     </div> 
-      <div class="view-more">
-        <a href="#" class="btn-primary">View All Projects</a>
-      </div>
-    </div>
-  </section> 
-  
-  <section class="contact section-alt" id="contact">
-    <div class="container fade-in-up">
-      <h2>Get in Touch</h2>
-      <p class="section-description">I'm always open to new opportunities, collaborations, or just a friendly chat. Feel free to reach out!</p>
-      <form class="contact-form">
-        <input type="text" id="name" name="name" placeholder="Your Name" required aria-label="Your Name"/>
-        <input type="email" id="email" name="email" placeholder="Your Email" required aria-label="Your Email"/>
-        <input type="text" id="subject" name="subject" placeholder="Subject" required aria-label="Subject"/>
-        <textarea id="message" name="message" placeholder="Your Message" rows="6" required aria-label="Your Message"></textarea>
-        <button type="submit" class="btn-primary">Send Message</button>
-      </form>
-    </div>
-  </section>
+                    <!-- Portfolio Item 1 -->
+                    <div class="card p-6 flex flex-col items-center text-center cursor-pointer bg-white dark:bg-gray-800 dark:shadow-md" data-project="project1">
+                        <img src=url(/Assets/images/ alt="E-commerce Template" class="portfolio-item-image mb-4">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2">Modern E-commerce Store</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">A sleek and responsive e-commerce template designed for fashion brands.</p>
+                    </div>
 
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-logo">Pratik Adhikari</div>
-        <div class="footer-links">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
+                    <!-- Portfolio Item 2 -->
+                    <div class="card p-6 flex flex-col items-center text-center cursor-pointer bg-white dark:bg-gray-800 dark:shadow-md" data-project="project2">
+                        <img src="https://placehold.co/600x400/E0E7FF/4F46E5?text=Landing+Page+Template" alt="Landing Page Template" class="portfolio-item-image mb-4">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2">Creative Agency Landing Page</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">A vibrant single-page template for creative agencies to showcase services.</p>
+                    </div>
+
+                    <!-- Portfolio Item 3 -->
+                    <div class="card p-6 flex flex-col items-center text-center cursor-pointer bg-white dark:bg-gray-800 dark:shadow-md" data-project="project3">
+                        <img src="https://placehold.co/600x400/E0E7FF/4F46E5?text=Blog+Template" alt="Blog Template" class="portfolio-item-image mb-4">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2">Minimalist Blog Layout</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">A clean and readable blog template optimized for content delivery.</p>
+                    </div>
+
+                    <!-- Portfolio Item 4 -->
+                    <div class="card p-6 flex flex-col items-center text-center cursor-pointer bg-white dark:bg-gray-800 dark:shadow-md" data-project="project4">
+                        <img src="https://placehold.co/600x400/E0E7FF/4F46E5?text=Portfolio+Template" alt="Portfolio Template" class="portfolio-item-image mb-4">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2">Personal Portfolio Showcase</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">A responsive template for individuals to display their projects and skills.</p>
+                    </div>
+
+                    <!-- Portfolio Item 5 -->
+                    <div class="card p-6 flex flex-col items-center text-center cursor-pointer bg-white dark:bg-gray-800 dark:shadow-md" data-project="project5">
+                        <img src="https://placehold.co/600x400/E0E7FF/4F46E5?text=Restaurant+Template" alt="Restaurant Template" class="portfolio-item-image mb-4">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2">Elegant Restaurant Website</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">A sophisticated template for restaurants, featuring menu and reservation sections.</p>
+                    </div>
+
+                    <!-- Portfolio Item 6 -->
+                    <div class="card p-6 flex flex-col items-center text-center cursor-pointer bg-white dark:bg-gray-800 dark:shadow-md" data-project="project6">
+                        <img src="https://placehold.co/600x400/E0E7FF/4F46E5?text=SaaS+Template" alt="SaaS Template" class="portfolio-item-image mb-4">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2">SaaS Product Landing Page</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">A conversion-focused landing page template for software-as-a-service products.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 bg-white dark:bg-gray-800 p-4 md:p-8 transition-colors duration-500">
+            <div class="container mx-auto text-center">
+                <h2 class="section-heading mx-auto mb-10 text-gray-800 dark:text-gray-100">Get In Touch</h2>
+                <div class="max-w-2xl mx-auto bg-gray-50 dark:bg-gray-900 p-8 rounded-xl shadow-lg transition-colors duration-500">
+                    <p class="text-lg mb-6 text-gray-700 dark:text-gray-300">Have a project in mind or just want to say hello? Feel free to reach out!</p>
+                    <form id="contact-form" class="space-y-6">
+                        <div>
+                            <input type="text" id="name" name="name" placeholder="Your Name" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100" required>
+                        </div>
+                        <div>
+                            <input type="email" id="email" name="email" placeholder="Your Email" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100" required>
+                        </div>
+                        <div>
+                            <textarea id="message" name="message" rows="5" placeholder="Your Message" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary w-full">Send Message</button>
+                    </form>
+                    <div id="form-message" class="mt-4 text-center text-sm font-medium"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 text-center dark:bg-gray-950 transition-colors duration-500">
+        <div class="container mx-auto px-4">
+            <p class="mb-4">&copy; 2025 Your Name. All rights reserved.</p>
+            <div class="flex justify-center space-x-6 text-2xl">
+                <a href="#" target="_blank" class="hover:text-indigo-400 transition-colors duration-300"><i class="fab fa-github"></i></a>
+                <a href="#" target="_blank" class="hover:text-indigo-400 transition-colors duration-300"><i class="fab fa-linkedin"></i></a>
+                <a href="#" target="_blank" class="hover:text-indigo-400 transition-colors duration-300"><i class="fab fa-twitter"></i></a>
+            </div>
         </div>
-        <div class="social-icons">
-          <a href="https://linkedin.com/in/pratikadhikari" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="https://img.icons8.com/ios-filled/24/cccccc/linkedin.png" alt="LinkedIn"></a>
-          <a href="https://github.com/pratikadhikari" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><img src="https://img.icons8.com/ios-filled/24/cccccc/github.png" alt="GitHub"></a>
-          <a href="mailto:pratik.adhikari@example.com" aria-label="Email"><img src="https://img.icons8.com/ios-filled/24/cccccc/new-post.png" alt="Email"></a>
-          </div>
-      </div>
-      <p class="copyright">&copy; 2025 Pratik Adhikari. All rights reserved.</p>
+    </footer>
+
+    <!-- Project Modal -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content bg-white dark:bg-gray-800 dark:text-gray-100 transition-colors duration-500">
+            <span class="close-button text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-100">&times;</span>
+            <h3 id="modal-title" class="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-4"></h3>
+            <img id="modal-image" src="" alt="Project Image" class="w-full h-auto rounded-lg mb-6">
+            <p id="modal-description" class="text-gray-700 dark:text-gray-300 text-lg mb-6"></p>
+            <div class="flex flex-wrap gap-4 mb-6">
+                <span id="modal-technologies" class="text-gray-600 dark:text-gray-400 font-medium"></span>
+            </div>
+            <div class="flex justify-center md:justify-start space-x-4">
+                <a id="modal-live-demo" href="#" target="_blank" class="btn-primary inline-block">Live Demo <i class="fas fa-external-link-alt ml-2"></i></a>
+                <a id="modal-github" href="#" target="_blank" class="btn-secondary inline-block">GitHub <i class="fab fa-github ml-2"></i></a>
+            </div>
+        </div>
     </div>
-  </footer>
+
+    <!-- Link to custom JavaScript file -->
+    <script src="script.js"></script>
 </body>
 </html>
