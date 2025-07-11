@@ -1,69 +1,43 @@
- <style>
-        /* Custom styles for light/dark mode transitions and general aesthetics */
+<style>
         body {
             font-family: 'Inter', sans-serif;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background-color 0.3s, color 0.3s;
         }
-        .dark {
-            background-color: #1a202c; /* Dark background */
-            color: #e2e8f0; /* Light text */
+        /* Custom scrollbar for dark mode */
+        html.dark ::-webkit-scrollbar-track {
+            background: #2d3748; /* Darker background for scrollbar track */
         }
-        .light {
-            background-color: #ffffff; /* Light background */
-            color: #2d3748; /* Dark text */
+        html.dark ::-webkit-scrollbar-thumb {
+            background-color: #4a5568; /* Darker thumb color */
+            border-radius: 20px;
+            border: 3px solid #2d3748;
         }
-        .dark .text-gray-800 {
-            color: #e2e8f0;
+        /* Custom scrollbar for light mode */
+        html:not(.dark) ::-webkit-scrollbar-track {
+            background: #f1f1f1; /* Light background for scrollbar track */
         }
-        .dark .bg-white {
-            background-color: #2d3748;
+        html:not(.dark) ::-webkit-scrollbar-thumb {
+            background-color: #888; /* Light thumb color */
+            border-radius: 20px;
+            border: 3px solid #f1f1f1;
         }
-        .dark .border-gray-200 {
-            border-color: #4a5568;
+        ::-webkit-scrollbar {
+            width: 12px;
         }
-        .dark .shadow-md {
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.12);
-        }
-        .dark .hover\:bg-gray-100:hover {
-            background-color: #4a5568;
-        }
-        .dark .form-input, .dark .form-textarea {
-            background-color: #4a5568;
-            border-color: #6a768a;
-            color: #e2e8f0;
-        }
-        .dark .form-input::placeholder, .dark .form-textarea::placeholder {
-            color: #a0aec0;
-        }
-
-        /* Smooth scroll for navigation links */
+        /* Ensure smooth scrolling for all sections */
         html {
             scroll-behavior: smooth;
         }
-
-        /* Custom scrollbar for better aesthetics */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+        .section-padding {
+            padding-top: 8rem; /* Extra padding for sections to account for fixed header */
+            padding-bottom: 4rem;
         }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
+        /* Animation for skill bars */
+        .skill-bar-fill {
+            animation: fillBar 1.5s ease-out forwards;
         }
-        .dark::-webkit-scrollbar-track {
-            background: #2d3748;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 10px;
-        }
-        .dark::-webkit-scrollbar-thumb {
-            background: #555;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-        .dark::-webkit-scrollbar-thumb:hover {
-            background: #777;
+        @keyframes fillBar {
+            from { width: 0%; }
+            to { width: var(--skill-level); }
         }
     </style>
