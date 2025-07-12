@@ -1,43 +1,142 @@
-<style>
+ <style>
+        /* CSS Variables for theming */
+        :root {
+            --primary-color: #4F46E5; /* Indigo 600 */
+            --secondary-color: #6366F1; /* Indigo 500 */
+            --accent-color: #EC4899; /* Pink 500 */
+            --text-color-light: #1F2937; /* Gray 900 */
+            --text-color-dark: #F9FAFB; /* Gray 50 */
+            --bg-color-light: #F9FAFB; /* Gray 50 */
+            --bg-color-dark: #111827; /* Gray 900 */
+            --card-bg-light: #FFFFFF; /* White */
+            --card-bg-dark: #1F2937; /* Gray 800 */
+            --border-color-light: #E5E7EB; /* Gray 200 */
+            --border-color-dark: #374151; /* Gray 700 */
+            --font-family: 'Inter', sans-serif;
+            --border-radius-sm: 0.25rem; /* 4px */
+            --border-radius-md: 0.5rem; /* 8px */
+            --border-radius-lg: 0.75rem; /* 12px */
+            --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-dark: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Light Mode */
+        .light {
+            color: var(--text-color-light);
+            background-color: var(--bg-color-light);
+        }
+        .light .bg-card {
+            background-color: var(--card-bg-light);
+            border-color: var(--border-color-light);
+            box-shadow: var(--shadow-light);
+        }
+        .light .text-primary { color: var(--primary-color); }
+        .light .bg-primary { background-color: var(--primary-color); }
+        .light .border-primary { border-color: var(--primary-color); }
+
+        /* Dark Mode */
+        .dark {
+            color: var(--text-color-dark);
+            background-color: var(--bg-color-dark);
+        }
+        .dark .bg-card {
+            background-color: var(--card-bg-dark);
+            border-color: var(--border-color-dark);
+            box-shadow: var(--shadow-dark);
+        }
+        .dark .text-primary { color: var(--secondary-color); }
+        .dark .bg-primary { background-color: var(--secondary-color); }
+        .dark .border-primary { border-color: var(--secondary-color); }
+
+        /* General Styling */
         body {
-            font-family: 'Inter', sans-serif;
-            transition: background-color 0.3s, color 0.3s;
+            font-family: var(--font-family);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-        /* Custom scrollbar for dark mode */
-        html.dark ::-webkit-scrollbar-track {
-            background: #2d3748; /* Darker background for scrollbar track */
+        /* The main container for content, excluding the full-width header */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
         }
-        html.dark ::-webkit-scrollbar-thumb {
-            background-color: #4a5568; /* Darker thumb color */
-            border-radius: 20px;
-            border: 3px solid #2d3748;
+        .section-heading {
+            font-size: 2.5rem; /* text-4xl */
+            font-weight: 700; /* font-bold */
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary-color);
         }
-        /* Custom scrollbar for light mode */
-        html:not(.dark) ::-webkit-scrollbar-track {
-            background: #f1f1f1; /* Light background for scrollbar track */
+        .section-heading i {
+            margin-right: 0.75rem; /* Space between icon and text */
+            color: var(--accent-color); /* Icon color */
         }
-        html:not(.dark) ::-webkit-scrollbar-thumb {
-            background-color: #888; /* Light thumb color */
-            border-radius: 20px;
-            border: 3px solid #f1f1f1;
-        }
-        ::-webkit-scrollbar {
-            width: 12px;
-        }
-        /* Ensure smooth scrolling for all sections */
-        html {
-            scroll-behavior: smooth;
-        }
-        .section-padding {
-            padding-top: 8rem; /* Extra padding for sections to account for fixed header */
-            padding-bottom: 4rem;
-        }
-        /* Animation for skill bars */
+        .rounded-lg { border-radius: var(--border-radius-lg); }
+        .rounded-md { border-radius: var(--border-radius-md); }
+        .rounded-sm { border-radius: var(--border-radius-sm); }
+
+        /* Skill bar animation */
         .skill-bar-fill {
-            animation: fillBar 1.5s ease-out forwards;
+            transition: width 1s ease-in-out, background-color 0.5s ease-in-out;
         }
-        @keyframes fillBar {
-            from { width: 0%; }
-            to { width: var(--skill-level); }
+
+        /* Form message box */
+        .message-box {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem;
+            border-radius: var(--border-radius-md);
+            color: white;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .message-box.show {
+            opacity: 1;
+        }
+        .message-box.success {
+            background-color: #22C55E; /* Green 500 */
+        }
+        .message-box.error {
+            background-color: #EF4444; /* Red 500 */
+        }
+
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color-light); /* Light mode track */
+            border-radius: var(--border-radius-md);
+        }
+
+        .dark::-webkit-scrollbar-track {
+            background: var(--bg-color-dark); /* Dark mode track */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: var(--border-radius-md);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+
+        /* Navigation link hover effect */
+        .nav-link-hover {
+            display: flex; /* Ensure flex for icon alignment */
+            align-items: center; /* Vertically align icon and text */
+            padding: 0.5rem 0.75rem; /* Base padding */
+            border-radius: var(--border-radius-md);
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease; /* Add transform for subtle scale */
+        }
+        .nav-link-hover:hover {
+            background-color: rgba(79, 70, 229, 0.1); /* primary-color with 10% opacity */
+            transform: translateY(-2px); /* Subtle lift effect */
+        }
+        .dark .nav-link-hover:hover {
+            background-color: rgba(99, 102, 241, 0.1); /* secondary-color with 10% opacity for dark mode */
         }
     </style>
