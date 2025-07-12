@@ -1,379 +1,117 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pratik Adhikari - Web Developer Portfolio</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet"> 
-    <body class="min-h-screen flex flex-col">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pratik Adhikari | Web Developer</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">Pratik.dev</div>
+      <ul class="nav-links">
+        <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
+        <li><a href="#skills"><i class="fas fa-code"></i> Skills</a></li>
+        <li><a href="#experience"><i class="fas fa-briefcase"></i> Experiences</a></li>
+        <li><a href="#gallery"><i class="fas fa-images"></i> Gallery</a></li>
+        <li><a href="#application"><i class="fas fa-file-alt"></i> Application</a></li>
+        <li><a href="#message"><i class="fas fa-envelope"></i> Message</a></li>
+        <li><a href="#contact"><i class="fas fa-phone"></i> Contact</a></li>
+      </ul>
+      <div class="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+      <button id="modeToggle"><i class="fas fa-adjust"></i></button>
+    </nav>
+  </header>
 
-    <!-- Message Box Container -->
-    <div id="message-box-container" class="message-box"></div>
+  <section id="about">
+    <div class="about-container">
+      <img src="profile.jpg" alt="Pratik Adhikari" class="profile-img" />
+      <div class="about-text">
+        <h2>About Me</h2>
+        <p>I am Pratik Adhikari, a passionate Web Developer with strong skills in frontend and backend development. I focus on clean design, performance, and maintainability in my projects. I enjoy creating web applications that are both functional and aesthetic.</p>
+      </div>
+    </div>
+  </section>
 
-    <!-- Header and Navigation -->
-    <header class="sticky top-0 z-50 py-4 bg-card border-b transition-colors duration-300">
-        <!-- This inner div now controls the width of the header's content -->
-        <div class="w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-            <div class="text-2xl font-bold text-primary">Pratik Adhikari</div>
-            <nav class="hidden md:flex space-x-6">
-                <a href="#home" class="nav-link-hover hover:text-primary">
-                    <i class="fas fa-home mr-2"></i>Home
-                </a>
-                <a href="#about" class="nav-link-hover hover:text-primary">
-                    <i class="fas fa-user mr-2"></i>About
-                </a>
-                <a href="#skills" class="nav-link-hover hover:text-primary">
-                    <i class="fas fa-code mr-2"></i>Skills
-                </a>
-                <a href="#experience" class="nav-link-hover hover:text-primary">
-                    <i class="fas fa-briefcase mr-2"></i>Experience
-                </a>
-                <a href="#gallery" class="nav-link-hover hover:text-primary">
-                    <i class="fas fa-images mr-2"></i>Gallery
-                </a>
-                <a href="#application" class="nav-link-hover hover:text-primary">
-                    <i class="fas fa-file-alt mr-2"></i>Application
-                </a>
-                <a href="#messages" class="nav-link-hover hover:text-primary">
-                    <i class="fas fa-envelope mr-2"></i>Messages
-                </a>
-                <a href="#contact" class="nav-link-hover hover:text-primary">
-                    <i class="fas fa-address-book mr-2"></i>Contact
-                </a>
-            </nav>
-            <div class="flex items-center space-x-4">
-                <!-- Theme Toggle Button -->
-                <button id="theme-toggle" class="p-2 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 transition-colors duration-300">
-                    <i class="fas fa-sun light-icon"></i>
-                    <i class="fas fa-moon dark-icon hidden"></i>
-                </button>
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 transition-colors duration-300">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-        <!-- Mobile Navigation Menu -->
-        <nav id="mobile-menu" class="md:hidden mt-4 px-4 pb-2 bg-card border-t border-color-light dark:border-color-dark hidden">
-            <a href="#home" class="block py-2 hover:text-primary hover:underline transition-all duration-300 flex items-center">
-                <i class="fas fa-home mr-2"></i>Home
-            </a>
-            <a href="#about" class="block py-2 hover:text-primary hover:underline transition-all duration-300 flex items-center">
-                <i class="fas fa-user mr-2"></i>About
-            </a>
-            <a href="#skills" class="block py-2 hover:text-primary hover:underline transition-all duration-300 flex items-center">
-                <i class="fas fa-code mr-2"></i>Skills
-            </a>
-            <a href="#experience" class="block py-2 hover:text-primary hover:underline transition-all duration-300 flex items-center">
-                <i class="fas fa-briefcase mr-2"></i>Experience
-            </a>
-            <a href="#gallery" class="block py-2 hover:text-primary hover:underline transition-all duration-300 flex items-center">
-                <i class="fas fa-images mr-2"></i>Gallery
-            </a>
-            <a href="#application" class="block py-2 hover:text-primary hover:underline transition-all duration-300 flex items-center">
-                <i class="fas fa-file-alt mr-2"></i>Application
-            </a>
-            <a href="#messages" class="block py-2 hover:text-primary hover:underline transition-all duration-300 flex items-center">
-                <i class="fas fa-envelope mr-2"></i>Messages
-            </a>
-            <a href="#contact" class="block py-2 hover:text-primary hover:underline transition-all duration-300 flex items-center">
-                <i class="fas fa-address-book mr-2"></i>Contact
-            </a>
-        </nav>
-    </header>
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-container">
+      <div class="skill"><span>HTML</span><div class="bar html"></div></div>
+      <div class="skill"><span>CSS</span><div class="bar css"></div></div>
+      <div class="skill"><span>JavaScript</span><div class="bar js"></div></div>
+      <div class="skill"><span>React</span><div class="bar react"></div></div>
+      <div class="skill"><span>Node.js</span><div class="bar node"></div></div>
+    </div>
+  </section>
 
-    <main class="flex-grow">
-        <!-- Home Section -->
-        <section id="home" class="min-h-screen flex items-center justify-center text-center py-16 bg-gradient-to-r from-primary to-secondary text-white">
-            <div class="container">
-                <h1 class="text-5xl md:text-6xl font-extrabold mb-4 animate-fade-in-up">Hello, I'm Pratik Adhikari</h1>
-                <p class="text-xl md:text-2xl mb-8 animate-fade-in-up animation-delay-200">A passionate Web Developer crafting engaging and efficient digital experiences.</p>
-                <a href="#contact" class="inline-block bg-accent-color hover:bg-pink-600 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-up animation-delay-400">Get in Touch</a>
-            </div>
-        </section>
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="experience-container">
+      <div class="experience">
+        <h3>Frontend Developer - 2023</h3>
+        <p>✔ Designed responsive UI<br/>✔ Optimized performance<br/>✔ Delivered on time</p>
+      </div>
+      <div class="experience">
+        <h3>Backend Developer - 2024</h3>
+        <p>✔ Built RESTful APIs<br/>✔ Integrated MongoDB<br/>✔ Achieved 99.9% uptime</p>
+      </div>
+    </div>
+  </section>
 
-        <!-- About Section -->
-        <section id="about" class="py-16 bg-card border-b border-color-light dark:border-color-dark">
-            <div class="container flex flex-col md:flex-row items-center md:space-x-8">
-                <div class="md:w-1/3 flex justify-center mb-8 md:mb-0">
-                    <img src="https://placehold.co/300x300/4F46E5/FFFFFF?text=Pratik" alt="Pratik Adhikari Profile" class="rounded-full w-64 h-64 object-cover border-4 border-primary shadow-lg">
-                </div>
-                <div class="md:w-2/3 text-center md:text-left">
-                    <h2 class="section-heading"><i class="fas fa-user"></i>About Me</h2>
-                    <p class="text-lg leading-relaxed mb-4">
-                        I am Pratik Adhikari, a dedicated and innovative web developer with a strong foundation in front-end and a growing expertise in back-end technologies. I thrive on building responsive, user-friendly, and high-performance web applications. My journey in web development began with a fascination for how interactive experiences are created on the internet, leading me to constantly learn and adapt to new technologies.
-                    </p>
-                    <p class="text-lg leading-relaxed">
-                        With a keen eye for detail and a passion for problem-solving, I am committed to delivering clean, efficient, and scalable code. I enjoy collaborating with teams to bring ideas to life and am always eager to take on new challenges that push my boundaries and expand my skill set.
-                    </p>
-                </div>
-            </div>
-        </section>
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery-slider">
+      <img src="gallery1.jpg" alt="Project 1" />
+      <img src="gallery2.jpg" alt="Project 2" />
+      <img src="gallery3.jpg" alt="Project 3" />
+    </div>
+  </section>
 
-        <!-- Skills Section -->
-        <section id="skills" class="py-16">
-            <div class="container">
-                <h2 class="section-heading"><i class="fas fa-code"></i>My Skills</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Skill Item -->
-                    <div class="bg-card p-6 rounded-lg shadow-md border border-color-light dark:border-color-dark">
-                        <h3 class="text-xl font-semibold mb-3 text-primary">HTML5 & CSS3</h3>
-                        <p class="text-sm mb-2">Building semantic structures and beautiful designs.</p>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                            <div class="skill-bar-fill h-2.5 rounded-full bg-green-500" style="width: 95%;"></div>
-                        </div>
-                        <span class="text-sm text-gray-600 dark:text-gray-400 mt-1 block">Performance: Expert</span>
-                    </div>
+  <section id="application">
+    <h2>Application Form</h2>
+    <form id="applicationForm">
+      <input type="text" name="name" placeholder="Name" required />
+      <input type="email" name="email" placeholder="Email" required />
+      <select name="service">
+        <option>Website Design</option>
+        <option>SEO Optimization</option>
+        <option>Web App Development</option>
+      </select>
+      <textarea name="message" placeholder="Project details..."></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
 
-                    <!-- Skill Item -->
-                    <div class="bg-card p-6 rounded-lg shadow-md border border-color-light dark:border-color-dark">
-                        <h3 class="text-xl font-semibold mb-3 text-primary">JavaScript (ES6+)</h3>
-                        <p class="text-sm mb-2">Dynamic and interactive web experiences.</p>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                            <div class="skill-bar-fill h-2.5 rounded-full bg-blue-500" style="width: 90%;"></div>
-                        </div>
-                        <span class="text-sm text-gray-600 dark:text-gray-400 mt-1 block">Performance: Advanced</span>
-                    </div>
+  <section id="message">
+    <h2>Leave a Message</h2>
+    <form id="messageForm">
+      <input type="text" name="name" placeholder="Name" required />
+      <input type="email" name="email" placeholder="Email" required />
+      <textarea name="message" placeholder="Your message..." required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
 
-                    <!-- Skill Item -->
-                    <div class="bg-card p-6 rounded-lg shadow-md border border-color-light dark:border-color-dark">
-                        <h3 class="text-xl font-semibold mb-3 text-primary">React.js</h3>
-                        <p class="text-sm mb-2">Building modern, component-based UIs.</p>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                            <div class="skill-bar-fill h-2.5 rounded-full bg-yellow-500" style="width: 85%;"></div>
-                        </div>
-                        <span class="text-sm text-gray-600 dark:text-gray-400 mt-1 block">Performance: Proficient</span>
-                    </div>
+  <section id="contact">
+    <h2>Contact</h2>
+    <p><i class="fas fa-map-marker-alt"></i> Kathmandu, Nepal</p>
+    <p><i class="fas fa-mail-bulk"></i> PO Box 12345</p>
+    <p><i class="fas fa-phone"></i> +977-9800000000</p>
+  </section>
 
-                    <!-- Skill Item -->
-                    <div class="bg-card p-6 rounded-lg shadow-md border border-color-light dark:border-color-dark">
-                        <h3 class="text-xl font-semibold mb-3 text-primary">Node.js & Express.js</h3>
-                        <p class="text-sm mb-2">Backend development and RESTful APIs.</p>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                            <div class="skill-bar-fill h-2.5 rounded-full bg-orange-500" style="width: 75%;"></div>
-                        </div>
-                        <span class="text-sm text-gray-600 dark:text-gray-400 mt-1 block">Performance: Intermediate</span>
-                    </div>
-
-                    <!-- Skill Item -->
-                    <div class="bg-card p-6 rounded-lg shadow-md border border-color-light dark:border-color-dark">
-                        <h3 class="text-xl font-semibold mb-3 text-primary">Databases (MongoDB, SQL)</h3>
-                        <p class="text-sm mb-2">Data storage and management.</p>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                            <div class="skill-bar-fill h-2.5 rounded-full bg-orange-500" style="width: 70%;"></div>
-                        </div>
-                        <span class="text-sm text-gray-600 dark:text-gray-400 mt-1 block">Performance: Intermediate</span>
-                    </div>
-
-                    <!-- Skill Item -->
-                    <div class="bg-card p-6 rounded-lg shadow-md border border-color-light dark:border-color-dark">
-                        <h3 class="text-xl font-semibold mb-3 text-primary">Git & GitHub</h3>
-                        <p class="text-sm mb-2">Version control and collaborative development.</p>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                            <div class="skill-bar-fill h-2.5 rounded-full bg-yellow-500" style="width: 88%;"></div>
-                        </div>
-                        <span class="text-sm text-gray-600 dark:text-gray-400 mt-1 block">Performance: Proficient</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience" class="py-16 bg-card border-b border-color-light dark:border-color-dark">
-            <div class="container">
-                <h2 class="section-heading"><i class="fas fa-briefcase"></i>Experience</h2>
-                <div class="flex flex-col space-y-8">
-                    <!-- Experience Item 1 -->
-                    <div class="flex flex-col md:flex-row bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md border border-color-light dark:border-color-dark">
-                        <div class="md:w-1/4 flex-shrink-0 mb-4 md:mb-0">
-                            <h3 class="text-xl font-semibold text-primary">Junior Web Developer</h3>
-                            <p class="text-gray-600 dark:text-gray-400">Tech Solutions Inc.</p>
-                            <p class="text-gray-500 dark:text-gray-500 text-sm">Jan 2023 - Present</p>
-                        </div>
-                        <div class="md:w-3/4 md:pl-8">
-                            <ul class="list-disc list-inside space-y-2">
-                                <li>Developed and maintained responsive web applications using React.js and Tailwind CSS.</li>
-                                <li>Collaborated with senior developers to implement new features and improve existing functionalities.</li>
-                                <li>Optimized website performance, reducing load times by 20%.</li>
-                                <li>Participated in code reviews and contributed to a clean and efficient codebase.</li>
-                                <li>Technologies: React, JavaScript, HTML, CSS, Tailwind CSS, Git.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Experience Item 2 -->
-                    <div class="flex flex-col md:flex-row bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md border border-color-light dark:border-color-dark">
-                        <div class="md:w-1/4 flex-shrink-0 mb-4 md:mb-0">
-                            <h3 class="text-xl font-semibold text-primary">Freelance Web Designer</h3>
-                            <p class="text-gray-600 dark:text-gray-400">Self-Employed</p>
-                            <p class="text-gray-500 dark:text-gray-500 text-sm">Jun 2021 - Dec 2022</p>
-                        </div>
-                        <div class="md:w-3/4 md:pl-8">
-                            <ul class="list-disc list-inside space-y-2">
-                                <li>Designed and developed custom websites for small businesses and individuals.</li>
-                                <li>Managed client communication, project requirements gathering, and delivery.</li>
-                                <li>Created wireframes and prototypes to ensure client satisfaction.</li>
-                                <li>Focused on clean, modern design and intuitive user experiences.</li>
-                                <li>Technologies: HTML, CSS, JavaScript, Adobe XD, Figma.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Gallery Section -->
-        <section id="gallery" class="py-16">
-            <div class="container">
-                <h2 class="section-heading"><i class="fas fa-images"></i>Gallery - My Projects</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Project 1 -->
-                    <div class="bg-card p-6 rounded-lg shadow-md border border-color-light dark:border-color-dark">
-                        <img src="https://placehold.co/400x250/4F46E5/FFFFFF?text=Project+1" alt="Project 1" class="w-full h-48 object-cover rounded-md mb-4">
-                        <h3 class="text-xl font-semibold text-primary mb-2">E-commerce Website</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">A fully responsive e-commerce platform with product listings, shopping cart, and checkout functionality.</p>
-                        <ul class="flex flex-wrap gap-2 mt-3">
-                            <li class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded-full text-xs">React</li>
-                            <li class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded-full text-xs">Node.js</li>
-                            <li class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded-full text-xs">MongoDB</li>
-                        </ul>
-                    </div>
-
-                    <!-- Project 2 -->
-                    <div class="bg-card p-6 rounded-lg shadow-md border border-color-light dark:border-color-dark">
-                        <img src="https://placehold.co/400x250/6366F1/FFFFFF?text=Project+2" alt="Project 2" class="w-full h-48 object-cover rounded-md mb-4">
-                        <h3 class="text-xl font-semibold text-primary mb-2">Portfolio Site Redesign</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Modern redesign of a personal portfolio website with animations and improved UX.</p>
-                        <ul class="flex flex-wrap gap-2 mt-3">
-                            <li class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded-full text-xs">HTML5</li>
-                            <li class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded-full text-xs">CSS3</li>
-                            <li class="bg-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded-full text-xs">JavaScript</li>
-                            <li class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded-full text-xs">Tailwind CSS</li>
-                        </ul>
-                    </div>
-
-                    <!-- Project 3 -->
-                    <div class="bg-card p-6 rounded-lg shadow-md border border-color-light dark:border-color-dark">
-                        <img src="https://placehold.co/400x250/EC4899/FFFFFF?text=Project+3" alt="Project 3" class="w-full h-48 object-cover rounded-md mb-4">
-                        <h3 class="text-xl font-semibold text-primary mb-2">Task Management App</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">A single-page application for managing tasks with drag-and-drop functionality.</p>
-                        <ul class="flex flex-wrap gap-2 mt-3">
-                            <li class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded-full text-xs">Vue.js</li>
-                            <li class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded-full text-xs">Firebase</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Application Form Section -->
-        <section id="application" class="py-16 bg-card border-b border-color-light dark:border-color-dark">
-            <div class="container">
-                <h2 class="section-heading"><i class="fas fa-file-alt"></i>Project Application</h2>
-                <form id="application-form" class="max-w-2xl mx-auto p-8 bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md border border-color-light dark:border-color-dark">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                        <div>
-                            <label for="appName" class="block text-sm font-medium mb-1">Your Name</label>
-                            <input type="text" id="appName" name="name" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary" required>
-                        </div>
-                        <div>
-                            <label for="appEmail" class="block text-sm font-medium mb-1">Your Email</label>
-                            <input type="email" id="appEmail" name="email" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary" required>
-                        </div>
-                        <div>
-                            <label for="appPhone" class="block text-sm font-medium mb-1">Phone Number</label>
-                            <input type="tel" id="appPhone" name="phone" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary">
-                        </div>
-                        <div>
-                            <label for="appCompany" class="block text-sm font-medium mb-1">Company (Optional)</label>
-                            <input type="text" id="appCompany" name="company" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary">
-                        </div>
-                    </div>
-                    <div class="mb-6">
-                        <label for="appProjectType" class="block text-sm font-medium mb-1">Project Type</label>
-                        <select id="appProjectType" name="projectType" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary" required>
-                            <option value="">Select Project Type</option>
-                            <option value="website">Website Development</option>
-                            <option value="webapp">Web Application Development</option>
-                            <option value="ecom">E-commerce Solution</option>
-                            <option value="portfolio">Portfolio Site</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                        <div>
-                            <label for="appBudget" class="block text-sm font-medium mb-1">Estimated Budget (USD)</label>
-                            <input type="number" id="appBudget" name="budget" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="e.g., 5000">
-                        </div>
-                        <div>
-                            <label for="appDeadline" class="block text-sm font-medium mb-1">Desired Deadline</label>
-                            <input type="date" id="appDeadline" name="deadline" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary">
-                        </div>
-                    </div>
-                    <div class="mb-6">
-                        <label for="appMessage" class="block text-sm font-medium mb-1">Project Description</label>
-                        <textarea id="appMessage" name="message" rows="5" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Describe your project requirements in detail..." required></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-primary hover:bg-secondary text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105">Submit Application</button>
-                </form>
-            </div>
-        </section>
-
-        <!-- Messages Form Section -->
-        <section id="messages" class="py-16">
-            <div class="container">
-                <h2 class="section-heading"><i class="fas fa-envelope"></i>Send a Message</h2>
-                <form id="message-form" class="max-w-xl mx-auto p-8 bg-card rounded-lg shadow-md border border-color-light dark:border-color-dark">
-                    <div class="mb-6">
-                        <label for="msgName" class="block text-sm font-medium mb-1">Your Name</label>
-                        <input type="text" id="msgName" name="name" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary" required>
-                    </div>
-                    <div class="mb-6">
-                        <label for="msgEmail" class="block text-sm font-medium mb-1">Your Email</label>
-                        <input type="email" id="msgEmail" name="email" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary" required>
-                    </div>
-                    <div class="mb-6">
-                        <label for="msgSubject" class="block text-sm font-medium mb-1">Subject</label>
-                        <input type="text" id="msgSubject" name="subject" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary" required>
-                    </div>
-                    <div class="mb-6">
-                        <label for="msgMessage" class="block text-sm font-medium mb-1">Your Message</label>
-                        <textarea id="msgMessage" name="message" rows="5" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Write your message here..." required></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-primary hover:bg-secondary text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105">Send Message</button>
-                </form>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-16 bg-card border-b border-color-light dark:border-color-dark">
-            <div class="container text-center">
-                <h2 class="section-heading"><i class="fas fa-address-book"></i>Contact Me</h2>
-                <p class="text-lg mb-8">Feel free to reach out through my social media or directly via email.</p>
-                <div class="flex justify-center space-x-6 mb-8">
-                    <a href="https://facebook.com/yourprofile" target="_blank" class="text-primary hover:text-secondary transition-colors duration-300 text-4xl">
-                        <i class="fab fa-facebook"></i>
-                    </a>
-                    <a href="https://instagram.com/yourprofile" target="_blank" class="text-primary hover:text-secondary transition-colors duration-300 text-4xl">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://github.com/Designerpratikcreator" target="_blank" class="text-primary hover:text-secondary transition-colors duration-300 text-4xl">
-                        <i class="fab fa-github"></i>
-                    </a>
-                </div>
-                <p class="text-lg mb-4">Email: <a href="mailto:Pratik_mhnrs2023@kusoa.edu.np" class="text-primary hover:underline">Pratik_mhnrs2023@kusoa.edu.np</a></p>
-                <p class="text-lg">References available upon request.</p>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="py-8 bg-gray-200 dark:bg-gray-900 text-gray-700 dark:text-gray-300 text-center transition-colors duration-300">
-        <div class="container">
-            <p>&copy; 2023 Pratik Adhikari. All rights reserved.</p>
-        </div>
-    </footer>
+  <footer>
+    <p>&copy; 2025 Pratik Adhikari. All rights reserved.</p>
+    <div class="social-links">
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-github"></i></a>
+    </div>
+  </footer>
+</body>
+</html>
