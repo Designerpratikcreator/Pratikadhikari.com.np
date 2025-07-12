@@ -1,13 +1,13 @@
 /* Design Variables */
 :root {
-    --primary-color: #007bff; /* Blue */
+    --primary-color: #800080; /* purple */
     --secondary-color: #6c757d; /* Gray */
-    --accent-color: #28a745; /* Green */
+    --accent-color: #DE3163; /* pink */
     --text-color-light: #333;
     --background-color-light: #f4f7f6;
     --card-background-light: #ffffff;
     --border-color-light: #ddd;
-    --hover-effect-color-light: #0056b3;
+    --hover-effect-color-light: #40E0D0;
 
     /* Dark Mode Variables */
     --text-color-dark: #e0e0e0;
