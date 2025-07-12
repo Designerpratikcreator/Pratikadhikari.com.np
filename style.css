@@ -1,14 +1,14 @@
  <style>
         /* CSS Variables for theming */
         :root {
-            --primary-color: #4F46E5; /* Indigo 600 */
-            --secondary-color: #6366F1; /* Indigo 500 */
+            --primary-color: #0000FF; /* Blue */
+            --secondary-color: ##00FFFF; /* Cyan Aqua */
             --accent-color: #EC4899; /* Pink 500 */
             --text-color-light: #1F2937; /* Gray 900 */
-            --text-color-dark: #F9FAFB; /* Gray 50 */
-            --bg-color-light: #F9FAFB; /* Gray 50 */
+            --text-color-dark: #000000; /* Black */
+            --bg-color-light: #FF00FF; /* Magenta */
             --bg-color-dark: #111827; /* Gray 900 */
-            --card-bg-light: #FFFFFF; /* White */
+            --card-bg-light: #FFFF00; /* Yellow */
             --card-bg-dark: #1F2937; /* Gray 800 */
             --border-color-light: #E5E7EB; /* Gray 200 */
             --border-color-dark: #374151; /* Gray 700 */
