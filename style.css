@@ -1,8 +1,8 @@
 /* Design Variables */
 :root {
-    --primary-color: #800080; /* purple */
+    --primary-color: #4f910c; /* Green */
     --secondary-color: #6c757d; /* Gray */
-    --accent-color: #DE3163; /* pink */
+    --accent-color: #fff000 ; /* yellow */
     --text-color-light: #333;
     --background-color-light: #f4f7f6;
     --card-background-light: #ffffff;
