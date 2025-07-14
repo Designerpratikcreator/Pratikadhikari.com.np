@@ -84,7 +84,7 @@ body.dark-mode section {
 body.dark-mode h1,
 body.dark-mode h2,
 body.dark-mode h3 {
-    color: var(--accent-color); /* You can keep accent color or change it */
+    color: var(--secondary-color); /* You can keep Secondary color or change it */
 }
 
 body.dark-mode .navbar {
