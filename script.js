@@ -92,8 +92,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = Object.fromEntries(formData.entries());
 
             try {
-                // Adjust the URL if your backend is running on a different port or domain
-                const response = await fetch('/submit-application', { 
+                // *** REPLACE THIS URL with your deployed backend URL ***
+                const response = await fetch('YOUR_DEPLOYED_BACKEND_URL/submit-application', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -105,7 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert('Application submitted successfully!');
                     applicationForm.reset(); // Clear the form
                 } else {
-                    alert('Failed to submit application. Please try again.');
+                    const errorData = await response.json(); // Try to parse error message from backend
+                    alert(`Failed to submit application: ${errorData.message || response.statusText}`);
                 }
             } catch (error) {
                 console.error('Error submitting application:', error);
@@ -122,8 +123,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = Object.fromEntries(formData.entries());
 
             try {
-                // Adjust the URL if your backend is running on a different port or domain
-                const response = await fetch('/send-message', { 
+                // *** REPLACE THIS URL with your deployed backend URL ***
+                const response = await fetch('YOUR_DEPLOYED_BACKEND_URL/send-message', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -135,7 +136,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert('Message sent successfully!');
                     messageForm.reset(); // Clear the form
                 } else {
-                    alert('Failed to send message. Please try again.');
+                    const errorData = await response.json(); // Try to parse error message from backend
+                    alert(`Failed to send message: ${errorData.message || response.statusText}`);
                 }
             } catch (error) {
                 console.error('Error sending message:', error);
