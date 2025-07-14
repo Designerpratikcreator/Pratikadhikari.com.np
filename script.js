@@ -80,36 +80,67 @@ document.addEventListener('DOMContentLoaded', () => {
     // Auto-advance gallery every 5 seconds (optional)
     setInterval(nextGalleryItem, 5000);
 
-    // --- Form Submission (Client-Side Only) ---
-    // Note: These forms are for demonstration of front-end structure only.
-    // A server-side solution is required to actually send emails.
-
+    // --- Form Submission (Client-Side to Backend) ---
     const applicationForm = document.getElementById('application-form');
     const messageForm = document.getElementById('message-form');
 
     if (applicationForm) {
-        applicationForm.addEventListener('submit', (e) => {
+        applicationForm.addEventListener('submit', async (e) => {
             e.preventDefault(); // Prevent default form submission
-            alert('Application form submitted! (Note: This is a front-end demonstration only. No email will be sent without a backend.)');
-            // In a real application, you would send this data to a server using fetch() or XMLHttpRequest
-            // Example:
-            // const formData = new FormData(applicationForm);
-            // fetch('/submit-application', {
-            //     method: 'POST',
-            //     body: formData
-            // }).then(response => response.json())
-            //   .then(data => console.log(data))
-            //   .catch(error => console.error('Error:', error));
-            applicationForm.reset(); // Clear the form
+
+            const formData = new FormData(applicationForm);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                // Adjust the URL if your backend is running on a different port or domain
+                const response = await fetch('/submit-application', { 
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    alert('Application submitted successfully!');
+                    applicationForm.reset(); // Clear the form
+                } else {
+                    alert('Failed to submit application. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error submitting application:', error);
+                alert('An error occurred. Please try again later.');
+            }
         });
     }
 
     if (messageForm) {
-        messageForm.addEventListener('submit', (e) => {
+        messageForm.addEventListener('submit', async (e) => {
             e.preventDefault(); // Prevent default form submission
-            alert('Message sent! (Note: This is a front-end demonstration only. No email will be sent without a backend.)');
-            // In a real application, you would send this data to a server using fetch() or XMLHttpRequest
-            messageForm.reset(); // Clear the form
+
+            const formData = new FormData(messageForm);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                // Adjust the URL if your backend is running on a different port or domain
+                const response = await fetch('/send-message', { 
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    alert('Message sent successfully!');
+                    messageForm.reset(); // Clear the form
+                } else {
+                    alert('Failed to send message. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error sending message:', error);
+                alert('An error occurred. Please try again later.');
+            }
         });
     }
 });
