@@ -1,3 +1,0 @@
-EMAIL_USER=pratik_mhnrs2023@kusoa.edu.np
-EMAIL_PASS=9861347187pratik
-PORT=3000
