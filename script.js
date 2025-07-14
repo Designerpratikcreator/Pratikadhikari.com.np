@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                 // *** REPLACE THIS URL with your deployed backend URL ***
-                const response = await fetch('YOUR_DEPLOYED_BACKEND_URL/submit-application', {
+                const response = await fetch('pratikadhikari-com-np.vercel.app/submit-application', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                 // *** REPLACE THIS URL with your deployed backend URL ***
-                const response = await fetch('YOUR_DEPLOYED_BACKEND_URL/send-message', {
+                const response = await fetch('pratikadhikari-com-np.vercel.app/send-message', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
