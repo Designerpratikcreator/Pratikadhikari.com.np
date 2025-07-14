@@ -72,7 +72,7 @@ a:hover {
 
 /* Dark Mode */
 body.dark-mode {
-    color: var(--text-color-dark);
+    color: var(--text-color-light);
     background-color: var(--background-color-dark);
 }
 
