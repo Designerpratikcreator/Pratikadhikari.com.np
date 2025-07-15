@@ -32,12 +32,6 @@ body {
     color: var(--text-color-light);
     background-color: var(--background-color-light);
     transition: background-color var(--transition-speed), color var(--transition-speed);
-    /* Added for butterfly.gif background */
-    background-image: url('/Assets/images/butterfly.gif'); /* Ensure this path is correct based on your GitHub repo structure */
-    background-size: cover; /* Ensures the GIF covers the entire background */
-    background-repeat: no-repeat; /* Prevents the GIF from repeating */
-    background-attachment: fixed; /* Makes the GIF fixed in the viewport */
-    background-position: center center; /* Centers the GIF */
 }
 
 .container {
@@ -49,7 +43,7 @@ body {
 section {
     padding: 60px 20px;
     margin-bottom: 20px;
-    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white for readability over GIF */
+    background-color: var(--card-background-light);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
     transition: background-color var(--transition-speed);
@@ -80,16 +74,10 @@ a:hover {
 body.dark-mode {
     color: var(--text-color-dark);
     background-color: var(--background-color-dark);
-    /* Keep the same GIF or change for dark mode if you have a different one */
-    background-image: url('/Assets/images/butterfly.gif');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center center;
 }
 
 body.dark-mode section {
-    background-color: rgba(58, 58, 58, 0.9); /* Slightly transparent dark gray for readability */
+    background-color: var(--card-background-dark);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -100,7 +88,7 @@ body.dark-mode h3 {
 }
 
 body.dark-mode .navbar {
-    background-color: rgba(51, 51, 51, 0.95); /* Slightly more opaque for dark mode navbar */
+    background-color: #333;
     border-bottom: 1px solid var(--border-color-dark);
 }
 
@@ -123,7 +111,7 @@ body:not(.dark-mode) .theme-toggle .dark-mode-icon { display: none; }
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.95); /* Slightly more opaque for navbar */
+    background-color: var(--card-background-light);
     padding: 15px 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     border-bottom: 1px solid var(--border-color-light);
@@ -247,22 +235,41 @@ input:checked + .slider:before {
 
 /* Hero Section */
 .hero-section {
+    position: relative; /* Needed for absolute positioning of canvas */
     text-align: center;
-    background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+    background: #000; /* Fallback or base color for hero */
     color: white;
     padding: 100px 20px;
     border-radius: var(--border-radius);
+    overflow: hidden; /* Ensure canvas doesn't overflow */
+}
+
+/* Canvas for 3D Graphics */
+#hero-background-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Behind the content */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2; /* Above the canvas */
 }
 
 .hero-section h1 {
     color: white;
     font-size: 3em;
     margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(0,0,0,0.5); /* Add shadow for readability over graphics */
 }
 
 .hero-section p {
     font-size: 1.2em;
     opacity: 0.9;
+    text-shadow: 0 0 8px rgba(0,0,0,0.5); /* Add shadow for readability over graphics */
 }
 
 /* About Section */
@@ -307,7 +314,7 @@ input:checked + .slider:before {
 }
 
 .skills-section .skill-item {
-    background-color: rgba(255, 255, 255, 0.85); /* Slightly transparent */
+    background-color: var(--background-color-light);
     border: 1px solid var(--border-color-light);
     padding: 20px;
     border-radius: var(--border-radius);
@@ -317,7 +324,7 @@ input:checked + .slider:before {
 }
 
 body.dark-mode .skills-section .skill-item {
-    background-color: rgba(68, 68, 68, 0.85); /* Slightly transparent dark */
+    background-color: #444;
     border-color: var(--border-color-dark);
 }
 
@@ -359,7 +366,7 @@ body.dark-mode .skills-section .progress-bar {
 
 /* Experience Section */
 .experiences-section .experience-item {
-    background-color: rgba(255, 255, 255, 0.85); /* Slightly transparent */
+    background-color: var(--background-color-light);
     border: 1px solid var(--border-color-light);
     padding: 25px;
     margin-bottom: 20px;
@@ -369,7 +376,7 @@ body.dark-mode .skills-section .progress-bar {
 }
 
 body.dark-mode .experiences-section .experience-item {
-    background-color: rgba(68, 68, 68, 0.85); /* Slightly transparent dark */
+    background-color: #444;
     border-color: var(--border-color-dark);
 }
 
@@ -425,7 +432,7 @@ body.dark-mode .experiences-section .experience-item {
     overflow: hidden;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
-    background-color: rgba(0, 0, 0, 0.6); /* Fallback for transparency, also good for overlay */
+    background-color: #000; /* Fallback for transparency */
 }
 
 .gallery-section .gallery-item {
@@ -488,14 +495,14 @@ body.dark-mode .experiences-section .experience-item {
     max-width: 600px;
     margin: 0 auto;
     padding: 30px;
-    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent */
+    background-color: var(--background-color-light);
     border-radius: var(--border-radius);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: background-color var(--transition-speed);
 }
 
 body.dark-mode .contact-form {
-    background-color: rgba(68, 68, 68, 0.9); /* Slightly transparent dark */
+    background-color: #444;
 }
 
 .contact-form .form-group {
@@ -523,7 +530,7 @@ body.dark-mode .contact-form label {
     border: 1px solid var(--border-color-light);
     border-radius: 5px;
     font-size: 1em;
-    background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent */
+    background-color: white;
     color: var(--text-color-light);
     transition: border-color var(--transition-speed), background-color var(--transition-speed), color var(--transition-speed);
 }
@@ -531,7 +538,7 @@ body.dark-mode .contact-form label {
 body.dark-mode .contact-form input,
 body.dark-mode .contact-form select,
 body.dark-mode .contact-form textarea {
-    background-color: rgba(85, 85, 85, 0.95); /* Slightly transparent dark */
+    background-color: #555;
     border-color: #666;
     color: var(--text-color-dark);
 }
@@ -575,7 +582,7 @@ body.dark-mode .contact-form textarea {
 }
 
 .contact-section .contact-item {
-    background-color: rgba(255, 255, 255, 0.85); /* Slightly transparent */
+    background-color: var(--background-color-light);
     border: 1px solid var(--border-color-light);
     padding: 20px;
     border-radius: var(--border-radius);
@@ -589,7 +596,7 @@ body.dark-mode .contact-form textarea {
 }
 
 body.dark-mode .contact-section .contact-item {
-    background-color: rgba(68, 68, 68, 0.85); /* Slightly transparent dark */
+    background-color: #444;
     border-color: var(--border-color-dark);
 }
 
@@ -652,14 +659,14 @@ footer .social-links a:hover {
         position: absolute;
         top: 60px; /* Adjust based on navbar height */
         left: 0;
-        background-color: rgba(255, 255, 255, 0.95); /* Slightly more opaque */
+        background-color: var(--card-background-light);
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         border-top: 1px solid var(--border-color-light);
         transition: background-color var(--transition-speed);
     }
 
     body.dark-mode .navbar .nav-links {
-        background-color: rgba(58, 58, 58, 0.95); /* Slightly more opaque dark */
+        background-color: var(--card-background-dark);
         border-top: 1px solid var(--border-color-dark);
     }
 
