@@ -5,44 +5,48 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
 
     // --- Hamburger Menu Toggle ---
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-    });
-
-    // Close mobile nav when a link is clicked
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-            }
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
         });
-    });
 
-    // --- Theme Switcher (Light/Dark Mode) ---
-    // Check for saved theme preference or default to system preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        body.classList.add(savedTheme);
-        if (savedTheme === 'dark-mode') {
-            themeSwitcher.checked = true;
-        }
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        // System preference is dark
-        body.classList.add('dark-mode');
-        themeSwitcher.checked = true;
+        // Close mobile nav when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
     }
 
-    themeSwitcher.addEventListener('change', () => {
-        if (themeSwitcher.checked) {
+    // --- Theme Switcher (Light/Dark Mode) ---
+    if (themeSwitcher) {
+        // Check for saved theme preference or default to system preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            body.classList.add(savedTheme);
+            if (savedTheme === 'dark-mode') {
+                themeSwitcher.checked = true;
+            }
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // System preference is dark
             body.classList.add('dark-mode');
-            body.classList.remove('light-mode'); // Ensure light-mode is removed if present
-            localStorage.setItem('theme', 'dark-mode');
-        } else {
-            body.classList.remove('dark-mode');
-            body.classList.add('light-mode'); // Add light-mode class
-            localStorage.setItem('theme', 'light-mode');
+            themeSwitcher.checked = true;
         }
-    });
+
+        themeSwitcher.addEventListener('change', () => {
+            if (themeSwitcher.checked) {
+                body.classList.add('dark-mode');
+                body.classList.remove('light-mode'); // Ensure light-mode is removed if present
+                localStorage.setItem('theme', 'dark-mode');
+            } else {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode'); // Add light-mode class
+                localStorage.setItem('theme', 'light-mode');
+            }
+        });
+    }
 
     // --- Gallery Carousel ---
     const galleryItems = document.querySelectorAll('.gallery-item');
@@ -50,35 +54,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.querySelector('.carousel-nav .next-btn');
     let currentGalleryIndex = 0;
 
-    function showGalleryItem(index) {
-        galleryItems.forEach((item, i) => {
-            item.classList.remove('active');
-            if (i === index) {
-                item.classList.add('active');
-            }
-        });
-    }
+    if (galleryItems.length > 0 && prevBtn && nextBtn) {
+        function showGalleryItem(index) {
+            galleryItems.forEach((item, i) => {
+                item.classList.remove('active');
+                if (i === index) {
+                    item.classList.add('active');
+                }
+            });
+        }
 
-    function nextGalleryItem() {
-        currentGalleryIndex = (currentGalleryIndex + 1) % galleryItems.length;
+        function nextGalleryItem() {
+            currentGalleryIndex = (currentGalleryIndex + 1) % galleryItems.length;
+            showGalleryItem(currentGalleryIndex);
+        }
+
+        function prevGalleryItem() {
+            currentGalleryIndex = (currentGalleryIndex - 1 + galleryItems.length) % galleryItems.length;
+            showGalleryItem(currentGalleryIndex);
+        }
+
+        // Initial display
         showGalleryItem(currentGalleryIndex);
+
+        prevBtn.addEventListener('click', prevGalleryItem);
+        nextBtn.addEventListener('click', nextGalleryItem);
+
+        // Auto-advance gallery every 5 seconds (optional)
+        setInterval(nextGalleryItem, 5000);
     }
-
-    function prevGalleryItem() {
-        currentGalleryIndex = (currentGalleryIndex - 1 + galleryItems.length) % galleryItems.length;
-        showGalleryItem(currentGalleryIndex);
-    }
-
-    // Initial display
-    if (galleryItems.length > 0) {
-        showGalleryItem(currentGalleryIndex);
-    }
-
-    prevBtn.addEventListener('click', prevGalleryItem);
-    nextBtn.addEventListener('click', nextGalleryItem);
-
-    // Auto-advance gallery every 5 seconds (optional)
-    setInterval(nextGalleryItem, 5000);
 
     // --- Form Submission (Client-Side to Backend) ---
     const applicationForm = document.getElementById('application-form');
@@ -91,9 +95,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const formData = new FormData(applicationForm);
             const data = Object.fromEntries(formData.entries());
 
+            // --- IMPORTANT: REPLACE WITH YOUR DEPLOYED BACKEND URL FOR APPLICATION SUBMISSIONS ---
+            const APPLICATION_BACKEND_URL = 'YOUR_APPLICATION_FORM_BACKEND_ENDPOINT_HERE'; // e.g., 'https://api.yourdomain.com/submit-application'
+
+            if (APPLICATION_BACKEND_URL === 'YOUR_APPLICATION_FORM_BACKEND_ENDPOINT_HERE') {
+                alert('Application form is not configured. Please set the APPLICATION_BACKEND_URL in script.js to enable submission.');
+                return;
+            }
+
             try {
-                // *** REPLACE THIS URL with your deployed backend URL for application submissions ***
-                const response = await fetch('https://your-backend-url.com/submit-application', { // Example: 'https://api.yourdomain.com/submit-application'
+                const response = await fetch(APPLICATION_BACKEND_URL, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -102,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (response.ok) {
-                    alert('Application submitted successfully!');
+                    alert('Application submitted successfully! We will get back to you soon.');
                     applicationForm.reset(); // Clear the form
                 } else {
                     const errorData = await response.json(); // Try to parse error message from backend
@@ -110,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } catch (error) {
                 console.error('Error submitting application:', error);
-                alert('An error occurred. Please try again later.');
+                alert('An error occurred while submitting your application. Please check your internet connection or try again later.');
             }
         });
     }
@@ -122,9 +133,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const formData = new FormData(messageForm);
             const data = Object.fromEntries(formData.entries());
 
+            // --- IMPORTANT: REPLACE WITH YOUR DEPLOYED BACKEND URL FOR MESSAGE SUBMISSIONS ---
+            const MESSAGE_BACKEND_URL = 'YOUR_MESSAGE_FORM_BACKEND_ENDPOINT_HERE'; // e.g., 'https://api.yourdomain.com/send-message'
+
+            if (MESSAGE_BACKEND_URL === 'YOUR_MESSAGE_FORM_BACKEND_ENDPOINT_HERE') {
+                alert('Message form is not configured. Please set the MESSAGE_BACKEND_URL in script.js to enable submission.');
+                return;
+            }
+
             try {
-                // *** REPLACE THIS URL with your deployed backend URL for message submissions ***
-                const response = await fetch('https://your-backend-url.com/send-message', { // Example: 'https://api.yourdomain.com/send-message'
+                const response = await fetch(MESSAGE_BACKEND_URL, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -133,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (response.ok) {
-                    alert('Message sent successfully!');
+                    alert('Message sent successfully! Thank you for reaching out.');
                     messageForm.reset(); // Clear the form
                 } else {
                     const errorData = await response.json(); // Try to parse error message from backend
@@ -141,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } catch (error) {
                 console.error('Error sending message:', error);
-                alert('An error occurred. Please try again later.');
+                alert('An error occurred while sending your message. Please check your internet connection or try again later.');
             }
         });
     }
@@ -226,5 +244,11 @@ document.addEventListener('DOMContentLoaded', () => {
             renderer.render(scene, camera);
         };
         animate();
+    }
+
+    // --- Set current year in footer ---
+    const currentYearSpan = document.getElementById('current-year');
+    if (currentYearSpan) {
+        currentYearSpan.textContent = new Date().getFullYear();
     }
 });
