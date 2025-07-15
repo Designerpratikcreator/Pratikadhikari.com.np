@@ -236,7 +236,7 @@ input:checked + .slider:before {
 /* Hero Section */
 .hero-section {
     text-align: center;
-    background-cover: '/Assets/images/butteryfly.gif';
+    background-gif: '/Assets/images/butteryfly.gif';
     color: white;
     padding: 100px 20px;
     border-radius: var(--border-radius);
