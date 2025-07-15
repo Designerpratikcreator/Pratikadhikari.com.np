@@ -35,11 +35,11 @@ document.addEventListener('DOMContentLoaded', () => {
     themeSwitcher.addEventListener('change', () => {
         if (themeSwitcher.checked) {
             body.classList.add('dark-mode');
-            body.classList.remove('light-mode');
+            body.classList.remove('light-mode'); // Ensure light-mode is removed if present
             localStorage.setItem('theme', 'dark-mode');
         } else {
             body.classList.remove('dark-mode');
-            body.classList.add('light-mode');
+            body.classList.add('light-mode'); // Add light-mode class
             localStorage.setItem('theme', 'light-mode');
         }
     });
@@ -92,8 +92,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = Object.fromEntries(formData.entries());
 
             try {
-                // *** REPLACE THIS URL with your deployed backend URL ***
-                const response = await fetch('pratikadhikari-com-np.vercel.app/submit-application', {
+                // *** REPLACE THIS URL with your deployed backend URL for application submissions ***
+                const response = await fetch('https://your-backend-url.com/submit-application', { // Example: 'https://api.yourdomain.com/submit-application'
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -123,8 +123,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = Object.fromEntries(formData.entries());
 
             try {
-                // *** REPLACE THIS URL with your deployed backend URL ***
-                const response = await fetch('pratikadhikari-com-np.vercel.app/send-message', {
+                // *** REPLACE THIS URL with your deployed backend URL for message submissions ***
+                const response = await fetch('https://your-backend-url.com/send-message', { // Example: 'https://api.yourdomain.com/send-message'
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -150,16 +150,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('hero-background-canvas');
     if (canvas) {
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / canvas.parentElement.clientHeight, 0.1, 1000);
+        // Using parentElement.clientWidth for width and clientHeight for height for better responsiveness
+        const camera = new THREE.PerspectiveCamera(75, canvas.parentElement.clientWidth / canvas.parentElement.clientHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true }); // alpha: true for transparent background
-        renderer.setSize(window.innerWidth, canvas.parentElement.clientHeight);
+        renderer.setSize(canvas.parentElement.clientWidth, canvas.parentElement.clientHeight);
         renderer.setPixelRatio(window.devicePixelRatio); // Improve rendering quality on high-DPI screens
 
-        // Adjust camera aspect ratio on window resize
+        // Adjust camera aspect ratio and renderer size on window resize
         window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / canvas.parentElement.clientHeight;
+            camera.aspect = canvas.parentElement.clientWidth / canvas.parentElement.clientHeight;
             camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, canvas.parentElement.clientHeight);
+            renderer.setSize(canvas.parentElement.clientWidth, canvas.parentElement.clientHeight);
         });
 
         // Lights
