@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pratik Adhikari - Web Developer Portfolio</title>
-    <meta name="description" content="Pratik Adhikari is a passionate web developer specializing in creating dynamic, responsive, and user-friendly websites and applications. Explore my portfolio, skills, and experiences.">
-    <meta name="keywords" content="web developer, front-end, back-end, full-stack, responsive design, HTML, CSS, JavaScript, React, Node.js, Git, UI/UX, Pratik Adhikari">
+    <title>Pratik Adhikari - Web Developer & Designer</title>
+    <meta name="description" content="Pratik Adhikari is a passionate web developer and designer creating dynamic, responsive, and user-friendly digital experiences. Explore my portfolio, skills, and projects.">
+    <meta name="keywords" content="web developer, web designer, front-end, back-end, full-stack, responsive design, HTML, CSS, JavaScript, React, Node.js, Git, UI/UX, Pratik Adhikari, portfolio, Nepal">
     <meta name="author" content="Pratik Adhikari">
     
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://pratikadhikari-com-np.vercel.app/"> <meta property="og:title" content="Pratik Adhikari - Web Developer Portfolio">
-    <meta property="og:description" content="Pratik Adhikari is a passionate web developer specializing in creating dynamic, responsive, and user-friendly websites and applications.">
-    <meta property="og:image" content="https://pratikadhikari-com-np.vercel.app/Assets/images/pratik-profile.jpg"> <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://pratikadhikari-com-np.vercel.app/"> <meta property="twitter:title" content="Pratik Adhikari - Web Developer Portfolio">
-    <meta property="twitter:description" content="Pratik Adhikari is a passionate web developer specializing in creating dynamic, responsive, and user-friendly websites and applications.">
-    <meta property="twitter:image" content="https://pratikadhikari-com-np.vercel.app/Assets/images/pratik-profile.jpg"> <link rel="canonical" href="https://pratikadhikari-com-np.vercel.app/"> <link rel="icon" href="/Assets/icons/favicon.ico" type="image/x-icon">
+    <meta property="og:url" content="https://pratikadhikari-com-np.vercel.app/"> <meta property="og:title" content="Pratik Adhikari - Web Developer & Designer">
+    <meta property="og:description" content="Pratik Adhikari is a passionate web developer and designer creating dynamic, responsive, and user-friendly digital experiences.">
+    <meta property="og:image" content="https://pratikadhikari-com-np.vercel.app/Assets/images/pratik-social-share.jpg"> <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://pratikadhikari-com-np.vercel.app/"> <meta property="twitter:title" content="Pratik Adhikari - Web Developer & Designer">
+    <meta property="twitter:description" content="Pratik Adhikari is a passionate web developer and designer creating dynamic, responsive, and user-friendly digital experiences.">
+    <meta property="twitter:image" content="https://pratikadhikari-com-np.vercel.app/Assets/images/pratik-social-share.jpg"> <link rel="canonical" href="https://pratikadhikari-com-np.vercel.app/"> <link rel="icon" href="/Assets/icons/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/Assets/icons/apple-touch-icon.png">
 
     <link rel="stylesheet" href="style.css">
@@ -24,30 +24,28 @@
 <body>
     <header>
         <nav class="navbar">
-            <div class="logo">
-                  <div class="flex items-center space-x-2">
-                    <svg class="h-8 w-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M19.5 7.5L12 12L4.5 7.5M4.5 16.5L12 21L19.5 16.5M19.5 7.5V16.5M4.5 7.5V16.5M12 12L12 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <a href="#home" class="text-2xl font-bold text-primary">Pratik</a>
-            </div>
+            <a href="#home" class="logo-brand">
+                <svg viewBox="0 0 24 24" fill="currentColor" class="logo-icon">
+                    <path d="M12 2L2 7V17L12 22L22 17V7L12 2ZM12 4.47214L19.5 8.23607V15.7639L12 19.5279L4.5 15.7639V8.23607L12 4.47214ZM12 12L4.5 8.23607L12 4.47214L19.5 8.23607L12 12Z" />
+                </svg>
+                <span>Pratik</span>
+            </a>
             <ul class="nav-links">
                 <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
-                <li><a href="#skills"><i class="fas fa-code"></i> Skills</a></li>
+                <li><a href="#skills"><i class="fas fa-laptop-code"></i> Skills</a></li>
                 <li><a href="#experiences"><i class="fas fa-briefcase"></i> Experiences</a></li>
-                <li><a href="#gallery"><i class="fas fa-images"></i> Gallery</a></li>
-                <li><a href="#application"><i class="fas fa-file-alt"></i> Application</a></li>
-                <li><a href="#message"><i class="fas fa-envelope"></i> Message</a></li>
-                <li><a href="#contact"><i class="fas fa-address-book"></i> Contact</a></li>
+                <li><a href="#projects"><i class="fas fa-folder-open"></i> Projects</a></li>
+                <li><a href="#application"><i class="fas fa-file-invoice"></i> Apply for Project</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope-open-text"></i> Contact</a></li>
             </ul>
             <div class="theme-toggle">
-                <i class="fas fa-sun light-mode-icon"></i>
-                <i class="fas fa-moon dark-mode-icon"></i>
                 <label class="switch">
                     <input type="checkbox" id="theme-switcher">
                     <span class="slider round"></span>
                 </label>
+                <i class="fas fa-sun light-mode-icon"></i>
+                <i class="fas fa-moon dark-mode-icon"></i>
             </div>
             <div class="hamburger">
                 <i class="fas fa-bars"></i>
@@ -58,157 +56,176 @@
     <main>
         <section id="home" class="hero-section">
             <canvas id="hero-background-canvas"></canvas>
-            <div class="container hero-content">
-                <h1> Pratik Design </h1>
-                <p> A Passionate Web Developing Brand Since 1998.</p>
-            </div>
-        </section>
-
-        <section id="about" class="about-section">
-            <div class="container">
-                <h2><i class="fas fa-user"></i> About Me</h2>
-                <div class="about-content">
-                    <div class="profile-image">
-                        <img src="/Assets/images/pratik-profile.jpg" alt="Pratik Adhikari Profile Image"> </div>
-                    <div class="about-text">
-                        <h3>Web Developer</h3>
-                        <p>Hello! I'm a creator to Pratik Design, a dedicated and enthusiastic web developer with a strong passion for creating dynamic, responsive, and user-friendly websites and applications. I specialize in front-end development, bringing designs to life with clean and efficient code, and have a foundational understanding of back-end technologies to build robust full-stack solutions.</p>
-                        <p>My journey in web development began with a curiosity for how websites work, which quickly evolved into a commitment to mastering the craft. I thrive on solving complex problems and continuously learning new technologies to stay at the forefront of the ever-evolving web landscape. I am proficient in modern web standards and best practices, ensuring high-quality, accessible, and performant digital experiences.</p>
-                        <p>I am always eager to take on new challenges and collaborate on exciting projects that push the boundaries of what's possible on the web. Let's build something amazing together!</p>
-                        </div>
+            <div class="hero-content">
+                <div class="intro-text-wrapper">
+                    <h1>Hi, I'm <span class="highlight">Pratik.</span></h1>
+                    <p class="tagline">I build <span id="typing-text"></span></p>
+                </div>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn btn-primary">View My Work <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contact" class="btn btn-secondary">Get in Touch <i class="fas fa-handshake"></i></a>
                 </div>
             </div>
         </section>
 
-        <section id="skills" class="skills-section">
+        <section id="about" class="about-section common-section">
             <div class="container">
-                <h2><i class="fas fa-code"></i> My Skills</h2>
+                <h2><i class="fas fa-user-circle"></i> About Me</h2>
+                <div class="about-grid">
+                    <div class="profile-image-container">
+                        <img src="/Assets/images/pratik-profile.jpg" alt="Pratik Adhikari Profile Image" class="profile-img">
+                    </div>
+                    <div class="about-text-content">
+                        <h3>Passionate Web Developer & Designer</h3>
+                        <p>Hello! I'm Pratik Adhikari, a dedicated web developer with a strong passion for crafting engaging and user-centric digital experiences. My journey in web development began with a fascination for how ideas come to life on the screen, evolving into a commitment to mastering the art of creating dynamic, responsive, and efficient websites and applications.</p>
+                        <p>I specialize in front-end development, translating complex designs into clean, maintainable, and interactive code. I also possess a solid understanding of back-end technologies, enabling me to build robust, full-stack solutions. I continuously seek to learn new technologies and best practices to deliver cutting-edge web solutions.</p>
+                        <p>My goal is to create impactful digital products that are not only visually appealing but also highly functional and accessible. I enjoy collaborating on challenging projects and bringing creative visions to fruition. Let's connect and build something extraordinary!</p>
+                        <div class="about-links">
+                            <a href="/Assets/documents/Pratik_Adhikari_Resume.pdf" target="_blank" class="btn btn-tertiary"><i class="fas fa-download"></i> Download CV</a>
+                            <a href="https://www.linkedin.com/in/pratik-adhikari-developer/" target="_blank" class="btn btn-linkedin"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills-section common-section">
+            <div class="container">
+                <h2><i class="fas fa-tools"></i> My Skills & Tech Stack</h2>
                 <div class="skills-grid">
-                    <div class="skill-item">
-                        <h3>HTML5</h3>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 95%; background-color: #4CAF50;"></div>
-                        </div>
-                        <span>Advanced</span>
+                    <div class="skill-category">
+                        <h3>Frontend</h3>
+                        <ul>
+                            <li><i class="fab fa-html5 skill-icon"></i> HTML5</li>
+                            <li><i class="fab fa-css3-alt skill-icon"></i> CSS3 (Sass, Less)</li>
+                            <li><i class="fab fa-js-square skill-icon"></i> JavaScript (ES6+)</li>
+                            <li><i class="fab fa-react skill-icon"></i> React.js</li>
+                            <li><i class="fab fa-bootstrap skill-icon"></i> Bootstrap</li>
+                            <li><i class="fab fa-github skill-icon"></i> Tailwind CSS</li>
+                        </ul>
                     </div>
-                    <div class="skill-item">
-                        <h3>CSS3</h3>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 90%; background-color: #2196F3;"></div>
-                        </div>
-                        <span>Advanced</span>
+                    <div class="skill-category">
+                        <h3>Backend & Database</h3>
+                        <ul>
+                            <li><i class="fab fa-node-js skill-icon"></i> Node.js</li>
+                            <li><i class="fas fa-database skill-icon"></i> Express.js</li>
+                            <li><i class="fas fa-database skill-icon"></i> MongoDB</li>
+                            <li><i class="fas fa-database skill-icon"></i> MySQL</li>
+                            <li><i class="fab fa-php skill-icon"></i> PHP (Basic)</li>
+                        </ul>
                     </div>
-                    <div class="skill-item">
-                        <h3>JavaScript (ES6+)</h3>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 85%; background-color: #FFC107;"></div>
-                        </div>
-                        <span>Proficient</span>
-                    </div>
-                    <div class="skill-item">
-                        <h3>React.js</h3>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 75%; background-color: #9C27B0;"></div>
-                        </div>
-                        <span>Intermediate</span>
-                    </div>
-                    <div class="skill-item">
-                        <h3>Node.js</h3>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 80%; background-color: #F44336;"></div>
-                        </div>
-                        <span>Basic</span>
-                    </div>
-                    <div class="skill-item">
-                        <h3>Git & GitHub</h3>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 80%; background-color: #00BCD4;"></div>
-                        </div>
-                        <span>Proficient</span>
-                    </div>
-                    <div class="skill-item">
-                        <h3>Responsive Design</h3>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 90%; background-color: #8BC34A;"></div>
-                        </div>
-                        <span>Advanced</span>
-                    </div>
-                    <div class="skill-item">
-                        <h3>UI/UX Principles</h3>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 70%; background-color: #FF9800;"></div>
-                        </div>
-                        <span>Intermediate</span>
+                    <div class="skill-category">
+                        <h3>Tools & Others</h3>
+                        <ul>
+                            <li><i class="fab fa-git-alt skill-icon"></i> Git & GitHub</li>
+                            <li><i class="fas fa-code-branch skill-icon"></i> VS Code</li>
+                            <li><i class="fas fa-cloud skill-icon"></i> Vercel / Netlify</li>
+                            <li><i class="fas fa-mobile-alt skill-icon"></i> Responsive Design</li>
+                            <li><i class="fas fa-palette skill-icon"></i> UI/UX Principles</li>
+                            <li><i class="fas fa-bug skill-icon"></i> Debugging</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="experiences" class="experiences-section">
+        <section id="experiences" class="experiences-section common-section">
             <div class="container">
-                <h2><i class="fas fa-briefcase"></i> My Experiences</h2>
-                <div class="experience-item">
-                    <h3>Senior Web Developer <span class="year-joined">(2023 - Present)</span></h3>
-                    <h4>Tech Solutions Inc.</h4>
-                    <ul>
-                        <li><span class="objective-fulfilled">Objective:</span> Developed and maintained responsive web applications for various clients.</li>
-                        <li><span class="work-completed">Work Completed:</span> Implemented new features, debugged existing codebases, and optimized website performance.</li>
-                        <li><span class="technologies-used">Technologies:</span> HTML, CSS, JavaScript, React, Git.</li>
-                    </ul>
-                </div>
-                <div class="experience-item">
-                    <h3>Freelance Front-End Developer <span class="year-joined">(2022 - 2023)</span></h3>
-                    <h4>Self-Employed</h4>
-                    <ul>
-                        <li><span class="objective-fulfilled">Objective:</span> Created custom websites for small businesses and individuals.</li>
-                        <li><span class="work-completed">Work Completed:</span> Designed user interfaces, coded front-end components, and ensured cross-browser compatibility.</li>
-                        <li><span class="technologies-used">Technologies:</span> HTML, CSS, JavaScript, Bootstrap.</li>
-                    </ul>
-                </div>
-                </div>
-        </section>
-
-        <section id="gallery" class="gallery-section">
-            <div class="container">
-                <h2><i class="fas fa-images"></i> Gallery</h2>
-                <div class="gallery-carousel">
-                    <div class="gallery-item active" style="background-image: url('/Assets/images/template 1.jpg');">
-                        <div class="gallery-details">
-                            <h3>Project Alpha</h3>
-                            <p>A responsive e-commerce website built with modern front-end frameworks.</p>
+                <h2><i class="fas fa-graduation-cap"></i> My Journey & Experiences</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Freelance Web Developer</h3>
+                            <h4>Self-Employed | 2023 - Present</h4>
+                            <p>Developing custom websites and web applications for various clients, from concept to deployment. Focused on creating responsive, performant, and user-friendly solutions. Managed client communications and project timelines effectively.</p>
+                            <ul>
+                                <li>Designed and built several portfolio websites for artists and small businesses.</li>
+                                <li>Developed a custom e-commerce landing page with integrated payment gateway mock-ups.</li>
+                                <li>Utilized modern web technologies including HTML, CSS, JavaScript, and various frameworks.</li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="gallery-item" style="background-image: url('/Assets/images/templates 2.jpg');">
-                        <div class="gallery-details">
-                            <h3>Portfolio Redesign</h3>
-                            <p>Revamped personal portfolio with new UI/UX and animations.</p>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Intern Web Developer</h3>
+                            <h4>Tech Innovators Inc. | Jan 2023 - June 2023</h4>
+                            <p>Gained hands-on experience in a professional development environment. Contributed to front-end tasks, learned version control best practices, and participated in agile development sprints.</p>
+                            <ul>
+                                <li>Assisted in developing UI components for an internal CRM system using React.</li>
+                                <li>Fixed bugs and implemented minor features in existing web applications.</li>
+                                <li>Collaborated with senior developers on code reviews and project planning.</li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="gallery-item" style="background-image: url('/Assets/images/template 3.png');">
-                        <div class="gallery-details">
-                            <h3>Blog Platform</h3>
-                            <p>Developed a custom blog platform with content management features.</p>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Bachelor of Engineering in Computer Engineering</h3>
+                            <h4>Kathmandu University | 2020 - 2024 (Expected)</h4>
+                            <p>Currently pursuing a comprehensive degree in Computer Engineering, building a strong foundation in computer science principles, algorithms, data structures, and software engineering methodologies.</p>
                         </div>
                     </div>
-                     <div class="gallery-item" style="background-image: url('/Assets/images/template 4.png');">
-                        <div class="gallery-details">
-                            <h3>Blog Platform</h3>
-                            <p>Developed a custom blog platform with content management features.</p>
-                        </div>
-                    </div>
-                    </div>
-                <div class="carousel-nav">
-                    <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
-                    <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
         </section>
 
-        <section id="application" class="application-section">
+        <section id="projects" class="projects-section common-section">
             <div class="container">
-                <h2><i class="fas fa-file-alt"></i> Application for Web Developing Clients</h2>
-                <p>Please fill out the form below to apply for web development services.</p>
-                <form id="application-form" class="contact-form">
+                <h2><i class="fas fa-rocket"></i> My Recent Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <img src="/Assets/images/project-ecommerce.jpg" alt="E-commerce Website Screenshot">
+                        <div class="project-info">
+                            <h3>Modern E-commerce Platform</h3>
+                            <p>A full-stack e-commerce solution with user authentication, product listings, shopping cart, and order processing.</p>
+                            <div class="project-tech">
+                                <span>React</span><span>Node.js</span><span>MongoDB</span><span>Stripe API</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" target="_blank" class="btn-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                                <a href="https://github.com/Designerpratikcreator/ecommerce-project" target="_blank" class="btn-link"><i class="fab fa-github"></i> GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="/Assets/images/project-blog.jpg" alt="Personal Blog Screenshot">
+                        <div class="project-info">
+                            <h3>Personal Blog & CMS</h3>
+                            <p>A custom blog platform with an intuitive content management system for easy post creation and management.</p>
+                            <div class="project-tech">
+                                <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Firebase</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" target="_blank" class="btn-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                                <a href="https://github.com/Designerpratikcreator/personal-blog-cms" target="_blank" class="btn-link"><i class="fab fa-github"></i> GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="/Assets/images/project-portfolio.jpg" alt="Another Portfolio Screenshot">
+                        <div class="project-info">
+                            <h3>Interactive Portfolio Site</h3>
+                            <p>Designed and developed a dynamic portfolio showcasing various web development skills and projects.</p>
+                            <div class="project-tech">
+                                <span>HTML</span><span>CSS</span><span>JavaScript</span><span>GSAP</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" target="_blank" class="btn-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                                <a href="https://github.com/Designerpratikcreator/interactive-portfolio" target="_blank" class="btn-link"><i class="fab fa-github"></i> GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="application" class="application-section common-section">
+            <div class="container">
+                <h2><i class="fas fa-handshake"></i> Propose a Project</h2>
+                <p class="section-description">Have an exciting idea? Let's discuss how I can help bring your vision to life. Please fill out the form below.</p>
+                <form id="application-form" class="main-form">
                     <div class="form-group">
                         <label for="appName">Your Name:</label>
                         <input type="text" id="appName" name="appName" required>
@@ -218,89 +235,71 @@
                         <input type="email" id="appEmail" name="appEmail" required>
                     </div>
                     <div class="form-group">
-                        <label for="appPhone">Phone Number:</label>
+                        <label for="appPhone">Phone Number (Optional):</label>
                         <input type="tel" id="appPhone" name="appPhone">
                     </div>
                     <div class="form-group">
                         <label for="projectType">Type of Project:</label>
                         <select id="projectType" name="projectType" required>
-                            <option value="">Select Project Type</option>
-                            <option value="website">Website Development</option>
+                            <option value="">-- Select Project Type --</option>
+                            <option value="website">Custom Website Development</option>
                             <option value="ecommerce">E-commerce Store</option>
-                            <option value="webApp">Web Application</option>
-                            <option value="portfolio">Portfolio Site</option>
-                            <option value="redesign">Website Redesign</option>
-                            <option value="maintenance">Website Maintenance</option>
-                            <option value="other">Other (Please specify)</option>
+                            <option value="webApp">Web Application Development</option>
+                            <option value="portfolio">Personal/Business Portfolio</option>
+                            <option value="redesign">Website Redesign/Revamp</option>
+                            <option value="maintenance">Ongoing Support/Maintenance</option>
+                            <option value="consultation">Consultation</option>
+                            <option value="other">Other (Please specify in details)</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="projectBudget">Estimated Budget:</label>
+                        <label for="projectBudget">Estimated Budget (e.g., $1000 - $3000):</label>
                         <input type="text" id="projectBudget" name="projectBudget" placeholder="e.g., $1000 - $5000">
                     </div>
                     <div class="form-group">
-                        <label for="appDetails">Project Details:</label>
-                        <textarea id="appDetails" name="appDetails" rows="5" required></textarea>
+                        <label for="appDetails">Project Details & Requirements:</label>
+                        <textarea id="appDetails" name="appDetails" rows="6" placeholder="Describe your project, key features, and any specific requirements you have." required></textarea>
                     </div>
-                    <button type="submit">Submit Application</button>
+                    <button type="submit" class="btn btn-submit">Send Proposal <i class="fas fa-paper-plane"></i></button>
                 </form>
-                <p class="form-note">Note: This form requires a backend . This HTML/CSS/JS only provides the front-end structure.</p>
+                <p class="form-note"><strong>Note:</strong> This form requires a backend server to process submissions. The current setup is purely front-end for demonstration.
+                </p>
             </div>
         </section>
 
-        <section id="message" class="message-section">
+        <section id="contact" class="contact-section common-section">
             <div class="container">
-                <h2><i class="fas fa-envelope"></i> Send Me a Message</h2>
-                <p>Have a question or just want to say hello? Send me a message!</p>
-                <form id="message-form" class="contact-form">
-                    <div class="form-group">
-                        <label for="msgName">Your Name:</label>
-                        <input type="text" id="msgName" name="msgName" required>
+                <h2><i class="fas fa-headset"></i> Get In Touch</h2>
+                <p class="section-description">Feel free to reach out to me directly or connect through social media.</p>
+                <div class="contact-grid">
+                    <div class="contact-info-card">
+                        <h3>Direct Contact</h3>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt contact-icon"></i>
+                            <p>Gwarko, Lalitpur, Bagmati Province, Nepal</p>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone-alt contact-icon"></i>
+                            <p><a href="tel:+9779861347187">+977 9861347187</a></p>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope contact-icon"></i>
+                            <p><a href="mailto:pratik_mhnrs2023@kusoa.edu.np">pratik_mhnrs2023@kusoa.edu.np</a></p>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="msgEmail">Your Email:</label>
-                        <input type="email" id="msgEmail" name="msgEmail" required>
+                    <div class="contact-info-card">
+                        <h3>Connect Online</h3>
+                        <div class="social-links-contact">
+                            <a href="https://www.facebook.com/DreamerPratik/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
+                            <a href="https://www.instagram.com/adhikari_pratik/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i> Instagram</a>
+                            <a href="https://github.com/Designerpratikcreator/" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="https://www.linkedin.com/in/pratik-adhikari-developer/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="msgSubject">Subject:</label>
-                        <input type="text" id="msgSubject" name="msgSubject">
-                    </div>
-                    <div class="form-group">
-                        <label for="msgContent">Your Message:</label>
-                        <textarea id="msgContent" name="msgContent" rows="5" required></textarea>
-                    </div>
-                    <button type="submit">Send Message</button>
-                </form>
-                <p class="form-note">Note: This form also requires a backend.This HTML/CSS/JS only provides the front-end structure.</p>
-            </div>
-        </section>
+                </div>
 
-        <section id="contact" class="contact-section">
-            <div class="container">
-                <h2><i class="fas fa-address-book"></i> Contact Me</h2>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <p>Address: Gwarko,Lalitpur </p>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-mail-bulk"></i>
-                        <p>Post Box: 44700 </p>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <p>Contact Number: +9779861347187 </p>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <p>Email: pratik_mhnrs2023@kusoa.edu.np</p>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-globe"></i>
-                        <p>Website: https://pratikadhikari-com-np.vercel.app/ </p>
-                    </div>
-                    <div class="contact-item">
-                        <div class="logo"> Pratik Adhikari 1998 </div> </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14132.84646738321!2d85.32135655!3d27.67843655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19985923a1a9%3A0xc3b44865f1784d16!2sGwarko%2C%20Lalitpur%2044700!5e0!3m2!1sen!2snp!4v1701078732890!5m2!1sen!2snp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </section>
@@ -308,12 +307,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; <span id="current-year"></span> Pratik Adhikari. All rights reserved. | <a href="#">License</a></p>
-            <div class="social-links">
-                <a href="https://www.facebook.com/DreamerPratik/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/adhikari_pratik/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://github.com/Designerpratikcreator/" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            </div>
+            <p>&copy; <span id="current-year"></span> Pratik Adhikari. All rights reserved. | Built with Passion.</p>
         </div>
     </footer>
 
