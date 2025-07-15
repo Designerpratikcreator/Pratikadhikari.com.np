@@ -236,7 +236,7 @@ input:checked + .slider:before {
 /* Hero Section */
 .hero-section {
     text-align: center;
-   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/Assets/images/butteryfly.gif");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/Assets/images/butteryfly.gif");
     color: white;
     padding: 100px 20px;
     border-radius: var(--border-radius);
