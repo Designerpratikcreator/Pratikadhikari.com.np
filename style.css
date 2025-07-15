@@ -42,12 +42,39 @@
     --dark-skill-level-medium: #ffeb3b; /* Lighter Amber */
     --dark-skill-level-high: #66bb6a;   /* Lighter Green */
     --dark-skill-level-expert: #42a5f5; /* Lighter Blue */
+
+    /* Spacing Variables - Adjusted for more breathing room */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2.5rem;
+    --spacing-xl: 5.5rem; /* Increased from 4rem for more vertical space in sections */
+    --spacing-xxl: 8rem; /* New larger spacing for main sections */
+
+    /* Font Families */
+    --font-body: 'Poppins', sans-serif; /* Common body font */
+    --font-heading: 'Montserrat', sans-serif; /* Common heading font */
+
+    /* Font Sizes - Added for consistency and control */
+    --font-size-base: 1em; /* 16px */
+    --font-size-sm: 0.875em; /* 14px */
+    --font-size-md: 1.125em; /* 18px */
+    --font-size-lg: 1.25em; /* 20px */
+    --font-size-xl: 1.5em; /* 24px */
+
+    /* Line Heights */
+    --line-height-base: 1.7; /* Slightly increased for better readability */
+    --line-height-heading: 1.2;
+
+    /* Border Radius */
+    --border-radius-sm: 5px;
+    --border-radius-md: 10px;
 }
 
 /* Light Mode Defaults */
 body {
     font-family: var(--font-body);
-    line-height: 1.6;
+    line-height: var(--line-height-base); /* Using variable */
     margin: 0;
     padding: 0;
     color: var(--text-color);
@@ -163,7 +190,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 { font-size: 3em; }
-h2 { font-size: 2.5em; margin-bottom: var(--spacing-lg); text-align: center; }
+h2 { font-size: 2.5em; margin-bottom: var(--spacing-xl); text-align: center; } /* Increased margin-bottom */
 h3 { font-size: 1.8em; margin-bottom: var(--spacing-md); }
 
 a {
@@ -176,7 +203,7 @@ a:hover {
 }
 
 p {
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-md); /* Slightly increased from sm for better readability */
 }
 
 .container {
@@ -261,7 +288,7 @@ p {
 }
 
 .common-section {
-    padding: var(--spacing-xl) 0;
+    padding: var(--spacing-xxl) 0; /* Increased to xxl from xl */
     position: relative;
     z-index: 1; /* Ensures content is above hero canvas */
 }
@@ -269,7 +296,7 @@ p {
 .section-description {
     text-align: center;
     max-width: 800px;
-    margin: 0 auto var(--spacing-xl);
+    margin: 0 auto var(--spacing-xxl); /* Increased from xl */
     font-size: 1.1em;
     color: var(--secondary-color);
 }
@@ -463,7 +490,7 @@ body.dark-mode .hamburger {
     z-index: 1; /* Ensure text is above canvas */
     color: white; /* Default for hero text */
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-    padding: var(--spacing-md);
+    padding: var(--spacing-lg); /* Increased from md */
     background: rgba(0, 0, 0, 0.4); /* Subtle dark overlay for text readability */
     border-radius: var(--border-radius-md);
     max-width: 800px;
@@ -509,7 +536,7 @@ body.dark-mode .hamburger {
 .about-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--spacing-xl);
+    gap: var(--spacing-xxl); /* Increased from xl */
     align-items: center;
 }
 @media (min-width: 768px) {
@@ -559,12 +586,12 @@ body.dark-mode .profile-img:hover {
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--spacing-lg);
+    gap: var(--spacing-xl); /* Increased from lg */
 }
 
 .skill-category {
     background-color: var(--card-background);
-    padding: var(--spacing-lg);
+    padding: var(--spacing-lg); /* Increased from lg */
     border-radius: var(--border-radius-md);
     box-shadow: 0 4px 10px var(--shadow-light);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -597,24 +624,24 @@ body.dark-mode .skill-category h3 {
     padding: 0;
     display: flex;
     flex-direction: column; /* Stack skills vertically */
-    gap: var(--spacing-xs);
+    gap: var(--spacing-sm); /* Increased from xs for better spacing between skills */
     justify-content: center;
 }
 
 .skill-category ul li {
     background-color: var(--hover-bg);
-    padding: 0.6rem 1rem;
+    padding: 0.8rem 1.2rem; /* Adjusted padding */
     border-radius: var(--border-radius-sm);
-    font-size: 0.9em;
+    font-size: 0.95em; /* Slightly larger font */
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.7rem; /* Increased gap */
     white-space: nowrap;
     border: 1px solid var(--border-color);
     color: var(--text-color);
     position: relative; /* For skill bar positioning */
     overflow: hidden; /* Hide overflowing bar */
-    padding-bottom: 1.2rem; /* Make space for the bar */
+    padding-bottom: 1.5rem; /* Adjusted to make more space for the bar */
 }
 body.dark-mode .skill-category ul li {
     background-color: var(--dark-hover-bg);
@@ -635,7 +662,7 @@ body.dark-mode .skill-icon {
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 6px; /* Height of the bar */
+    height: 7px; /* Slightly increased height of the bar */
     width: 0%; /* Initial width, controlled by JS */
     background-color: var(--skill-level-low); /* Default color, overridden by JS */
     border-radius: 0 0 var(--border-radius-sm) var(--border-radius-sm);
@@ -647,7 +674,7 @@ body.dark-mode .skill-icon {
     position: relative;
     max-width: 900px;
     margin: 0 auto;
-    padding: var(--spacing-xl) 0;
+    padding: var(--spacing-xxl) 0; /* Increased to xxl from xl */
 }
 
 .timeline::before {
@@ -665,20 +692,20 @@ body.dark-mode .timeline::before {
 }
 
 .timeline-item {
-    padding: 10px 0;
+    padding: var(--spacing-sm) 0; /* Increased from 10px */
     position: relative;
     width: 50%;
 }
 
 .timeline-item:nth-child(odd) {
     left: 0;
-    padding-right: var(--spacing-xl);
+    padding-right: var(--spacing-xl); /* Adjusted from xl */
     text-align: right;
 }
 
 .timeline-item:nth-child(even) {
     left: 50%;
-    padding-left: var(--spacing-xl);
+    padding-left: var(--spacing-xl); /* Adjusted from xl */
     text-align: left;
 }
 
@@ -687,7 +714,7 @@ body.dark-mode .timeline::before {
     width: 18px;
     background-color: var(--primary-color);
     position: absolute;
-    top: 15px;
+    top: calc(var(--spacing-sm) + 5px); /* Adjusted top for new padding */
     border-radius: 50%;
     z-index: 1;
     border: 2px solid var(--background-color);
@@ -780,13 +807,13 @@ body.dark-mode .project-card:hover {
 
 .project-card img {
     width: 100%;
-    height: 200px; /* Fixed height for consistency */
+    height: 220px; /* Slightly increased height for better visual */
     object-fit: cover;
     display: block;
 }
 
 .project-info {
-    padding: var(--spacing-md);
+    padding: var(--spacing-lg); /* Increased from md */
 }
 
 .project-info h3 {
@@ -795,7 +822,7 @@ body.dark-mode .project-card:hover {
 }
 
 .project-info p {
-    font-size: 0.95em;
+    font-size: 1em; /* Slightly increased */
     color: var(--secondary-color);
     margin-bottom: var(--spacing-md);
 }
@@ -806,16 +833,16 @@ body.dark-mode .project-info p {
 .project-tech {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--spacing-xs);
+    gap: var(--spacing-sm); /* Increased from xs */
     margin-bottom: var(--spacing-md);
 }
 
 .project-tech span {
     background-color: var(--hover-bg);
     color: var(--text-color);
-    padding: 0.4rem 0.8rem;
+    padding: 0.5rem 0.9rem; /* Slightly adjusted padding */
     border-radius: var(--border-radius-sm);
-    font-size: 0.8em;
+    font-size: 0.85em; /* Slightly larger font */
     font-weight: 500;
     white-space: nowrap;
     border: 1px solid var(--border-color);
@@ -855,11 +882,11 @@ body.dark-mode .btn-link:hover {
 /* --- Forms (Application & Contact) --- */
 .main-form {
     background-color: var(--card-background);
-    padding: var(--spacing-xl);
+    padding: var(--spacing-xxl); /* Increased from xl */
     border-radius: var(--border-radius-md);
     box-shadow: 0 4px 15px var(--shadow-light);
     max-width: 700px;
-    margin: var(--spacing-xl) auto;
+    margin: var(--spacing-xxl) auto; /* Increased from xl */
     border: 1px solid var(--border-color);
 }
 body.dark-mode .main-form {
@@ -869,7 +896,7 @@ body.dark-mode .main-form {
 }
 
 .form-group {
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-lg); /* Increased from md */
 }
 
 .form-group label {
@@ -921,14 +948,14 @@ body.dark-mode .form-group textarea:focus {
 
 .form-group textarea {
     resize: vertical;
-    min-height: 100px;
+    min-height: 120px; /* Slightly increased min-height */
 }
 
 .form-note {
     text-align: center;
     font-size: 0.9em;
     color: var(--secondary-color);
-    margin-top: var(--spacing-md);
+    margin-top: var(--spacing-lg); /* Increased from md */
 }
 body.dark-mode .form-note {
     color: var(--dark-secondary-color);
@@ -939,13 +966,13 @@ body.dark-mode .form-note {
 .contact-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-xl);
-    margin-bottom: var(--spacing-xl);
+    gap: var(--spacing-xl); /* Increased from xl */
+    margin-bottom: var(--spacing-xl); /* Keep consistent */
 }
 
 .contact-info-card {
     background-color: var(--card-background);
-    padding: var(--spacing-md);
+    padding: var(--spacing-lg); /* Increased from md */
     border-radius: var(--border-radius-md);
     box-shadow: 0 4px 10px var(--shadow-light);
     border: 1px solid var(--border-color);
@@ -1049,7 +1076,7 @@ body.dark-mode .social-links-contact a:hover {
 .map-container {
     width: 100%;
     max-width: 800px;
-    margin: var(--spacing-xl) auto 0;
+    margin: var(--spacing-xxl) auto 0; /* Increased from xl */
     border-radius: var(--border-radius-md);
     overflow: hidden;
     box-shadow: 0 4px 15px var(--shadow-light);
@@ -1071,7 +1098,7 @@ body.dark-mode .map-container {
 footer {
     background-color: var(--footer-bg);
     color: var(--footer-text);
-    padding: var(--spacing-md) 0;
+    padding: var(--spacing-lg) 0; /* Increased from md */
     text-align: center;
     font-size: 0.9em;
 }
@@ -1095,6 +1122,15 @@ footer p {
     }
     .hero-content .tagline {
         font-size: 1.5em;
+    }
+    .common-section {
+        padding: var(--spacing-xl) 0; /* Adjust for smaller screens */
+    }
+    .section-description {
+        margin-bottom: var(--spacing-xl);
+    }
+    .main-form, .map-container {
+        margin: var(--spacing-xl) auto;
     }
 }
 
@@ -1216,7 +1252,7 @@ footer p {
         width: 1.8rem;
     }
     .common-section {
-        padding: var(--spacing-lg) 0;
+        padding: var(--spacing-lg) 0; /* Further reduce padding on very small screens */
     }
     .form-group input, .form-group textarea, .form-group select {
         font-size: 0.9em;
