@@ -1,8 +1,8 @@
 /* Design Variables */
 :root {
-    --primary-color: #48D1CC; /* Turquoise */
+    --primary-color: #FF69B4; /* Hot Pink */
     --secondary-color: #6c757d; /* Gray */
-    --accent-color: #66CDAA; /* Aqua Marine */
+    --accent-color: #DC143C; /* Crimson */
     --text-color-light: #333;
     --background-color-light: #f4f7f6;
     --card-background-light: #ffffff;
