@@ -163,7 +163,36 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+// api/submit-application.js
+export default async function handler(req, res) {
+  if (req.method === 'POST') {
+    const { appName, appEmail, appPhone, projectType, projectBudget, appDetails } = req.body;
 
+    // TODO: Implement your backend logic here:
+    // 1. Validate data
+    // 2. Save to a database (e.g., MongoDB Atlas, PostgreSQL)
+    // 3. Send an email (e.g., using Nodemailer with a service like SendGrid, Mailgun, or Gmail)
+    //    (Consider using environment variables for API keys in Vercel)
+    console.log('Received Application:', { appName, appEmail, projectType, appDetails });
+
+    // Example: Sending a dummy success response
+    res.status(200).json({ message: 'Application received successfully!' });
+
+    // Example for actual email sending (requires setup)
+    // const nodemailer = require('nodemailer');
+    // let transporter = nodemailer.createTransport({ /* ... your email config ... */ });
+    // await transporter.sendMail({
+    //   from: '"Your Portfolio" <noreply@yourdomain.com>',
+    //   to: "your_email@example.com",
+    //   subject: "New Web Development Application",
+    //   html: `<p>Name: ${appName}</p><p>Email: ${appEmail}</p><p>Project Type: ${projectType}</p><p>Details: ${appDetails}</p>`
+    // });
+
+
+  } else {
+    res.status(405).json({ message: 'Method Not Allowed' });
+  }
+} 
     // --- 3D Geometric Motion Graphics for Hero Section ---
     const canvas = document.getElementById('hero-background-canvas');
     if (canvas) {
