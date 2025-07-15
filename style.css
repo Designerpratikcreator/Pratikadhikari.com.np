@@ -1,49 +1,47 @@
 /* --- Global Reset & Variables --- */
 :root {
-    /* Colors - Light Mode */
-    --primary-color: #007bff; /* A vibrant blue for primary actions/accents */
-    --secondary-color: #6c757d; /* Muted grey for secondary actions/text */
-    --accent-color: #28a745; /* Green for success/highlights */
-    --text-color: #333;
-    --background-color: #f8f9fa;
+    /* Colors - Light Mode (Refined Palette) */
+    --primary-color: #5b86e5; /* A softer, more inviting blue */
+    --secondary-color: #6a737d; /* Slightly darker grey for better contrast */
+    --accent-color: #83d475; /* A more subtle, natural green */
+    --text-color: #333d45; /* Dark charcoal for body text */
+    --background-color: #f0f2f5; /* Off-white, soft background */
     --card-background: #ffffff;
-    --border-color: #e0e0e0;
+    --border-color: #e2e8f0; /* Light border */
     --header-bg: rgba(255, 255, 255, 0.95);
-    --footer-bg: #343a40;
-    --footer-text: #f8f9fa;
-    --shadow-light: rgba(0, 0, 0, 0.1);
-    --hover-bg: #e9ecef;
-    --link-color: #0056b3;
+    --footer-bg: #2d3748; /* Darker footer for contrast */
+    --footer-text: #edf2f7;
+    --shadow-light: rgba(0, 0, 0, 0.08); /* Lighter, subtle shadow */
+    --hover-bg: #e2e8f0; /* Light hover state */
+    --link-color: #5b86e5;
 
-    /* Colors - Dark Mode (overridden by .dark-mode) */
-    --dark-primary-color: #1a73e8; /* Darker blue */
-    --dark-secondary-color: #adb5bd;
-    --dark-accent-color: #2ecc71;
-    --dark-text-color: #e0e0e0;
-    --dark-background-color: #1a202c;
-    --dark-card-background: #2d3748;
-    --dark-border-color: #4a5568;
-    --dark-header-bg: rgba(26, 32, 44, 0.95);
+    /* Skill Level Colors - Light Mode */
+    --skill-level-low: #f44336;    /* Red */
+    --skill-level-medium: #ffc107; /* Amber */
+    --skill-level-high: #4CAF50;   /* Green */
+    --skill-level-expert: #2196F3; /* Blue */
+
+
+    /* Colors - Dark Mode (Refined Palette) */
+    --dark-primary-color: #79a5f7; /* Brighter blue for dark mode primary */
+    --dark-secondary-color: #a0aec0; /* Lighter grey for better readability */
+    --dark-accent-color: #83d475; /* Same accent, works well in both */
+    --dark-text-color: #e2e8f0; /* Light text for dark background */
+    --dark-background-color: #1a202c; /* Deep dark background */
+    --dark-card-background: #2d3748; /* Slightly lighter than background for cards */
+    --dark-border-color: #4a5568; /* Darker border */
+    --dark-header-bg: rgba(26, 32, 44, 0.9); /* Semi-transparent header */
     --dark-footer-bg: #1a202c;
-    --dark-footer-text: #e0e0e0;
-    --dark-shadow: rgba(0, 0, 0, 0.5);
+    --dark-footer-text: #e2e8f0;
+    --dark-shadow: rgba(0, 0, 0, 0.4); /* Pronounced dark shadow */
     --dark-hover-bg: #4a5568;
-    --dark-link-color: #8bb4f7;
+    --dark-link-color: #9ac2ff;
 
-    /* Fonts */
-    --font-heading: 'Poppins', sans-serif;
-    --font-body: 'Open Sans', sans-serif;
-
-    /* Spacing */
-    --spacing-xs: 0.5rem;
-    --spacing-sm: 1rem;
-    --spacing-md: 1.5rem;
-    --spacing-lg: 2rem;
-    --spacing-xl: 3rem;
-
-    /* Border Radius */
-    --border-radius-sm: 5px;
-    --border-radius-md: 8px;
+    /* Skill Level Colors - Dark Mode */
+    --dark-skill-level-low: #ef5350;    /* Lighter Red */
+    --dark-skill-level-medium: #ffeb3b; /* Lighter Amber */
+    --dark-skill-level-high: #66bb6a;   /* Lighter Green */
+    --dark-skill-level-expert: #42a5f5; /* Lighter Blue */
 }
 
 /* Light Mode Defaults */
@@ -89,9 +87,11 @@ body.dark-mode a:hover {
 body.dark-mode .btn-primary {
     background-color: var(--dark-primary-color);
     color: var(--dark-footer-text);
+    border-color: var(--dark-primary-color);
 }
 body.dark-mode .btn-primary:hover {
-    background-color: darken(var(--dark-primary-color), 10%); /* Requires Sass or JS for real darken */
+    background-color: #5a8be8; /* A darker shade of dark-primary-color */
+    border-color: #5a8be8;
 }
 body.dark-mode .btn-secondary {
     border-color: var(--dark-primary-color);
@@ -105,10 +105,10 @@ body.dark-mode .btn-submit {
     background-color: var(--dark-accent-color);
 }
 body.dark-mode .btn-submit:hover {
-    background-color: darken(var(--dark-accent-color), 10%);
+    background-color: #6fb060; /* A darker shade of dark-accent-color */
 }
 body.dark-mode .form-group input, body.dark-mode .form-group textarea, body.dark-mode .form-group select {
-    background-color: var(--dark-background-color);
+    background-color: #262f3e; /* Slightly darker input background */
     border-color: var(--dark-border-color);
     color: var(--dark-text-color);
 }
@@ -120,25 +120,30 @@ body.dark-mode .timeline-dot {
     background-color: var(--dark-primary-color);
     border: 2px solid var(--dark-background-color);
 }
-body.dark-mode .timeline-item:before {
+body.dark-mode .timeline-item::before { /* Corrected selector for timeline line */
     background-color: var(--dark-border-color);
 }
 body.dark-mode .project-tech span {
-    background-color: var(--dark-border-color);
+    background-color: var(--dark-hover-bg);
     color: var(--dark-text-color);
+    border-color: var(--dark-border-color);
 }
 body.dark-mode .btn-tertiary {
     background-color: var(--dark-secondary-color);
     color: var(--dark-footer-text);
+    border-color: var(--dark-secondary-color);
 }
 body.dark-mode .btn-tertiary:hover {
-    background-color: darken(var(--dark-secondary-color), 10%);
+    background-color: #8c98a9; /* Darker shade of dark-secondary-color */
+    border-color: #8c98a9;
 }
 body.dark-mode .btn-linkedin {
     background-color: #0077B5; /* LinkedIn Blue */
+    border-color: #0077B5;
 }
 body.dark-mode .btn-linkedin:hover {
-    background-color: darken(#0077B5, 10%);
+    background-color: #005a8b;
+    border-color: #005a8b;
 }
 
 
@@ -199,8 +204,8 @@ p {
     border: 2px solid var(--primary-color);
 }
 .btn-primary:hover {
-    background-color: #0056b3; /* darker blue */
-    border-color: #0056b3;
+    background-color: #4a6bb8; /* darker blue */
+    border-color: #4a6bb8;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px var(--shadow-light);
 }
@@ -251,7 +256,7 @@ p {
     margin-top: var(--spacing-md);
 }
 .btn-submit:hover {
-    background-color: #218838; /* darker green */
+    background-color: #6fb060; /* darker green */
     box-shadow: 0 6px 12px var(--shadow-light);
 }
 
@@ -440,6 +445,7 @@ body.dark-mode .hamburger {
     justify-content: center;
     overflow: hidden; /* Important to contain the canvas */
     text-align: center;
+    background-color: #0f172a; /* Fallback background for hero */
 }
 
 #hero-background-canvas {
@@ -449,6 +455,7 @@ body.dark-mode .hamburger {
     width: 100%;
     height: 100%;
     z-index: 0;
+    display: block; /* Ensure canvas is visible */
 }
 
 .hero-content {
@@ -589,7 +596,7 @@ body.dark-mode .skill-category h3 {
     list-style: none;
     padding: 0;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column; /* Stack skills vertically */
     gap: var(--spacing-xs);
     justify-content: center;
 }
@@ -605,6 +612,9 @@ body.dark-mode .skill-category h3 {
     white-space: nowrap;
     border: 1px solid var(--border-color);
     color: var(--text-color);
+    position: relative; /* For skill bar positioning */
+    overflow: hidden; /* Hide overflowing bar */
+    padding-bottom: 1.2rem; /* Make space for the bar */
 }
 body.dark-mode .skill-category ul li {
     background-color: var(--dark-hover-bg);
@@ -620,6 +630,17 @@ body.dark-mode .skill-icon {
     color: var(--dark-primary-color);
 }
 
+/* Skill Level Bar Styles */
+.skill-level-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 6px; /* Height of the bar */
+    width: 0%; /* Initial width, controlled by JS */
+    background-color: var(--skill-level-low); /* Default color, overridden by JS */
+    border-radius: 0 0 var(--border-radius-sm) var(--border-radius-sm);
+    transition: width 1s ease-out, background-color 0.5s ease-out; /* Animate width and color */
+}
 
 /* --- Experiences Section (Timeline) --- */
 .timeline {
@@ -879,7 +900,7 @@ body.dark-mode .form-group label {
 body.dark-mode .form-group input,
 body.dark-mode .form-group select,
 body.dark-mode .form-group textarea {
-    background-color: var(--dark-background-color);
+    background-color: #262f3e; /* Consistent darker background */
     border-color: var(--dark-border-color);
     color: var(--dark-text-color);
 }
@@ -889,13 +910,13 @@ body.dark-mode .form-group textarea {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    box-shadow: 0 0 0 3px rgba(91, 134, 229, 0.25); /* Adjusted shadow color */
 }
 body.dark-mode .form-group input:focus,
 body.dark-mode .form-group select:focus,
 body.dark-mode .form-group textarea:focus {
     border-color: var(--dark-primary-color);
-    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.4);
+    box-shadow: 0 0 0 3px rgba(121, 165, 247, 0.4); /* Adjusted shadow color */
 }
 
 .form-group textarea {
