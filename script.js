@@ -40,11 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
         themeSwitcher.addEventListener('change', () => {
             if (themeSwitcher.checked) {
                 body.classList.add('dark-mode');
-                body.classList.remove('light-mode');
+                body.classList.remove('light-mode'); // Ensure light-mode is removed if present
                 localStorage.setItem('theme', 'dark-mode');
             } else {
                 body.classList.remove('dark-mode');
-                body.classList.add('light-mode');
+                body.classList.add('light-mode'); // Add light-mode class for explicit light theme
                 localStorage.setItem('theme', 'light-mode');
             }
         });
@@ -149,46 +149,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 3D Geometric Motion Graphics for Hero Section ---
     const canvas = document.getElementById('hero-background-canvas');
-    if (canvas) {
+    if (canvas && typeof THREE !== 'undefined') { // Ensure THREE is loaded
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, canvas.parentElement.clientWidth / canvas.parentElement.clientHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
-        renderer.setSize(canvas.parentElement.clientWidth, canvas.parentElement.clientHeight);
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true }); // alpha: true for transparent background
+
+        // Set initial size
+        renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(window.devicePixelRatio);
 
+        // Handle window resize
         window.addEventListener('resize', () => {
-            camera.aspect = canvas.parentElement.clientWidth / canvas.parentElement.clientHeight;
+            camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
-            renderer.setSize(canvas.parentElement.clientWidth, canvas.parentElement.clientHeight);
+            renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
-        const ambientLight = new THREE.AmbientLight(0x404040, 2);
+        // Lights
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Softer ambient light
         scene.add(ambientLight);
 
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
         directionalLight.position.set(5, 10, 7.5);
         scene.add(directionalLight);
 
-        // More refined set of geometries and materials
+        const pointLight1 = new THREE.PointLight(0x00aaff, 1, 100); // Blueish light
+        pointLight1.position.set(-10, 5, 10);
+        scene.add(pointLight1);
+
+        const pointLight2 = new THREE.PointLight(0xff00aa, 1, 100); // Pinkish light
+        pointLight2.position.set(10, -5, -10);
+        scene.add(pointLight2);
+
+        // Geometries and Materials
         const geometries = [
             new THREE.BoxGeometry(1, 1, 1),
-            new THREE.SphereGeometry(0.75, 24, 24), // Reduced segments for performance
-            new THREE.ConeGeometry(0.8, 1.5, 24),
-            new THREE.TorusGeometry(0.7, 0.3, 12, 50), // Reduced segments
-            new THREE.IcosahedronGeometry(0.9, 0) // Dodecahedron, often looks good
+            new THREE.SphereGeometry(0.75, 16, 16), // Reduced segments for performance
+            new THREE.ConeGeometry(0.8, 1.5, 16),
+            new THREE.TorusGeometry(0.7, 0.3, 10, 30), // Reduced segments
+            new THREE.DodecahedronGeometry(0.9) // Simpler dodecahedron
         ];
 
-        // Slightly adjusted materials for better contrast in light/dark mode if needed, and subtle variations
         const materials = [
-            new THREE.MeshStandardMaterial({ color: 0x00CED1, metalness: 0.6, roughness: 0.3 }), // Dark Cyan
-            new THREE.MeshStandardMaterial({ color: 0xFFD700, metalness: 0.6, roughness: 0.3 }), // Gold
-            new THREE.MeshStandardMaterial({ color: 0xBA55D3, metalness: 0.6, roughness: 0.3 }), // Medium Orchid
-            new THREE.MeshStandardMaterial({ color: 0x7FFF00, metalness: 0.6, roughness: 0.3 }),  // Chartreuse
-            new THREE.MeshStandardMaterial({ color: 0x1E90FF, metalness: 0.6, roughness: 0.3 })   // Dodger Blue
+            new THREE.MeshStandardMaterial({ color: 0x00CED1, metalness: 0.7, roughness: 0.4 }), // Dark Cyan
+            new THREE.MeshStandardMaterial({ color: 0xFFD700, metalness: 0.7, roughness: 0.4 }), // Gold
+            new THREE.MeshStandardMaterial({ color: 0xBA55D3, metalness: 0.7, roughness: 0.4 }), // Medium Orchid
+            new THREE.MeshStandardMaterial({ color: 0x7FFF00, metalness: 0.7, roughness: 0.4 }),  // Chartreuse
+            new THREE.MeshStandardMaterial({ color: 0x1E90FF, metalness: 0.7, roughness: 0.4 })   // Dodger Blue
         ];
 
         const objects = [];
-        const numberOfObjects = 30; // Increased number of objects for a richer background
+        const numberOfObjects = 40; // Increased number of objects for a richer background
 
         for (let i = 0; i < numberOfObjects; i++) {
             const geometry = geometries[Math.floor(Math.random() * geometries.length)];
@@ -196,9 +207,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const mesh = new THREE.Mesh(geometry, material);
 
             // Spread objects over a larger volume
-            mesh.position.x = (Math.random() - 0.5) * 40;
-            mesh.position.y = (Math.random() - 0.5) * 40;
-            mesh.position.z = (Math.random() - 0.5) * 40;
+            mesh.position.x = (Math.random() - 0.5) * 60;
+            mesh.position.y = (Math.random() - 0.5) * 60;
+            mesh.position.z = (Math.random() - 0.5) * 60;
 
             mesh.rotation.x = Math.random() * Math.PI;
             mesh.rotation.y = Math.random() * Math.PI;
@@ -211,35 +222,39 @@ document.addEventListener('DOMContentLoaded', () => {
             objects.push(mesh);
         }
 
-        camera.position.z = 10; // Move camera back to view more of the objects
+        camera.position.z = 25; // Move camera back to view more of the objects
 
         // Animation Loop
         const animate = () => {
             requestAnimationFrame(animate);
 
             objects.forEach(obj => {
-                obj.rotation.x += 0.003 * Math.random(); // Slower, varied rotation
-                obj.rotation.y += 0.003 * Math.random();
-                obj.rotation.z += 0.003 * Math.random();
+                obj.rotation.x += 0.002 * (Math.random() * 0.5 + 0.5); // Slower, varied rotation
+                obj.rotation.y += 0.002 * (Math.random() * 0.5 + 0.5);
+                obj.rotation.z += 0.002 * (Math.random() * 0.5 + 0.5);
 
                 // Subtle floating/drifting motion
-                obj.position.x += Math.sin(Date.now() * 0.00005 + obj.uuid.charCodeAt(0)) * 0.005;
-                obj.position.y += Math.cos(Date.now() * 0.00005 + obj.uuid.charCodeAt(1)) * 0.005;
-                obj.position.z += Math.sin(Date.now() * 0.00005 + obj.uuid.charCodeAt(2)) * 0.005;
+                obj.position.x += Math.sin(Date.now() * 0.00003 + obj.uuid.charCodeAt(0)) * 0.01;
+                obj.position.y += Math.cos(Date.now() * 0.00003 + obj.uuid.charCodeAt(1)) * 0.01;
+                obj.position.z += Math.sin(Date.now() * 0.00003 + obj.uuid.charCodeAt(2)) * 0.01;
 
                 // Simple wrap-around logic for objects that go too far
-                if (obj.position.x > 20) obj.position.x = -20;
-                if (obj.position.x < -20) obj.position.x = 20;
-                if (obj.position.y > 20) obj.position.y = -20;
-                if (obj.position.y < -20) obj.position.y = 20;
-                if (obj.position.z > 20) obj.position.z = -20;
-                if (obj.position.z < -20) obj.position.z = 20;
+                const bound = 30; // Half of the 60 unit spread
+                if (obj.position.x > bound) obj.position.x = -bound;
+                if (obj.position.x < -bound) obj.position.x = bound;
+                if (obj.position.y > bound) obj.position.y = -bound;
+                if (obj.position.y < -bound) obj.position.y = bound;
+                if (obj.position.z > bound) obj.position.z = -bound;
+                if (obj.position.z < -bound) obj.position.z = bound;
             });
 
             renderer.render(scene, camera);
         };
         animate();
+    } else if (canvas) {
+        console.warn("Three.js not loaded. Hero background animation will not be displayed.");
     }
+
 
     // --- Set current year in footer ---
     const currentYearSpan = document.getElementById('current-year');
@@ -280,6 +295,68 @@ document.addEventListener('DOMContentLoaded', () => {
             navLinksList.forEach(link => link.classList.remove('active'));
             document.querySelector('.nav-links li a[href="#home"]').classList.add('active');
         }
+    });
+
+    // --- Skill Level Indicators ---
+    const skillListItems = document.querySelectorAll('.skill-category ul li');
+
+    const skillsObserverOptions = {
+        root: null,
+        rootMargin: '0px 0px -100px 0px', // Trigger when 100px from bottom of viewport
+        threshold: 0.2 // Trigger when 20% of the item is visible
+    };
+
+    const skillsObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const skillLevel = parseInt(entry.target.dataset.level, 10);
+                const skillBar = entry.target.querySelector('.skill-level-bar');
+
+                if (skillBar) {
+                    // Set width
+                    skillBar.style.width = `${skillLevel}%`;
+
+                    // Set color based on level
+                    let colorVar;
+                    if (skillLevel < 40) {
+                        colorVar = body.classList.contains('dark-mode') ? '--dark-skill-level-low' : '--skill-level-low';
+                    } else if (skillLevel < 70) {
+                        colorVar = body.classList.contains('dark-mode') ? '--dark-skill-level-medium' : '--skill-level-medium';
+                    } else if (skillLevel < 90) {
+                        colorVar = body.classList.contains('dark-mode') ? '--dark-skill-level-high' : '--skill-level-high';
+                    } else {
+                        colorVar = body.classList.contains('dark-mode') ? '--dark-skill-level-expert' : '--skill-level-expert';
+                    }
+                    skillBar.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue(colorVar);
+                }
+                observer.unobserve(entry.target); // Stop observing once animated
+            }
+        });
+    }, skillsObserverOptions);
+
+    skillListItems.forEach(item => {
+        skillsObserver.observe(item);
+    });
+
+    // Re-apply skill colors on theme change
+    themeSwitcher.addEventListener('change', () => {
+        skillListItems.forEach(item => {
+            const skillLevel = parseInt(item.dataset.level, 10);
+            const skillBar = item.querySelector('.skill-level-bar');
+            if (skillBar) {
+                let colorVar;
+                if (skillLevel < 40) {
+                    colorVar = body.classList.contains('dark-mode') ? '--dark-skill-level-low' : '--skill-level-low';
+                } else if (skillLevel < 70) {
+                    colorVar = body.classList.contains('dark-mode') ? '--dark-skill-level-medium' : '--skill-level-medium';
+                } else if (skillLevel < 90) {
+                    colorVar = body.classList.contains('dark-mode') ? '--dark-skill-level-high' : '--skill-level-high';
+                } else {
+                    colorVar = body.classList.contains('dark-mode') ? '--dark-skill-level-expert' : '--skill-level-expert';
+                }
+                skillBar.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue(colorVar);
+            }
+        });
     });
 
 });
