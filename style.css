@@ -83,7 +83,7 @@ body.dark-mode {
     color: var(--text-color-dark);
     background-color: var(--background-color-dark);
     /* Dark mode background for GIF can be adjusted here if needed */
-    background-image: url('./Assets/images/butterfly.gif'); /* Keep the same GIF or change */
+    background-image: url('/Assets/images/butterfly.gif'); /* Keep the same GIF or change */
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
