@@ -33,7 +33,7 @@ body {
     background-color: var(--background-color-light);
     transition: background-color var(--transition-speed), color var(--transition-speed);
     /* Added for butterfly.gif background */
-    background-image: url('./Assets/images/butterfly.gif'); /* Make sure this path is correct */
+    background-image: url('/Assets/images/butterfly.gif'); /* Make sure this path is correct */
     background-size: cover; /* Ensures the GIF covers the entire background */
     background-repeat: no-repeat; /* Prevents the GIF from repeating */
     background-attachment: fixed; /* Makes the GIF fixed in the viewport */
