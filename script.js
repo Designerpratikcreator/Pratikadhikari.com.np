@@ -146,37 +146,84 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 3D Geometric Motion Graphics (Placeholder) ---
-    // This is where you would initialize and run your 3D graphics code.
-    // For example, if using Three.js:
-    /*
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('hero-background-canvas'), alpha: true });
+    // --- 3D Geometric Motion Graphics for Hero Section ---
+    const canvas = document.getElementById('hero-background-canvas');
+    if (canvas) {
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / canvas.parentElement.clientHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true }); // alpha: true for transparent background
+        renderer.setSize(window.innerWidth, canvas.parentElement.clientHeight);
+        renderer.setPixelRatio(window.devicePixelRatio); // Improve rendering quality on high-DPI screens
 
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    camera.position.z = 5;
+        // Adjust camera aspect ratio on window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / canvas.parentElement.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, canvas.parentElement.clientHeight);
+        });
 
-    // Example: Add a spinning cube
-    const geometry = new THREE.BoxGeometry();
-    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
-    const cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
+        // Lights
+        const ambientLight = new THREE.AmbientLight(0x404040, 2); // soft white light, increased intensity
+        scene.add(ambientLight);
 
-    function animate() {
-        requestAnimationFrame(animate);
-        cube.rotation.x += 0.01;
-        cube.rotation.y += 0.01;
-        renderer.render(scene, camera);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight.position.set(5, 10, 7.5);
+        scene.add(directionalLight);
+
+        // Geometries and Materials
+        const geometries = [
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.SphereGeometry(0.75, 32, 32),
+            new THREE.ConeGeometry(0.8, 1.5, 32),
+            new THREE.TorusGeometry(0.7, 0.3, 16, 100)
+        ];
+
+        const materials = [
+            new THREE.MeshStandardMaterial({ color: 0x00CED1, metalness: 0.5, roughness: 0.4 }), // Dark Cyan
+            new THREE.MeshStandardMaterial({ color: 0xFFD700, metalness: 0.5, roughness: 0.4 }), // Gold
+            new THREE.MeshStandardMaterial({ color: 0xBA55D3, metalness: 0.5, roughness: 0.4 }), // Medium Orchid
+            new THREE.MeshStandardMaterial({ color: 0x7FFF00, metalness: 0.5, roughness: 0.4 })  // Chartreuse
+        ];
+
+        const objects = [];
+        const numberOfObjects = 20;
+
+        for (let i = 0; i < numberOfObjects; i++) {
+            const geometry = geometries[Math.floor(Math.random() * geometries.length)];
+            const material = materials[Math.floor(Math.random() * materials.length)];
+            const mesh = new THREE.Mesh(geometry, material);
+
+            mesh.position.x = (Math.random() - 0.5) * 20;
+            mesh.position.y = (Math.random() - 0.5) * 20;
+            mesh.position.z = (Math.random() - 0.5) * 20;
+
+            mesh.rotation.x = Math.random() * Math.PI;
+            mesh.rotation.y = Math.random() * Math.PI;
+            mesh.rotation.z = Math.random() * Math.PI;
+
+            const scale = Math.random() * 0.5 + 0.5; // Random scale between 0.5 and 1.0
+            mesh.scale.set(scale, scale, scale);
+
+            scene.add(mesh);
+            objects.push(mesh);
+        }
+
+        camera.position.z = 5;
+
+        // Animation Loop
+        const animate = () => {
+            requestAnimationFrame(animate);
+
+            objects.forEach(obj => {
+                obj.rotation.x += 0.005;
+                obj.rotation.y += 0.005;
+                // Optional: add subtle movement
+                obj.position.x += Math.sin(Date.now() * 0.0001 + obj.uuid.charCodeAt(0)) * 0.001;
+                obj.position.y += Math.cos(Date.now() * 0.0001 + obj.uuid.charCodeAt(1)) * 0.001;
+            });
+
+            renderer.render(scene, camera);
+        };
+        animate();
     }
-    animate();
-
-    // Handle window resizing
-    window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-    */
-    // Remember to link the Three.js library in your HTML <head> if using it.
 });
