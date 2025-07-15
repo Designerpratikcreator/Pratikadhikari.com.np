@@ -248,7 +248,7 @@ input:checked + .slider:before {
 /* Hero Section */
 .hero-section {
     text-align: center;
-    background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+    background: linear-gradient(to right, var(--primary-color), var(--accent-color)) background-image: url('/Assets/images/butterfly.gif');
     color: white;
     padding: 100px 20px;
     border-radius: var(--border-radius);
