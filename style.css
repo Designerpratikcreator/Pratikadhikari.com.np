@@ -1,12 +1,12 @@
 /* --- Global Reset & Variables --- */
 :root {
     /* Colors - Light Mode (Refined Palette) */
-    --primary-color: #5b86e5; /* A softer, more inviting blue */
+    --primary-color: #0000FF  /* blue */
     --secondary-color: #6a737d; /* Slightly darker grey for better contrast */
     --accent-color: #83d475; /* A more subtle, natural green */
     --text-color: #333d45; /* Dark charcoal for body text */
-    --background-color: #f0f2f5; /* Off-white, soft background */
-    --card-background: #ffffff;
+    --background-color: #CC33FF; /* purple */
+    --card-background: #CC3333;
     --border-color: #e2e8f0; /* Light border */
     --header-bg: rgba(255, 255, 255, 0.95);
     --footer-bg: #2d3748; /* Darker footer for contrast */
