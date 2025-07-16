@@ -5,8 +5,8 @@
     --secondary-color: #6a737d; /* Slightly darker grey for better contrast */
     --accent-color: #83d475; /* A more subtle, natural green */
     --text-color: #333d45; /* Dark charcoal for body text */
-    --background-color: #CC33FF; /* purple */
-    --card-background: #CC3333;
+    --background-color:#ffeb3b; /* Yellow */
+    --card-background: #3300FF;
     --border-color: #e2e8f0; /* Light border */
     --header-bg: rgba(255, 255, 255, 0.95);
     --footer-bg: #2d3748; /* Darker footer for contrast */
@@ -306,7 +306,7 @@ body.dark-mode .section-description {
 
 /* --- Header & Navbar --- */
 header {
-    background-color: var(--header-bg);
+    background-color: var(--background-color);
     box-shadow: 0 2px 10px var(--shadow-light);
     position: sticky;
     top: 0;
