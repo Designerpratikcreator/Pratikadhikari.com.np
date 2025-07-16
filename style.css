@@ -227,7 +227,7 @@ p {
 
 .btn-primary {
     background-color: var(--primary-color);
-    color: white;
+    color: blue;
     border: 2px solid var(--primary-color);
 }
 .btn-primary:hover {
