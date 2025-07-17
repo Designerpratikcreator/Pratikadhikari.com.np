@@ -758,6 +758,7 @@ body.dark-mode .timeline-content:hover {
 }
 
 .timeline-content h3 {
+    color: var(--text-color);
     margin-bottom: var(--spacing-xs);
     font-size: 1.5em;
 }
@@ -820,6 +821,7 @@ body.dark-mode .project-card:hover {
 
 .project-info h3 {
     font-size: 1.5em;
+    color: var(--text-color);
     margin-bottom: var(--spacing-xs);
 }
 
