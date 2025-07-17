@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 themeSwitcher.checked = true;
             }
         } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            // Default to dark mode if OS prefers it and no theme is saved
             body.classList.add('dark-mode');
             themeSwitcher.checked = true;
         }
@@ -41,201 +40,233 @@ document.addEventListener('DOMContentLoaded', () => {
         themeSwitcher.addEventListener('change', () => {
             if (themeSwitcher.checked) {
                 body.classList.add('dark-mode');
+                body.classList.remove('light-mode'); // Ensure light-mode is removed if present
                 localStorage.setItem('theme', 'dark-mode');
             } else {
                 body.classList.remove('dark-mode');
+                body.classList.add('light-mode'); // Add light-mode class for explicit light theme
                 localStorage.setItem('theme', 'light-mode');
             }
         });
     }
 
-    // --- Typing Effect for Hero Section ---
-    const typedTextElement = document.querySelector('.typed-text');
-    if (typedTextElement) {
-        const words = ["Web Developer", "Web Designer", "Frontend Developer", "Backend Developer", "Full-Stack Enthusiast"];
-        let wordIndex = 0;
+    // --- Hero Section Typing Effect ---
+    const typingTextElement = document.getElementById('typing-text');
+    if (typingTextElement) {
+        const phrases = [
+            "creative websites.",
+            "dynamic web applications.",
+            "intuitive user interfaces.",
+            "seamless user experiences."
+        ];
+        let phraseIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
-        const typingSpeed = 150;
-        const deletingSpeed = 100;
-        const delayBeforeNextWord = 1500;
+        const typingSpeed = 100; // milliseconds per character
+        const deletingSpeed = 60; // milliseconds per character
+        const pauseBetweenPhrases = 1500; // milliseconds
 
         function type() {
-            const currentWord = words[wordIndex];
+            const currentPhrase = phrases[phraseIndex];
+            let displayText = '';
+
             if (isDeleting) {
-                typedTextElement.textContent = currentWord.substring(0, charIndex--);
+                displayText = currentPhrase.substring(0, charIndex - 1);
             } else {
-                typedTextElement.textContent = currentWord.substring(0, charIndex++);
+                displayText = currentPhrase.substring(0, charIndex + 1);
             }
+
+            typingTextElement.textContent = displayText;
 
             let typeSpeed = typingSpeed;
             if (isDeleting) {
                 typeSpeed = deletingSpeed;
             }
 
-            if (!isDeleting && charIndex === currentWord.length + 1) {
-                typeSpeed = delayBeforeNextWord;
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                typeSpeed = pauseBetweenPhrases;
                 isDeleting = true;
-            } else if (isDeleting && charIndex === -1) {
+            } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
-                wordIndex = (wordIndex + 1) % words.length;
-                charIndex = 0;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+            }
+
+            if (isDeleting) {
+                charIndex--;
+            } else {
+                charIndex++;
             }
 
             setTimeout(type, typeSpeed);
         }
-        type();
+
+        type(); // Start the typing effect
     }
 
-    // --- Three.js Background Animation (Simple Particles) ---
-    const heroBackground = document.getElementById('hero-background');
-    if (heroBackground && typeof THREE !== 'undefined') {
-        let scene, camera, renderer, particles;
-        const particleCount = 1000;
-        const particleSize = 1;
-        const particleColor = 0xffffff; // White particles
-        const connections = []; // To store lines for connections
 
-        function initThreeJS() {
-            // Scene
-            scene = new THREE.Scene();
+    // --- Form Submission (Formspree is handled directly by HTML action) ---
+    // The previous JavaScript logic for form submission has been removed
+    // as Formspree handles the POST request directly from the HTML form's action attribute.
+    // No JS is explicitly needed here for the Formspree submission itself.
 
-            // Camera
-            camera = new THREE.PerspectiveCamera(75, heroBackground.clientWidth / heroBackground.clientHeight, 0.1, 1000);
-            camera.position.z = 100;
 
-            // Renderer
-            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            renderer.setSize(heroBackground.clientWidth, heroBackground.clientHeight);
-            renderer.setPixelRatio(window.devicePixelRatio);
-            heroBackground.appendChild(renderer.domElement);
+    // --- 3D Geometric Motion Graphics for Hero Section ---
+    const canvas = document.getElementById('hero-background-canvas');
+    if (canvas && typeof THREE !== 'undefined') { // Ensure THREE is loaded
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true }); // alpha: true for transparent background
 
-            // Particles
-            const geometry = new THREE.BufferGeometry();
-            const positions = [];
-            const colors = []; // For gradient color later if needed
-            const material = new THREE.PointsMaterial({
-                color: particleColor,
-                size: particleSize,
-                transparent: true,
-                opacity: 0.8,
-                blending: THREE.AdditiveBlending,
-                depthWrite: false
-            });
+        // Set initial size
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
 
-            for (let i = 0; i < particleCount; i++) {
-                const x = Math.random() * 2000 - 1000;
-                const y = Math.random() * 2000 - 1000;
-                const z = Math.random() * 2000 - 1000;
-                positions.push(x, y, z);
-            }
-            geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
-            particles = new THREE.Points(geometry, material);
-            scene.add(particles);
-
-            // Lines for connections
-            const lineMaterial = new THREE.LineBasicMaterial({
-                color: 0x0000FF, // Blue lines
-                transparent: true,
-                opacity: 0.1,
-                blending: THREE.AdditiveBlending
-            });
-            const maxDistance = 100; // Max distance for lines to form
-
-            function createConnections() {
-                // Clear existing connections
-                connections.forEach(line => scene.remove(line));
-                connections.length = 0;
-
-                const positionsArray = geometry.attributes.position.array;
-                const tempParticles = [];
-                for (let i = 0; i < positionsArray.length; i += 3) {
-                    tempParticles.push(new THREE.Vector3(positionsArray[i], positionsArray[i + 1], positionsArray[i + 2]));
-                }
-
-                for (let i = 0; i < particleCount; i++) {
-                    for (let j = i + 1; j < particleCount; j++) {
-                        const dist = tempParticles[i].distanceTo(tempParticles[j]);
-                        if (dist < maxDistance) {
-                            const lineGeometry = new THREE.BufferGeometry();
-                            lineGeometry.setAttribute('position', new THREE.Float32BufferAttribute([
-                                tempParticles[i].x, tempParticles[i].y, tempParticles[i].z,
-                                tempParticles[j].x, tempParticles[j].y, tempParticles[j].z
-                            ], 3));
-                            const line = new THREE.Line(lineGeometry, lineMaterial);
-                            connections.push(line);
-                            scene.add(line);
-                        }
-                    }
-                }
-            }
-
-            // createConnections(); // Only create if really necessary, very performance heavy
-
-            // Animation loop
-            function animate() {
-                requestAnimationFrame(animate);
-
-                // Animate particles
-                particles.rotation.x += 0.0005;
-                particles.rotation.y += 0.0008;
-
-                renderer.render(scene, camera);
-            }
-            animate();
-
-            // Handle window resize
-            window.addEventListener('resize', onWindowResize);
-        }
-
-        function onWindowResize() {
-            camera.aspect = heroBackground.clientWidth / heroBackground.clientHeight;
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
-            renderer.setSize(heroBackground.clientWidth, heroBackground.clientHeight);
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Lights
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Softer ambient light
+        scene.add(ambientLight);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        directionalLight.position.set(5, 10, 7.5);
+        scene.add(directionalLight);
+
+        const pointLight1 = new THREE.PointLight(0x00aaff, 1, 100); // Blueish light
+        pointLight1.position.set(-10, 5, 10);
+        scene.add(pointLight1);
+
+        const pointLight2 = new THREE.PointLight(0xff00aa, 1, 100); // Pinkish light
+        pointLight2.position.set(10, -5, -10);
+        scene.add(pointLight2);
+
+        // Geometries and Materials
+        const geometries = [
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.SphereGeometry(0.75, 16, 16), // Reduced segments for performance
+            new THREE.ConeGeometry(0.8, 1.5, 16),
+            new THREE.TorusGeometry(0.7, 0.3, 10, 30), // Reduced segments
+            new THREE.DodecahedronGeometry(0.9) // Simpler dodecahedron
+        ];
+
+        const materials = [
+            new THREE.MeshStandardMaterial({ color: 0x00CED1, metalness: 0.7, roughness: 0.4 }), // Dark Cyan
+            new THREE.MeshStandardMaterial({ color: 0xFFD700, metalness: 0.7, roughness: 0.4 }), // Gold
+            new THREE.MeshStandardMaterial({ color: 0xBA55D3, metalness: 0.7, roughness: 0.4 }), // Medium Orchid
+            new THREE.MeshStandardMaterial({ color: 0x7FFF00, metalness: 0.7, roughness: 0.4 }),  // Chartreuse
+            new THREE.MeshStandardMaterial({ color: 0x1E90FF, metalness: 0.7, roughness: 0.4 })   // Dodger Blue
+        ];
+
+        const objects = [];
+        const numberOfObjects = 40; // Increased number of objects for a richer background
+
+        for (let i = 0; i < numberOfObjects; i++) {
+            const geometry = geometries[Math.floor(Math.random() * geometries.length)];
+            const material = materials[Math.floor(Math.random() * materials.length)];
+            const mesh = new THREE.Mesh(geometry, material);
+
+            // Spread objects over a larger volume
+            mesh.position.x = (Math.random() - 0.5) * 60;
+            mesh.position.y = (Math.random() - 0.5) * 60;
+            mesh.position.z = (Math.random() - 0.5) * 60;
+
+            mesh.rotation.x = Math.random() * Math.PI;
+            mesh.rotation.y = Math.random() * Math.PI;
+            mesh.rotation.z = Math.random() * Math.PI;
+
+            const scale = Math.random() * 0.8 + 0.3; // Random scale between 0.3 and 1.1
+            mesh.scale.set(scale, scale, scale);
+
+            scene.add(mesh);
+            objects.push(mesh);
         }
 
-        initThreeJS();
-    }
+        camera.position.z = 25; // Move camera back to view more of the objects
 
+        // Animation Loop
+        const animate = () => {
+            requestAnimationFrame(animate);
 
-    // --- Set Current Year in Footer ---
-    const currentYearElement = document.getElementById('current-year');
-    if (currentYearElement) {
-        currentYearElement.textContent = new Date().getFullYear();
-    }
+            objects.forEach(obj => {
+                obj.rotation.x += 0.002 * (Math.random() * 0.5 + 0.5); // Slower, varied rotation
+                obj.rotation.y += 0.002 * (Math.random() * 0.5 + 0.5);
+                obj.rotation.z += 0.002 * (Math.random() * 0.5 + 0.5);
 
-    // --- Smooth Scrolling for Navigation Links ---
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
+                // Subtle floating/drifting motion
+                obj.position.x += Math.sin(Date.now() * 0.00003 + obj.uuid.charCodeAt(0)) * 0.01;
+                obj.position.y += Math.cos(Date.now() * 0.00003 + obj.uuid.charCodeAt(1)) * 0.01;
+                obj.position.z += Math.sin(Date.now() * 0.00003 + obj.uuid.charCodeAt(2)) * 0.01;
 
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
+                // Simple wrap-around logic for objects that go too far
+                const bound = 30; // Half of the 60 unit spread
+                if (obj.position.x > bound) obj.position.x = -bound;
+                if (obj.position.x < -bound) obj.position.x = bound;
+                if (obj.position.y > bound) obj.position.y = -bound;
+                if (obj.position.y < -bound) obj.position.y = bound;
+                if (obj.position.z > bound) obj.position.z = -bound;
+                if (obj.position.z < -bound) obj.position.z = bound;
             });
+
+            renderer.render(scene, camera);
+        };
+        animate();
+    } else if (canvas) {
+        console.warn("Three.js not loaded. Hero background animation will not be displayed.");
+    }
+
+
+    // --- Set current year in footer ---
+    const currentYearSpan = document.getElementById('current-year');
+    if (currentYearSpan) {
+        currentYearSpan.textContent = new Date().getFullYear();
+    }
+
+    // --- Navbar Active State on Scroll ---
+    const sections = document.querySelectorAll('section');
+    const navLinksList = document.querySelectorAll('.nav-links li a');
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5 // Adjust threshold as needed
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinksList.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + entry.target.id) {
+                        link.classList.add('active');
+                    }
+                });
+            }
         });
+    }, observerOptions);
+
+    sections.forEach(section => {
+        observer.observe(section);
     });
 
-    // --- Loading Overlay ---
-    const loadingOverlay = document.getElementById('loading-overlay');
-    if (loadingOverlay) {
-        window.addEventListener('load', () => {
-            loadingOverlay.classList.add('hidden');
-        });
-        // Fallback for fast loads or if 'load' event doesn't fire as expected
-        setTimeout(() => {
-            if (!loadingOverlay.classList.contains('hidden')) {
-                loadingOverlay.classList.add('hidden');
-            }
-        }, 3000); // Hide after 3 seconds even if load event is slow
-    }
+    // Optional: Highlight Home when at top of page or scrolling fast
+    window.addEventListener('scroll', () => {
+        if (window.scrollY < 100) { // If near top, activate home
+            navLinksList.forEach(link => link.classList.remove('active'));
+            document.querySelector('.nav-links li a[href="#home"]').classList.add('active');
+        }
+    });
 
-
-    // --- Skill Bar Animation on Scroll (Intersection Observer) ---
+    // --- Skill Level Indicators ---
     const skillListItems = document.querySelectorAll('.skill-category ul li');
+
     const skillsObserverOptions = {
-        root: null, // viewport
-        rootMargin: '0px',
-        threshold: 0.5 // Trigger when 50% of the item is visible
+        root: null,
+        rootMargin: '0px 0px -100px 0px', // Trigger when 100px from bottom of viewport
+        threshold: 0.2 // Trigger when 20% of the item is visible
     };
 
     const skillsObserver = new IntersectionObserver((entries, observer) => {
@@ -243,10 +274,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 const skillLevel = parseInt(entry.target.dataset.level, 10);
                 const skillBar = entry.target.querySelector('.skill-level-bar');
+
                 if (skillBar) {
-                    skillBar.style.width = skillLevel + '%';
+                    // Set width
+                    skillBar.style.width = `${skillLevel}%`;
+
+                    // Set color based on level
                     let colorVar;
-                    // Determine color based on skill level and current theme
                     if (skillLevel < 40) {
                         colorVar = body.classList.contains('dark-mode') ? '--dark-skill-level-low' : '--skill-level-low';
                     } else if (skillLevel < 70) {
