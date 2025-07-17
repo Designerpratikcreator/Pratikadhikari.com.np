@@ -1,7 +1,7 @@
 /* --- Global Reset & Variables --- */
 :root {
     /* Colors - Light Mode (Refined Palette) */
-    --primary-color: #0000FF  /* blue */
+    --primary-color: #0000FF;  /* blue */
     --secondary-color: #6a737d; /* Slightly darker grey for better contrast */
     --accent-color: #83d475; /* A more subtle, natural green */
     --text-color: #006400; /* Dark green for body text */
@@ -114,7 +114,7 @@ body.dark-mode a:hover {
 }
 body.dark-mode .btn-primary {
     background-color: var(--dark-primary-color);
-    color: var(--dark-footer-text);
+    color: blue;
     border-color: var(--dark-primary-color);
 }
 body.dark-mode .btn-primary:hover {
