@@ -615,7 +615,7 @@ body.dark-mode .skill-category:hover {
 .skill-category h3 {
     text-align: center;
     margin-bottom: var(--spacing-md);
-    color: var(--primary-color);
+    color: var(--text-color);
 }
 body.dark-mode .skill-category h3 {
     color: var(--dark-primary-color);
