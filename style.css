@@ -991,6 +991,7 @@ body.dark-mode .contact-info-card {
 .contact-info-card h3 {
     margin-bottom: var(--spacing-md);
     font-size: 1.6em;
+    color: var(--text-color);
 }
 
 .contact-item {
