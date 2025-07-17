@@ -104,48 +104,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // --- Form Submission (Client-Side to Backend) ---
-    const applicationForm = document.getElementById('application-form');
+    // --- Form Submission (Formspree is handled directly by HTML action) ---
+    // The previous JavaScript logic for form submission has been removed
+    // as Formspree handles the POST request directly from the HTML form's action attribute.
+    // No JS is explicitly needed here for the Formspree submission itself.
 
-    if (applicationForm) {
-        applicationForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const formData = new FormData(applicationForm);
-            const data = Object.fromEntries(formData.entries());
-
-            // --- IMPORTANT: REPLACE WITH YOUR DEPLOYED BACKEND URL FOR APPLICATION SUBMISSIONS ---
-            // Example: 'https://your-vercel-project.vercel.app/api/submit-application'
-            const APPLICATION_BACKEND_URL = 'YOUR_APPLICATION_FORM_BACKEND_ENDPOINT_HERE';
-
-            if (APPLICATION_BACKEND_URL === 'YOUR_APPLICATION_FORM_BACKEND_ENDPOINT_HERE') {
-                alert('Project proposal form is not configured. Please set the APPLICATION_BACKEND_URL in script.js to enable submission.');
-                return;
-            }
-
-            try {
-                const response = await fetch(APPLICATION_BACKEND_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                });
-
-                if (response.ok) {
-                    alert('Your project proposal has been submitted successfully! I will review it and get back to you soon.');
-                    applicationForm.reset();
-                } else {
-                    const errorData = await response.json().catch(() => ({ message: 'Unknown error' }));
-                    alert(`Failed to submit proposal: ${errorData.message || response.statusText}. Please try again.`);
-                    console.error('Backend error response:', errorData);
-                }
-            } catch (error) {
-                console.error('Error submitting application:', error);
-                alert('An error occurred while sending your proposal. Please check your internet connection or try again later.');
-            }
-        });
-    }
 
     // --- 3D Geometric Motion Graphics for Hero Section ---
     const canvas = document.getElementById('hero-background-canvas');
