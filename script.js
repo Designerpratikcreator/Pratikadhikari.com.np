@@ -322,4 +322,85 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+}); 
+// Function to toggle the navigation menu on small screens
+document.addEventListener('DOMContentLoaded', () => {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    }
 });
+
+// Theme toggle functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+            // Store theme preference in localStorage
+            if (document.body.classList.contains('light-theme')) {
+                localStorage.setItem('theme', 'light');
+            } else {
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Apply saved theme on page load
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-theme');
+        } else {
+            // Default to dark theme if no preference or 'dark' saved
+            document.body.classList.remove('light-theme');
+        }
+    }
+});
+
+
+// Function to initialize the Google Map
+function initializeMap() {
+    var mapIframe = document.getElementById("map-iframe");
+
+    // **IMPORTANT: Replace 'YOUR_ACTUAL_Maps_API_KEY_HERE' with your real API Key.**
+    // You MUST get this from the Google Cloud Console.
+    const apiKey = "YOUR_ACTUAL_Maps_API_KEY_HERE";
+
+    // **Define the place ID for your location.**
+    // The Place ID 'ChIJg2a6uWlY7zARg3PzL7G1lJk' is for Kathmandu Durbar Square.
+    // If you want a different location (e.g., your university, home, etc.),
+    // find its Place ID using the Google Maps Place ID Finder:
+    // https://developers.google.com/maps/documentation/embed/get-started#place-id
+    const placeId = "ChIJg2a6uWlY7zARg3PzL7G1lJk"; // Example: Kathmandu Durbar Square, Nepal
+
+    // Construct the correct Google Maps Embed API URL
+    // The 'place' mode is used here to show a specific point of interest identified by its place ID.
+    const embedApiUrl = `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=place_id:${placeId}`;
+
+    mapIframe.src = embedApiUrl;
+}
+
+// Use Intersection Observer to load the map only when the contact section becomes visible
+// This optimizes page load performance.
+const contactSection = document.getElementById("contact");
+if (contactSection) {
+    const observerOptions = {
+        root: null, // relative to the viewport
+        rootMargin: "0px",
+        threshold: 0.1, // Trigger when 10% of the section is visible
+    };
+
+    const contactObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                initializeMap();
+                observer.unobserve(entry.target); // Stop observing once the map is loaded
+            }
+        });
+    }, observerOptions);
+
+    contactObserver.observe(contactSection);
+}
