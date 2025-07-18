@@ -113,399 +113,113 @@ document.addEventListener('DOMContentLoaded', () => {
  // Ensure Three.js is loaded before running this script
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script> <script src="hero-butterfly-animation.js"></script>
-      // --- 3D Geometric Motion Graphics for Hero Section ---
-   const canvas = document.getElementById('hero-background-canvas');
-    if (!canvas || typeof THREE === 'undefined') {
-        console.warn("Canvas or Three.js not found. Hero background animation will not be displayed.");
-        return;
-    } 
+       // --- 3D Geometric Motion Graphics for Hero Section ---
+    const canvas = document.getElementById('hero-background-canvas');
+    if (canvas && typeof THREE !== 'undefined') { // Ensure THREE is loaded
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true }); // alpha: true for transparent background
 
-    // --- Scene Setup ---
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true }); // Antialias for smoother edges
-
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
-    camera.position.z = 30; // Move camera back to view the scene
-
-    // --- Resizing ---
-    window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
+        // Set initial size
         renderer.setSize(window.innerWidth, window.innerHeight);
-    });
+        renderer.setPixelRatio(window.devicePixelRatio);
 
-    // --- Lights ---
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6); // Soft ambient light
-    scene.add(ambientLight);
-
-    const directionalLight1 = new THREE.DirectionalLight(0x00ffff, 0.7); // Cyan light from one direction
-    directionalLight1.position.set(10, 10, 10);
-    scene.add(directionalLight1);
-
-    const directionalLight2 = new THREE.DirectionalLight(0xff00ff, 0.7); // Magenta light from another direction
-    directionalLight2.position.set(-10, -10, -10);
-    scene.add(directionalLight2);
-
-    // --- Global Animation Variables ---
-    const clock = new THREE.Clock();
-    const butterflies = [];
-    const numberOfButterflies = 30; // Adjust as needed for performance vs. density
-    const maxBound = 40; // Half of the scene's effective "world" size for wrap-around logic
-
-    // --- Textures (for wings and particles) ---
-    const textureLoader = new THREE.TextureLoader();
-    const wingTextures = [
-        textureLoader.load('https://threejs.org/examples/textures/crate.gif'), // Placeholder: Replace with your actual wing textures
-        textureLoader.load('https://threejs.org/examples/textures/uv_grid_opengl.jpg'), // Placeholder
-        // Add more paths to your custom wing texture images here!
-        // E.g., textureLoader.load('/assets/butterfly-wing-pattern-1.png'),
-        // textureLoader.load('/assets/butterfly-wing-pattern-2.jpg'),
-    ];
-
-    // Placeholder for a soft glow particle texture (create a small white circle with blurred edges)
-    // You might need to create an image like this:
-    // https://i.imgur.com/example_soft_circle.png (replace with your own hosted image)
-    const particleTexture = textureLoader.load('https://threejs.org/examples/textures/sprites/spark1.png'); // Example particle texture
-
-    // --- Butterfly Wing Shape Definition ---
-    function createWingShapeGeometry(width, height, isFrontWing = true) {
-        const shape = new THREE.Shape();
-
-        if (isFrontWing) {
-            // More elaborate front wing shape
-            shape.moveTo(0, 0); // Base of the wing
-            shape.bezierCurveTo(width * 0.2, height * 0.9, width * 0.8, height * 1.1, width, height * 0.7); // Top curve
-            shape.bezierCurveTo(width * 0.9, height * 0.3, width * 0.4, height * 0.1, 0, 0); // Bottom curve back to start
-        } else {
-            // Simpler, more rounded back wing shape
-            shape.moveTo(0, 0);
-            shape.bezierCurveTo(width * 0.2, height * 0.8, width * 0.6, height * 0.9, width, height * 0.5);
-            shape.bezierCurveTo(width * 0.8, height * 0.1, width * 0.3, height * 0.05, 0, 0);
-        }
-
-        const extrudeSettings = {
-            steps: 1,
-            depth: 0.01, // Small thickness for 3D illusion
-            bevelEnabled: false
-        };
-        return new THREE.ExtrudeGeometry(shape, extrudeSettings);
-    }
-
-    // --- Butterfly Creation Function ---
-    function createButterfly() {
-        const bodyGeometry = new THREE.CylinderGeometry(0.1, 0.1, 0.8, 8); // Simple body
-        const bodyMaterial = new THREE.MeshStandardMaterial({ color: 0x333333, metalness: 0.8, roughness: 0.3 });
-        const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
-        body.rotation.x = Math.PI / 2; // Orient body horizontally
-
-        const wingWidth = 1.5;
-        const wingHeight = 1.0;
-
-        // Randomly select a wing texture
-        const randomTexture = wingTextures[Math.floor(Math.random() * wingTextures.length)];
-        randomTexture.wrapS = THREE.RepeatWrapping; // Essential for tiling or repeating patterns
-        randomTexture.wrapT = THREE.RepeatWrapping;
-        randomTexture.repeat.set(1, 1); // Adjust if your texture should repeat more times on the wing
-
-        const wingColor = new THREE.Color(Math.random() * 0xffffff); // Base color to tint the texture
-        const wingMaterial = new THREE.MeshStandardMaterial({
-            map: randomTexture,
-            color: wingColor,
-            side: THREE.DoubleSide,
-            metalness: 0.5,
-            roughness: 0.5,
-            transparent: true,
-            alphaTest: 0.01, // Adjust as needed for texture transparency
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
-        // --- Wings ---
-        const frontLeftWingGeometry = createWingShapeGeometry(wingWidth, wingHeight, true);
-        const frontRightWingGeometry = createWingShapeGeometry(wingWidth, wingHeight, true);
-        const backLeftWingGeometry = createWingShapeGeometry(wingWidth * 0.8, wingHeight * 0.8, false);
-        const backRightWingGeometry = createWingShapeGeometry(wingWidth * 0.8, wingHeight * 0.8, false);
+        // Lights
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Softer ambient light
+        scene.add(ambientLight);
 
-        const frontLeftWing = new THREE.Mesh(frontLeftWingGeometry, wingMaterial);
-        const frontRightWing = new THREE.Mesh(frontRightWingGeometry, wingMaterial);
-        const backLeftWing = new THREE.Mesh(backLeftWingGeometry, wingMaterial);
-        const backRightWing = new THREE.Mesh(backRightWingGeometry, wingMaterial);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        directionalLight.position.set(5, 10, 7.5);
+        scene.add(directionalLight);
 
-        // --- Wing Pivots (for flapping) ---
-        const frontLeftWingPivot = new THREE.Object3D();
-        frontLeftWingPivot.position.set(0, 0.2, 0); // Attachment point on body
-        frontLeftWingPivot.add(frontLeftWing);
-        frontLeftWing.position.x = -wingWidth / 2; // Offset wing so pivot is on the edge
+        const pointLight1 = new THREE.PointLight(0x00aaff, 1, 100); // Blueish light
+        pointLight1.position.set(-10, 5, 10);
+        scene.add(pointLight1);
 
-        const frontRightWingPivot = new THREE.Object3D();
-        frontRightWingPivot.position.set(0, 0.2, 0);
-        frontRightWingPivot.add(frontRightWing);
-        frontRightWing.position.x = wingWidth / 2;
-        frontRightWing.scale.x = -1; // Flip horizontally for the right wing
+        const pointLight2 = new THREE.PointLight(0xff00aa, 1, 100); // Pinkish light
+        pointLight2.position.set(10, -5, -10);
+        scene.add(pointLight2);
 
-        const backLeftWingPivot = new THREE.Object3D();
-        backLeftWingPivot.position.set(0, -0.2, 0);
-        backLeftWingPivot.add(backLeftWing);
-        backLeftWing.position.x = -wingWidth * 0.8 / 2;
+        // Geometries and Materials
+        const geometries = [
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.SphereGeometry(0.75, 16, 16), // Reduced segments for performance
+            new THREE.ConeGeometry(0.8, 1.5, 16),
+            new THREE.TorusGeometry(0.7, 0.3, 10, 30), // Reduced segments
+            new THREE.DodecahedronGeometry(0.9) // Simpler dodecahedron
+        ];
 
-        const backRightWingPivot = new THREE.Object3D();
-        backRightWingPivot.position.set(0, -0.2, 0);
-        backRightWingPivot.add(backRightWing);
-        backRightWing.position.x = wingWidth * 0.8 / 2;
-        backRightWing.scale.x = -1; // Flip horizontally for the right wing
+        const materials = [
+            new THREE.MeshStandardMaterial({ color: 0x00CED1, metalness: 0.7, roughness: 0.4 }), // Dark Cyan
+            new THREE.MeshStandardMaterial({ color: 0xFFD700, metalness: 0.7, roughness: 0.4 }), // Gold
+            new THREE.MeshStandardMaterial({ color: 0xBA55D3, metalness: 0.7, roughness: 0.4 }), // Medium Orchid
+            new THREE.MeshStandardMaterial({ color: 0x7FFF00, metalness: 0.7, roughness: 0.4 }),  // Chartreuse
+            new THREE.MeshStandardMaterial({ color: 0x1E90FF, metalness: 0.7, roughness: 0.4 })   // Dodger Blue
+        ];
 
-        const butterflyGroup = new THREE.Group();
-        butterflyGroup.add(body);
-        butterflyGroup.add(frontLeftWingPivot);
-        butterflyGroup.add(frontRightWingPivot);
-        butterflyGroup.add(backLeftWingPivot);
-        butterflyGroup.add(backRightWingPivot);
+        const objects = [];
+        const numberOfObjects = 40; // Increased number of objects for a richer background
 
-        // --- Particle Trail ---
-        const particleCount = 15; // Number of particles in the trail
-        const particleGeometry = new THREE.BufferGeometry();
-        const positions = new Float32Array(particleCount * 3);
-        const colors = new Float32Array(particleCount * 3);
-        const sizes = new Float32Array(particleCount);
+        for (let i = 0; i < numberOfObjects; i++) {
+            const geometry = geometries[Math.floor(Math.random() * geometries.length)];
+            const material = materials[Math.floor(Math.random() * materials.length)];
+            const mesh = new THREE.Mesh(geometry, material);
 
-        const particleLifeData = []; // Store life and initial properties per particle
+            // Spread objects over a larger volume
+            mesh.position.x = (Math.random() - 0.5) * 60;
+            mesh.position.y = (Math.random() - 0.5) * 60;
+            mesh.position.z = (Math.random() - 0.5) * 60;
 
-        for (let i = 0; i < particleCount; i++) {
-            positions[i * 3 + 0] = (Math.random() - 0.5) * 0.2;
-            positions[i * 3 + 1] = (Math.random() - 0.5) * 0.2;
-            positions[i * 3 + 2] = -0.5 + (Math.random() * 0.2); // Start behind the butterfly
+            mesh.rotation.x = Math.random() * Math.PI;
+            mesh.rotation.y = Math.random() * Math.PI;
+            mesh.rotation.z = Math.random() * Math.PI;
 
-            // Particle color derived from butterfly wing color, possibly brighter
-            colors[i * 3 + 0] = wingColor.r * (Math.random() * 0.5 + 0.5);
-            colors[i * 3 + 1] = wingColor.g * (Math.random() * 0.5 + 0.5);
-            colors[i * 3 + 2] = wingColor.b * (Math.random() * 0.5 + 0.5);
+            const scale = Math.random() * 0.8 + 0.3; // Random scale between 0.3 and 1.1
+            mesh.scale.set(scale, scale, scale);
 
-            sizes[i] = Math.random() * 0.05 + 0.02;
-
-            particleLifeData.push({
-                life: Math.random() * 2 + 1, // Life from 1 to 3 seconds
-                velocity: new THREE.Vector3((Math.random() - 0.5) * 0.01, (Math.random() - 0.5) * 0.01, (Math.random() - 0.5) * 0.01),
-                initialPosition: new THREE.Vector3(positions[i * 3 + 0], positions[i * 3 + 1], positions[i * 3 + 2]),
-                initialSize: sizes[i]
-            });
+            scene.add(mesh);
+            objects.push(mesh);
         }
 
-        particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        particleGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-        particleGeometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+        camera.position.z = 25; // Move camera back to view more of the objects
 
-        const particleMaterial = new THREE.PointsMaterial({
-            vertexColors: true,
-            size: 0.1, // Base size, scaled by 'size' attribute
-            sizeAttenuation: true,
-            transparent: true,
-            opacity: 0.8,
-            blending: THREE.AdditiveBlending, // For glowing effect
-            depthWrite: false, // Prevents depth sorting issues with transparent particles
-            map: particleTexture // The glowing particle texture
-        });
+        // Animation Loop
+        const animate = () => {
+            requestAnimationFrame(animate);
 
-        const particleSystem = new THREE.Points(particleGeometry, particleMaterial);
-        butterflyGroup.add(particleSystem); // Add particle system to butterfly's group
+            objects.forEach(obj => {
+                obj.rotation.x += 0.002 * (Math.random() * 0.5 + 0.5); // Slower, varied rotation
+                obj.rotation.y += 0.002 * (Math.random() * 0.5 + 0.5);
+                obj.rotation.z += 0.002 * (Math.random() * 0.5 + 0.5);
 
-        // --- Initial Placement and Scale ---
-        butterflyGroup.position.x = (Math.random() - 0.5) * maxBound * 2;
-        butterflyGroup.position.y = (Math.random() - 0.5) * maxBound * 2;
-        butterflyGroup.position.z = (Math.random() - 0.5) * maxBound * 2;
+                // Subtle floating/drifting motion
+                obj.position.x += Math.sin(Date.now() * 0.00003 + obj.uuid.charCodeAt(0)) * 0.01;
+                obj.position.y += Math.cos(Date.now() * 0.00003 + obj.uuid.charCodeAt(1)) * 0.01;
+                obj.position.z += Math.sin(Date.now() * 0.00003 + obj.uuid.charCodeAt(2)) * 0.01;
 
-        butterflyGroup.rotation.x = Math.random() * Math.PI * 2;
-        butterflyGroup.rotation.y = Math.random() * Math.PI * 2;
-        butterflyGroup.rotation.z = Math.random() * Math.PI * 2;
-
-        const scale = Math.random() * 0.7 + 0.3; // between 0.3 and 1.0
-        butterflyGroup.scale.set(scale, scale, scale);
-        const initialScale = scale; // Store for interaction scaling
-
-        scene.add(butterflyGroup);
-
-        return {
-            group: butterflyGroup,
-            frontLeftWingPivot,
-            frontRightWingPivot,
-            backLeftWingPivot,
-            backRightWingPivot,
-            flapSpeed: Math.random() * 0.1 + 0.05, // Varied flap speed
-            driftSpeedX: (Math.random() - 0.5) * 0.05,
-            driftSpeedY: (Math.random() - 0.5) * 0.05,
-            driftSpeedZ: (Math.random() - 0.5) * 0.05,
-            rotationSpeedX: (Math.random() - 0.5) * 0.001,
-            rotationSpeedY: (Math.random() - 0.5) * 0.001,
-            rotationSpeedZ: (Math.random() - 0.5) * 0.001,
-            particles: {
-                system: particleSystem,
-                data: particleLifeData
-            },
-            initialScale: initialScale, // Store initial scale for resetting
-            isHovered: false // Track hover state
-        };
-    }
-
-    // Populate the scene with butterflies
-    for (let i = 0; i < numberOfButterflies; i++) {
-        butterflies.push(createButterfly());
-    }
-
-    // --- Mouse Interaction ---
-    const raycaster = new THREE.Raycaster();
-    const mouse = new THREE.Vector2();
-    let targetButterfly = null; // The butterfly currently being influenced by the mouse
-
-    window.addEventListener('mousemove', (event) => {
-        // Normalize mouse coordinates (-1 to 1)
-        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-    });
-
-    // --- Animation Loop ---
-    const animate = () => {
-        requestAnimationFrame(animate);
-
-        const delta = clock.getDelta(); // Time elapsed since last frame
-        const elapsedTime = clock.getElapsedTime(); // Total elapsed time
-
-        // --- Mouse Interaction Logic (Raycasting) ---
-        raycaster.setFromCamera(mouse, camera);
-        const intersects = raycaster.intersectObjects(butterflies.map(b => b.group), true);
-
-        let newTarget = null;
-        if (intersects.length > 0) {
-            const intersectedObject = intersects[0].object;
-            // Find which butterfly group this intersected object belongs to
-            newTarget = butterflies.find(b => b.group.children.includes(intersectedObject) || b.group === intersectedObject.parent); // Covers direct mesh or group parent
-        }
-
-        // Update hover state and reset previous target if necessary
-        if (newTarget !== targetButterfly) {
-            if (targetButterfly) {
-                targetButterfly.isHovered = false;
-                // Smoothly revert scale of the previous hovered butterfly
-                gsap.to(targetButterfly.group.scale, {
-                    x: targetButterfly.initialScale,
-                    y: targetButterfly.initialScale,
-                    z: targetButterfly.initialScale,
-                    duration: 0.3
-                });
-            }
-            targetButterfly = newTarget;
-            if (targetButterfly) {
-                targetButterfly.isHovered = true;
-                // Smoothly enlarge the new hovered butterfly
-                gsap.to(targetButterfly.group.scale, {
-                    x: targetButterfly.initialScale * 1.2,
-                    y: targetButterfly.initialScale * 1.2,
-                    z: targetButterfly.initialScale * 1.2,
-                    duration: 0.3
-                });
-            }
-        }
-
-        // --- Update Butterflies ---
-        butterflies.forEach(b => {
-            // Flapping animation
-            const flapAngle = Math.sin(elapsedTime * b.flapSpeed * 10) * Math.PI / 8;
-            b.frontLeftWingPivot.rotation.y = flapAngle;
-            b.frontRightWingPivot.rotation.y = -flapAngle;
-            b.backLeftWingPivot.rotation.y = flapAngle * 0.8;
-            b.backRightWingPivot.rotation.y = -flapAngle * 0.8;
-
-            // Drifting motion
-            b.group.position.x += b.driftSpeedX * Math.sin(elapsedTime * 0.5 + b.group.uuid.charCodeAt(0));
-            b.group.position.y += b.driftSpeedY * Math.cos(elapsedTime * 0.5 + b.group.uuid.charCodeAt(1));
-            b.group.position.z += b.driftSpeedZ * Math.sin(elapsedTime * 0.5 + b.group.uuid.charCodeAt(2));
-
-            // Subtle rotation
-            b.group.rotation.x += b.rotationSpeedX;
-            b.group.rotation.y += b.rotationSpeedY;
-            b.group.rotation.z += b.rotationSpeedZ;
-
-            // --- Mouse Influence (Attraction/Repulsion) ---
-            if (targetButterfly) {
-                 // Convert normalized mouse coordinates to a 3D point in front of the camera
-                const vector = new THREE.Vector3(mouse.x, mouse.y, 0.5); // 0.5 is depth, adjust as needed
-                vector.unproject(camera); // Unproject to get world coordinates
-
-                const dir = vector.sub(camera.position).normalize();
-                const distance = -camera.position.z / dir.z; // Point on the Z=0 plane relative to camera
-                const mouse3D = camera.position.clone().add(dir.multiplyScalar(distance));
-
-                const forceDirection = new THREE.Vector3().subVectors(mouse3D, b.group.position);
-                const distanceToMouse = forceDirection.length();
-
-                // Apply a gentle force if within a certain range
-                const influenceRadius = 15; // How far the mouse can influence butterflies
-                const maxForce = 0.02; // Max strength of the force
-
-                if (distanceToMouse < influenceRadius) {
-                    const strength = (influenceRadius - distanceToMouse) / influenceRadius; // Stronger closer to mouse
-                    forceDirection.normalize().multiplyScalar(strength * maxForce);
-
-                    // Add this force to the butterfly's position
-                    // You might want to apply this to a separate velocity vector for smoother physics
-                    b.group.position.add(forceDirection);
-
-                    // Optional: Make butterflies slightly orient towards the mouse
-                    // b.group.lookAt(mouse3D);
-                }
-            }
-
-
-            // --- Particle Trail Update ---
-            const positionsArray = b.particles.system.geometry.attributes.position.array;
-            const colorsArray = b.particles.system.geometry.attributes.color.array;
-            const sizesArray = b.particles.system.geometry.attributes.size.array;
-
-            b.particles.data.forEach((pData, i) => {
-                pData.life -= delta; // Decrease particle life
-
-                if (pData.life < 0) {
-                    // Reset particle if it died
-                    pData.life = Math.random() * 2 + 1; // Reset life
-                    pData.velocity.set((Math.random() - 0.5) * 0.01, (Math.random() - 0.5) * 0.01, (Math.random() - 0.5) * 0.01);
-                    positionsArray[i * 3 + 0] = pData.initialPosition.x;
-                    positionsArray[i * 3 + 1] = pData.initialPosition.y;
-                    positionsArray[i * 3 + 2] = pData.initialPosition.z;
-                    sizesArray[i] = pData.initialSize; // Reset size
-                    // Optionally reset color or opacity here too
-                } else {
-                    // Move particle
-                    positionsArray[i * 3 + 0] += pData.velocity.x;
-                    positionsArray[i * 3 + 1] += pData.velocity.y;
-                    positionsArray[i * 3 + 2] += pData.velocity.z;
-
-                    // Fade and shrink particle
-                    const normalizedLife = pData.life / (pData.initialLife || (Math.random() * 2 + 1)); // Normalize based on initial life
-                    sizesArray[i] = pData.initialSize * normalizedLife; // Shrink as it dies
-
-                    // Update particle opacity (though PointsMaterial opacity applies to all)
-                    // Individual particle opacity generally requires custom shaders or re-rendering with new material opacity
-                }
+                // Simple wrap-around logic for objects that go too far
+                const bound = 30; // Half of the 60 unit spread
+                if (obj.position.x > bound) obj.position.x = -bound;
+                if (obj.position.x < -bound) obj.position.x = bound;
+                if (obj.position.y > bound) obj.position.y = -bound;
+                if (obj.position.y < -bound) obj.position.y = bound;
+                if (obj.position.z > bound) obj.position.z = -bound;
+                if (obj.position.z < -bound) obj.position.z = bound;
             });
 
-            // Mark attributes for update
-            b.particles.system.geometry.attributes.position.needsUpdate = true;
-            b.particles.system.geometry.attributes.color.needsUpdate = true; // If you dynamically change colors
-            b.particles.system.geometry.attributes.size.needsUpdate = true;
-
-            // --- Wrap-around logic for continuous movement ---
-            if (b.group.position.x > maxBound) b.group.position.x = -maxBound;
-            if (b.group.position.x < -maxBound) b.group.position.x = maxBound;
-            if (b.group.position.y > maxBound) b.group.position.y = -maxBound;
-            if (b.group.position.y < -maxBound) b.group.position.y = maxBound;
-            if (b.group.position.z > maxBound) b.group.position.z = -maxBound;
-            if (b.group.position.z < -maxBound) b.group.position.z = maxBound;
-        });
-
-        renderer.render(scene, camera);
-    };
-
-    // Start the animation loop
-    animate();
-});
+            renderer.render(scene, camera);
+        };
+        animate();
+    } else if (canvas) {
+        console.warn("Three.js not loaded. Hero background animation will not be displayed.");
+    }
 
 
     // --- Set current year in footer ---
