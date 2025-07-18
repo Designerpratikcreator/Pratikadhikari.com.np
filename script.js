@@ -111,8 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
  // Ensure Three.js is loaded before running this script
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script> <script src="hero-butterfly-animation.js"></script>
        // --- 3D Geometric Motion Graphics for Hero Section ---
     const canvas = document.getElementById('hero-background-canvas');
     if (canvas && typeof THREE !== 'undefined') { // Ensure THREE is loaded
