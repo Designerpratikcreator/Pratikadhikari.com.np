@@ -109,191 +109,118 @@ document.addEventListener('DOMContentLoaded', () => {
     // as Formspree handles the POST request directly from the HTML form's action attribute.
     // No JS is explicitly needed here for the Formspree submission itself.
 
-
+    
  // Ensure Three.js is loaded before running this script
 // <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-document.addEventListener('DOMContentLoaded', () => {
+      // --- 3D Geometric Motion Graphics for Hero Section ---
     const canvas = document.getElementById('hero-background-canvas');
-    if (!canvas || typeof THREE === 'undefined') {
-        console.warn("Canvas or Three.js not found. Hero background animation will not be displayed.");
-        return;
-    }
+    if (canvas && typeof THREE !== 'undefined') { // Ensure THREE is loaded
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true }); // alpha: true for transparent background
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true }); // Antialias for smoother edges
-
-    // Set initial size
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
-
-    // Handle window resize
-    window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
+        // Set initial size
         renderer.setSize(window.innerWidth, window.innerHeight);
-    });
+        renderer.setPixelRatio(window.devicePixelRatio);
 
-    // Lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-    scene.add(ambientLight);
-
-    const directionalLight1 = new THREE.DirectionalLight(0x00ffff, 0.7); // Cyan light
-    directionalLight1.position.set(10, 10, 10);
-    scene.add(directionalLight1);
-
-    const directionalLight2 = new THREE.DirectionalLight(0xff00ff, 0.7); // Magenta light
-    directionalLight2.position.set(-10, -10, -10);
-    scene.add(directionalLight2);
-
-    camera.position.z = 30; // Move camera back to view the scene
-
-    const butterflies = [];
-    const numberOfButterflies = 30; // Adjust as needed for performance vs. density
-
-    // Butterfly creation function
-    function createButterfly() {
-        const bodyGeometry = new THREE.CylinderGeometry(0.1, 0.1, 0.8, 8); // Simple body
-        const bodyMaterial = new THREE.MeshStandardMaterial({ color: 0x333333, metalness: 0.8, roughness: 0.3 });
-        const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
-        body.rotation.x = Math.PI / 2; // Orient body horizontally
-
-        const wingWidth = 1.5;
-        const wingHeight = 1.0;
-
-        // Generate a random vibrant color for the butterfly
-        const color = new THREE.Color(Math.random() * 0xffffff);
-        const wingMaterial = new THREE.MeshStandardMaterial({ color: color, side: THREE.DoubleSide, metalness: 0.5, roughness: 0.5 });
-
-        // Front Left Wing
-        const frontLeftWingGeometry = new THREE.PlaneGeometry(wingWidth, wingHeight);
-        const frontLeftWing = new THREE.Mesh(frontLeftWingGeometry, wingMaterial);
-        frontLeftWing.position.set(-0.1, 0.0, 0.0); // Slightly offset from body
-        frontLeftWing.rotation.y = Math.PI / 4; // Initial flap angle
-
-        // Pivot for the wing, allowing it to rotate around its 'attachment' point
-        const frontLeftWingPivot = new THREE.Object3D();
-        frontLeftWingPivot.position.set(0, 0.2, 0); // Attach point on body
-        frontLeftWingPivot.add(frontLeftWing);
-        frontLeftWing.position.x = -wingWidth / 2; // Offset wing so pivot is on the edge
-
-        // Front Right Wing
-        const frontRightWingGeometry = new THREE.PlaneGeometry(wingWidth, wingHeight);
-        const frontRightWing = new THREE.Mesh(frontRightWingGeometry, wingMaterial);
-        frontRightWing.position.set(0.1, 0.0, 0.0);
-        frontRightWing.rotation.y = -Math.PI / 4; // Initial flap angle
-
-        const frontRightWingPivot = new THREE.Object3D();
-        frontRightWingPivot.position.set(0, 0.2, 0);
-        frontRightWingPivot.add(frontRightWing);
-        frontRightWing.position.x = wingWidth / 2;
-
-        // Back Left Wing (slightly smaller/different)
-        const backLeftWingGeometry = new THREE.PlaneGeometry(wingWidth * 0.8, wingHeight * 0.8);
-        const backLeftWing = new THREE.Mesh(backLeftWingGeometry, wingMaterial);
-        backLeftWing.position.set(-0.1, 0.0, 0.0);
-        backLeftWing.rotation.y = Math.PI / 4;
-
-        const backLeftWingPivot = new THREE.Object3D();
-        backLeftWingPivot.position.set(0, -0.2, 0);
-        backLeftWingPivot.add(backLeftWing);
-        backLeftWing.position.x = -wingWidth * 0.8 / 2;
-
-        // Back Right Wing
-        const backRightWingGeometry = new THREE.PlaneGeometry(wingWidth * 0.8, wingHeight * 0.8);
-        const backRightWing = new THREE.Mesh(backRightWingGeometry, wingMaterial);
-        backRightWing.position.set(0.1, 0.0, 0.0);
-        backRightWing.rotation.y = -Math.PI / 4;
-
-        const backRightWingPivot = new THREE.Object3D();
-        backRightWingPivot.position.set(0, -0.2, 0);
-        backRightWingPivot.add(backRightWing);
-        backRightWing.position.x = wingWidth * 0.8 / 2;
-
-        const butterflyGroup = new THREE.Group();
-        butterflyGroup.add(body);
-        butterflyGroup.add(frontLeftWingPivot);
-        butterflyGroup.add(frontRightWingPivot);
-        butterflyGroup.add(backLeftWingPivot);
-        butterflyGroup.add(backRightWingPivot);
-
-        // Random initial position
-        butterflyGroup.position.x = (Math.random() - 0.5) * 80;
-        butterflyGroup.position.y = (Math.random() - 0.5) * 80;
-        butterflyGroup.position.z = (Math.random() - 0.5) * 80;
-
-        // Random initial rotation
-        butterflyGroup.rotation.x = Math.random() * Math.PI * 2;
-        butterflyGroup.rotation.y = Math.random() * Math.PI * 2;
-        butterflyGroup.rotation.z = Math.random() * Math.PI * 2;
-
-        // Random scale
-        const scale = Math.random() * 0.7 + 0.3; // between 0.3 and 1.0
-        butterflyGroup.scale.set(scale, scale, scale);
-
-        scene.add(butterflyGroup);
-
-        return {
-            group: butterflyGroup,
-            frontLeftWingPivot,
-            frontRightWingPivot,
-            backLeftWingPivot,
-            backRightWingPivot,
-            flapSpeed: Math.random() * 0.1 + 0.05, // Varied flap speed
-            driftSpeedX: (Math.random() - 0.5) * 0.05,
-            driftSpeedY: (Math.random() - 0.5) * 0.05,
-            driftSpeedZ: (Math.random() - 0.5) * 0.05,
-            rotationSpeedX: (Math.random() - 0.5) * 0.001,
-            rotationSpeedY: (Math.random() - 0.5) * 0.001,
-            rotationSpeedZ: (Math.random() - 0.5) * 0.001
-        };
-    }
-
-    for (let i = 0; i < numberOfButterflies; i++) {
-        butterflies.push(createButterfly());
-    }
-
-    const clock = new THREE.Clock();
-
-    // Animation Loop
-    const animate = () => {
-        requestAnimationFrame(animate);
-
-        const elapsedTime = clock.getElapsedTime();
-
-        butterflies.forEach(b => {
-            // Flapping animation
-            const flapAngle = Math.sin(elapsedTime * b.flapSpeed * 10) * Math.PI / 8; // Adjust flap magnitude
-            b.frontLeftWingPivot.rotation.y = flapAngle;
-            b.frontRightWingPivot.rotation.y = -flapAngle; // Opposing flap for right wing
-            b.backLeftWingPivot.rotation.y = flapAngle * 0.8; // Slightly less flap for back wings
-            b.backRightWingPivot.rotation.y = -flapAngle * 0.8;
-
-            // Drifting motion
-            b.group.position.x += b.driftSpeedX * Math.sin(elapsedTime * 0.5 + b.group.uuid.charCodeAt(0));
-            b.group.position.y += b.driftSpeedY * Math.cos(elapsedTime * 0.5 + b.group.uuid.charCodeAt(1));
-            b.group.position.z += b.driftSpeedZ * Math.sin(elapsedTime * 0.5 + b.group.uuid.charCodeAt(2));
-
-            // Subtle rotation
-            b.group.rotation.x += b.rotationSpeedX;
-            b.group.rotation.y += b.rotationSpeedY;
-            b.group.rotation.z += b.rotationSpeedZ;
-
-            // Wrap-around logic for continuous movement
-            const bound = 40; // Half of the spread (e.g., 80 unit spread)
-            if (b.group.position.x > bound) b.group.position.x = -bound;
-            if (b.group.position.x < -bound) b.group.position.x = bound;
-            if (b.group.position.y > bound) b.group.position.y = -bound;
-            if (b.group.position.y < -bound) b.group.position.y = bound;
-            if (b.group.position.z > bound) b.group.position.z = -bound;
-            if (b.group.position.z < -bound) b.group.position.z = bound;
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
-        renderer.render(scene, camera);
-    };
-    animate();
-});
+        // Lights
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Softer ambient light
+        scene.add(ambientLight);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        directionalLight.position.set(5, 10, 7.5);
+        scene.add(directionalLight);
+
+        const pointLight1 = new THREE.PointLight(0x00aaff, 1, 100); // Blueish light
+        pointLight1.position.set(-10, 5, 10);
+        scene.add(pointLight1);
+
+        const pointLight2 = new THREE.PointLight(0xff00aa, 1, 100); // Pinkish light
+        pointLight2.position.set(10, -5, -10);
+        scene.add(pointLight2);
+
+        // Geometries and Materials
+        const geometries = [
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.SphereGeometry(0.75, 16, 16), // Reduced segments for performance
+            new THREE.ConeGeometry(0.8, 1.5, 16),
+            new THREE.TorusGeometry(0.7, 0.3, 10, 30), // Reduced segments
+            new THREE.DodecahedronGeometry(0.9) // Simpler dodecahedron
+        ];
+
+        const materials = [
+            new THREE.MeshStandardMaterial({ color: 0x00CED1, metalness: 0.7, roughness: 0.4 }), // Dark Cyan
+            new THREE.MeshStandardMaterial({ color: 0xFFD700, metalness: 0.7, roughness: 0.4 }), // Gold
+            new THREE.MeshStandardMaterial({ color: 0xBA55D3, metalness: 0.7, roughness: 0.4 }), // Medium Orchid
+            new THREE.MeshStandardMaterial({ color: 0x7FFF00, metalness: 0.7, roughness: 0.4 }),  // Chartreuse
+            new THREE.MeshStandardMaterial({ color: 0x1E90FF, metalness: 0.7, roughness: 0.4 })   // Dodger Blue
+        ];
+
+        const objects = [];
+        const numberOfObjects = 40; // Increased number of objects for a richer background
+
+        for (let i = 0; i < numberOfObjects; i++) {
+            const geometry = geometries[Math.floor(Math.random() * geometries.length)];
+            const material = materials[Math.floor(Math.random() * materials.length)];
+            const mesh = new THREE.Mesh(geometry, material);
+
+            // Spread objects over a larger volume
+            mesh.position.x = (Math.random() - 0.5) * 60;
+            mesh.position.y = (Math.random() - 0.5) * 60;
+            mesh.position.z = (Math.random() - 0.5) * 60;
+
+            mesh.rotation.x = Math.random() * Math.PI;
+            mesh.rotation.y = Math.random() * Math.PI;
+            mesh.rotation.z = Math.random() * Math.PI;
+
+            const scale = Math.random() * 0.8 + 0.3; // Random scale between 0.3 and 1.1
+            mesh.scale.set(scale, scale, scale);
+
+            scene.add(mesh);
+            objects.push(mesh);
+        }
+
+        camera.position.z = 25; // Move camera back to view more of the objects
+
+        // Animation Loop
+        const animate = () => {
+            requestAnimationFrame(animate);
+
+            objects.forEach(obj => {
+                obj.rotation.x += 0.002 * (Math.random() * 0.5 + 0.5); // Slower, varied rotation
+                obj.rotation.y += 0.002 * (Math.random() * 0.5 + 0.5);
+                obj.rotation.z += 0.002 * (Math.random() * 0.5 + 0.5);
+
+                // Subtle floating/drifting motion
+                obj.position.x += Math.sin(Date.now() * 0.00003 + obj.uuid.charCodeAt(0)) * 0.01;
+                obj.position.y += Math.cos(Date.now() * 0.00003 + obj.uuid.charCodeAt(1)) * 0.01;
+                obj.position.z += Math.sin(Date.now() * 0.00003 + obj.uuid.charCodeAt(2)) * 0.01;
+
+                // Simple wrap-around logic for objects that go too far
+                const bound = 30; // Half of the 60 unit spread
+                if (obj.position.x > bound) obj.position.x = -bound;
+                if (obj.position.x < -bound) obj.position.x = bound;
+                if (obj.position.y > bound) obj.position.y = -bound;
+                if (obj.position.y < -bound) obj.position.y = bound;
+                if (obj.position.z > bound) obj.position.z = -bound;
+                if (obj.position.z < -bound) obj.position.z = bound;
+            });
+
+            renderer.render(scene, camera);
+        };
+        animate();
+    } else if (canvas) {
+        console.warn("Three.js not loaded. Hero background animation will not be displayed.");
+    }
+
+
     // --- Set current year in footer ---
     const currentYearSpan = document.getElementById('current-year');
     if (currentYearSpan) {
