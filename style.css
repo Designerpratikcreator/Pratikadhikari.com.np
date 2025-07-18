@@ -490,8 +490,9 @@ body.dark-mode .hamburger {
     position: relative;
     z-index: 1; /* Ensure text is above canvas */
     color: white; /* Default for hero text */
+    text-align:center;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-    padding: var(--spacing-lg); /* Increased from md */
+    padding: 100px; /* Increased from md */
     background: rgba(0, 0, 0, 0.4); /* Subtle dark overlay for text readability */
     border-radius: var(--border-radius-md);
     max-width: 800px;
