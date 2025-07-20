@@ -232,35 +232,35 @@
         <section id="attendance-management" class="application-section common-section">
             <div class="container">
                 <h2><i class="fas fa-clipboard-check"></i> Instructor Attendance Manager</h2>
-                <p class="section-description">Manage your student roster and record attendance for web design classes using local storage.</p>
+                <p class="section-description">Manage your Organization roster and record attendance for web design company using local storage.</p>
 
                 <div class="attendance-sub-section">
-                    <h3><i class="fas fa-users"></i> Student Roster Management</h3>
+                    <h3><i class="fas fa-users"></i> Office Roster Management</h3>
                     <form id="student-management-form" class="main-form">
                         <div class="form-group">
-                            <label for="newStudentName">Student Name:</label>
+                            <label for="newStudentName">Employee Name:</label>
                             <input type="text" id="newStudentName" placeholder="e.g., Jane Doe" required>
                         </div>
                         <div class="form-group">
                             <label for="newStudentClass">Assigned Class (e.g., Web Design 101):</label>
                             <input type="text" id="newStudentClass" placeholder="e.g., Web Design 101" required>
                         </div>
-                        <button type="submit" class="btn btn-submit"><i class="fas fa-user-plus"></i> Add Student</button>
-                        <button type="button" id="clearAllStudentsBtn" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Clear All Students</button>
+                        <button type="submit" class="btn btn-submit"><i class="fas fa-user-plus"></i> Add Employee</button>
+                        <button type="button" id="clearAllEmployeeBtn" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Clear All Employee</button>
                     </form>
 
                     <hr>
 
-                    <h4>Your Students:</h4>
+                    <h4>Your Employers:</h4>
                     <ul id="savedStudentsList">
-                        <li>No students added yet.</li>
+                        <li>No Employee added yet.</li>
                     </ul>
                 </div>
 
                 <hr class="section-divider">
 
                 <div class="attendance-sub-section">
-                    <h3><i class="fas fa-calendar-alt"></i> Record Class Attendance</h3>
+                    <h3><i class="fas fa-calendar-alt"></i> Record Employee Attendance</h3>
                     <form id="attendance-recording-form" class="main-form">
                         <div class="form-group">
                             <label for="attendanceDate">Date:</label>
@@ -277,14 +277,14 @@
 
                         <hr>
 
-                        <h4>Mark Attendance for Students:</h4>
-                        <div id="studentListForAttendance">
-                            <p>Please add students in the "Student Roster Management" section above.</p>
+                        <h4>Mark Attendance for Employee:</h4>
+                        <div id="EmployeeListForAttendance">
+                            <p>Please add Employers in the "Employers Roster Management" section above.</p>
                         </div>
 
                         <div class="form-group">
                             <label for="attendanceNotes">Notes (Optional):</label>
-                            <textarea id="attendanceNotes" name="attendanceNotes" rows="3" placeholder="Any specific remarks about attendance or class."></textarea>
+                            <textarea id="attendanceNotes" name="attendanceNotes" rows="3" placeholder="Any specific remarks about attendance or office."></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-submit"><i class="fas fa-save"></i> Save Attendance Record</button>
