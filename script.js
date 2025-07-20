@@ -274,3 +274,111 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set today's date as default for convenience
     attendanceDateInput.valueAsDate = new Date();
 });
+
+// --- 3D Geometric Motion Graphics for Hero Section ---
+    const canvas = document.getElementById('hero-background-canvas');
+    if (canvas && typeof THREE !== 'undefined') { // Ensure THREE is loaded
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true }); // alpha: true for transparent background
+
+        // Set initial size
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Lights
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Softer ambient light
+        scene.add(ambientLight);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        directionalLight.position.set(5, 10, 7.5);
+        scene.add(directionalLight);
+
+        const pointLight1 = new THREE.PointLight(0x00aaff, 1, 100); // Blueish light
+        pointLight1.position.set(-10, 5, 10);
+        scene.add(pointLight1);
+
+        const pointLight2 = new THREE.PointLight(0xff00aa, 1, 100); // Pinkish light
+        pointLight2.position.set(10, -5, -10);
+        scene.add(pointLight2);
+
+        // Geometries and Materials
+        const geometries = [
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.SphereGeometry(0.75, 16, 16), // Reduced segments for performance
+            new THREE.ConeGeometry(0.8, 1.5, 16),
+            new THREE.TorusGeometry(0.7, 0.3, 10, 30), // Reduced segments
+            new THREE.DodecahedronGeometry(0.9) // Simpler dodecahedron
+        ];
+
+        const materials = [
+            new THREE.MeshStandardMaterial({ color: 0x00CED1, metalness: 0.7, roughness: 0.4 }), // Dark Cyan
+            new THREE.MeshStandardMaterial({ color: 0xFFD700, metalness: 0.7, roughness: 0.4 }), // Gold
+            new THREE.MeshStandardMaterial({ color: 0xBA55D3, metalness: 0.7, roughness: 0.4 }), // Medium Orchid
+            new THREE.MeshStandardMaterial({ color: 0x7FFF00, metalness: 0.7, roughness: 0.4 }),  // Chartreuse
+            new THREE.MeshStandardMaterial({ color: 0x1E90FF, metalness: 0.7, roughness: 0.4 })   // Dodger Blue
+        ];
+
+        const objects = [];
+        const numberOfObjects = 40; // Increased number of objects for a richer background
+
+        for (let i = 0; i < numberOfObjects; i++) {
+            const geometry = geometries[Math.floor(Math.random() * geometries.length)];
+            const material = materials[Math.floor(Math.random() * materials.length)];
+            const mesh = new THREE.Mesh(geometry, material);
+
+            // Spread objects over a larger volume
+            mesh.position.x = (Math.random() - 0.5) * 60;
+            mesh.position.y = (Math.random() - 0.5) * 60;
+            mesh.position.z = (Math.random() - 0.5) * 60;
+
+            mesh.rotation.x = Math.random() * Math.PI;
+            mesh.rotation.y = Math.random() * Math.PI;
+            mesh.rotation.z = Math.random() * Math.PI;
+
+            const scale = Math.random() * 0.8 + 0.3; // Random scale between 0.3 and 1.1
+            mesh.scale.set(scale, scale, scale);
+
+            scene.add(mesh);
+            objects.push(mesh);
+        }
+
+        camera.position.z = 25; // Move camera back to view more of the objects
+
+        // Animation Loop
+        const animate = () => {
+            requestAnimationFrame(animate);
+
+            objects.forEach(obj => {
+                obj.rotation.x += 0.002 * (Math.random() * 0.5 + 0.5); // Slower, varied rotation
+                obj.rotation.y += 0.002 * (Math.random() * 0.5 + 0.5);
+                obj.rotation.z += 0.002 * (Math.random() * 0.5 + 0.5);
+
+                // Subtle floating/drifting motion
+                obj.position.x += Math.sin(Date.now() * 0.00003 + obj.uuid.charCodeAt(0)) * 0.01;
+                obj.position.y += Math.cos(Date.now() * 0.00003 + obj.uuid.charCodeAt(1)) * 0.01;
+                obj.position.z += Math.sin(Date.now() * 0.00003 + obj.uuid.charCodeAt(2)) * 0.01;
+
+                // Simple wrap-around logic for objects that go too far
+                const bound = 30; // Half of the 60 unit spread
+                if (obj.position.x > bound) obj.position.x = -bound;
+                if (obj.position.x < -bound) obj.position.x = bound;
+                if (obj.position.y > bound) obj.position.y = -bound;
+                if (obj.position.y < -bound) obj.position.y = bound;
+                if (obj.position.z > bound) obj.position.z = -bound;
+                if (obj.position.z < -bound) obj.position.z = bound;
+            });
+
+            renderer.render(scene, camera);
+        };
+        animate();
+    } else if (canvas) {
+        console.warn("Three.js not loaded. Hero background animation will not be displayed.");
+    } 
