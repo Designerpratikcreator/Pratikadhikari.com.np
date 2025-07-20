@@ -229,49 +229,61 @@
             </div>
         </section>
 
-        <section id="propose-project" class="application-section common-section">
-            <div class="container">
-                <h2><i class="fas fa-handshake"></i> Propose a Project</h2>
-                <p class="section-description">Have an exciting idea? Let's discuss how I can help bring your vision to life. Please fill out the form below.</p>
-                <form id="application-form" class="main-form" action="https://formspree.io/f/xdkzqdlq" method="POST">
-                    <div class="form-group">
-                        <label for="appName">Your Name:</label>
-                        <input type="text" id="appName" name="appName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="appEmail">Your Email:</label>
-                        <input type="email" id="appEmail" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="appPhone">Phone Number (Optional):</label>
-                        <input type="tel" id="appPhone" name="appPhone">
-                    </div>
-                    <div class="form-group">
-                        <label for="projectType">Type of Project:</label>
-                        <select id="projectType" name="projectType" required>
-                            <option value="">-- Select Project Type --</option>
-                            <option value="website">Custom Website Development</option>
-                            <option value="ecommerce">E-commerce Store</option>
-                            <option value="webApp">Web Application Development</option>
-                            <option value="portfolio">Personal/Business Portfolio</option>
-                            <option value="redesign">Website Redesign/Revamp</option>
-                            <option value="maintenance">Ongoing Support/Maintenance</option>
-                            <option value="consultation">Consultation</option>
-                            <option value="other">Other (Please specify in details)</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="projectBudget">Estimated Budget (e.g., $1000 - $3000):</label>
-                        <input type="text" id="projectBudget" name="projectBudget" placeholder="e.g., $1000 - $5000">
-                    </div>
-                    <div class="form-group">
-                        <label for="appDetails">Project Details & Requirements:</label>
-                        <textarea id="appDetails" name="message" rows="6" placeholder="Describe your project, key features, and any specific requirements you have." required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-submit">Send Proposal <i class="fas fa-paper-plane"></i></button>
-                </form> 
+       <section id="record-attendance" class="attendance-section common-section">
+    <div class="container">
+        <h2><i class="fas fa-user-check"></i> Record Class Attendance</h2>
+        <p class="section-description">Use this form to mark student attendance for your web design classes.</p>
+        <form id="attendance-form" class="main-form" action="https://formspree.io/f/xdkzqdlq" method="POST">
+            <div class="form-group">
+                <label for="classDate">Date:</label>
+                <input type="date" id="classDate" name="classDate" required>
             </div>
-        </section>
+            <div class="form-group">
+                <label for="className">Class Name/Topic:</label>
+                <input type="text" id="className" name="className" placeholder="e.g., Intro to HTML & CSS, JavaScript Fundamentals" required>
+            </div>
+            <div class="form-group">
+                <label for="instructorName">Instructor Name:</label>
+                <input type="text" id="instructorName" name="instructorName" required>
+            </div>
+
+            <hr>
+
+            <h3>Student Attendance:</h3>
+            <div id="studentList" class="form-group">
+                <div class="student-row">
+                    <label for="student1">Student Name 1:</label>
+                    <input type="text" id="student1" name="studentName[]" placeholder="e.g., Jane Doe" required>
+                    <select name="attendanceStatus[]" required>
+                        <option value="present">Present</option>
+                        <option value="absent">Absent</option>
+                        <option value="late">Late</option>
+                        <option value="excused">Excused Absence</option>
+                    </select>
+                </div>
+                <div class="student-row">
+                    <label for="student2">Student Name 2:</label>
+                    <input type="text" id="student2" name="studentName[]" placeholder="e.g., John Smith" required>
+                    <select name="attendanceStatus[]" required>
+                        <option value="present">Present</option>
+                        <option value="absent">Absent</option>
+                        <option value="late">Late</option>
+                        <option value="excused">Excused Absence</option>
+                    </select>
+                </div>
+            </div>
+            <button type="button" class="btn btn-add-student"><i class="fas fa-plus-circle"></i> Add Another Student</button>
+
+
+            <div class="form-group">
+                <label for="notes">Notes (Optional):</label>
+                <textarea id="notes" name="notes" rows="3" placeholder="Any specific remarks about attendance or class." ></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-submit">Save Attendance <i class="fas fa-save"></i></button>
+        </form>
+    </div>
+</section>
 
         <section id="contact" class="contact-section common-section">
             <div class="container">
