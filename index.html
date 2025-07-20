@@ -41,7 +41,7 @@
                 <li><a href="#skills"><i class="fas fa-laptop-code"></i> Skills</a></li>
                 <li><a href="#experiences"><i class="fas fa-briefcase"></i> Experiences</a></li>
                 <li><a href="#projects"><i class="fas fa-folder-open"></i> Projects</a></li>
-                <li><a href="#attendance-management"><i class="fas fa-calendar-check"></i> Attendance</a></li>
+                <li><a href="#propose-project"><i class="fas fa-handshake"></i> Propose Project</a></li>
                 <li><a href="#contact"><i class="fas fa-envelope-open-text"></i> Contact</a></li>
             </ul>
             <div class="theme-toggle">
@@ -229,75 +229,47 @@
             </div>
         </section>
 
-        <section id="attendance-management" class="application-section common-section">
+        <section id="propose-project" class="application-section common-section">
             <div class="container">
-                <h2><i class="fas fa-clipboard-check"></i> Instructor Attendance Manager</h2>
-                <p class="section-description">Manage your Organization roster and record attendance for web design company using local storage.</p>
-
-                <div class="attendance-sub-section">
-                    <h3><i class="fas fa-users"></i> Office Roster Management</h3>
-                    <form id="student-management-form" class="main-form">
-                        <div class="form-group">
-                            <label for="newStudentName">Employee Name:</label>
-                            <input type="text" id="newStudentName" placeholder="e.g., Jane Doe" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="newStudentClass">Assigned Class (e.g., Web Design 101):</label>
-                            <input type="text" id="newStudentClass" placeholder="e.g., Web Design 101" required>
-                        </div>
-                        <button type="submit" class="btn btn-submit"><i class="fas fa-user-plus"></i> Add Employee</button>
-                        <button type="button" id="clearAllEmployeeBtn" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Clear All Employee</button>
-                    </form>
-
-                    <hr>
-
-                    <h4>Your Employers:</h4>
-                    <ul id="savedStudentsList">
-                        <li>No Employee added yet.</li>
-                    </ul>
-                </div>
-
-                <hr class="section-divider">
-
-                <div class="attendance-sub-section">
-                    <h3><i class="fas fa-calendar-alt"></i> Record Employee Attendance</h3>
-                    <form id="attendance-recording-form" class="main-form">
-                        <div class="form-group">
-                            <label for="attendanceDate">Date:</label>
-                            <input type="date" id="attendanceDate" name="attendanceDate" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="attendanceClassName">Class Name/Topic:</label>
-                            <input type="text" id="attendanceClassName" name="attendanceClassName" placeholder="e.g., Intro to HTML & CSS" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="attendanceInstructorName">Instructor Name:</label>
-                            <input type="text" id="attendanceInstructorName" name="attendanceInstructorName" required>
-                        </div>
-
-                        <hr>
-
-                        <h4>Mark Attendance for Employee:</h4>
-                        <div id="EmployeeListForAttendance">
-                            <p>Please add Employers in the "Employers Roster Management" section above.</p>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="attendanceNotes">Notes (Optional):</label>
-                            <textarea id="attendanceNotes" name="attendanceNotes" rows="3" placeholder="Any specific remarks about attendance or office."></textarea>
-                        </div>
-
-                        <button type="submit" class="btn btn-submit"><i class="fas fa-save"></i> Save Attendance Record</button>
-                    </form>
-
-                    <hr>
-
-                    <h4>Attendance History:</h4>
-                    <ul id="savedAttendanceList">
-                        <li>No attendance recorded yet.</li>
-                    </ul>
-                </div>
-
+                <h2><i class="fas fa-handshake"></i> Propose a Project</h2>
+                <p class="section-description">Have an exciting idea? Let's discuss how I can help bring your vision to life. Please fill out the form below.</p>
+                <form id="application-form" class="main-form" action="https://formspree.io/f/xdkzqdlq" method="POST">
+                    <div class="form-group">
+                        <label for="appName">Your Name:</label>
+                        <input type="text" id="appName" name="appName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="appEmail">Your Email:</label>
+                        <input type="email" id="appEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="appPhone">Phone Number (Optional):</label>
+                        <input type="tel" id="appPhone" name="appPhone">
+                    </div>
+                    <div class="form-group">
+                        <label for="projectType">Type of Project:</label>
+                        <select id="projectType" name="projectType" required>
+                            <option value="">-- Select Project Type --</option>
+                            <option value="website">Custom Website Development</option>
+                            <option value="ecommerce">E-commerce Store</option>
+                            <option value="webApp">Web Application Development</option>
+                            <option value="portfolio">Personal/Business Portfolio</option>
+                            <option value="redesign">Website Redesign/Revamp</option>
+                            <option value="maintenance">Ongoing Support/Maintenance</option>
+                            <option value="consultation">Consultation</option>
+                            <option value="other">Other (Please specify in details)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="projectBudget">Estimated Budget (e.g., $1000 - $3000):</label>
+                        <input type="text" id="projectBudget" name="projectBudget" placeholder="e.g., $1000 - $5000">
+                    </div>
+                    <div class="form-group">
+                        <label for="appDetails">Project Details & Requirements:</label>
+                        <textarea id="appDetails" name="message" rows="6" placeholder="Describe your project, key features, and any specific requirements you have." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-submit">Send Proposal <i class="fas fa-paper-plane"></i></button>
+                </form> 
             </div>
         </section>
         <section id="contact" class="contact-section common-section">
@@ -344,5 +316,5 @@
     </footer>
 
     <script src="script.js"></script>
-    <script src="attendance-manager.js"></script> </body>
+    </body>
 </html>
