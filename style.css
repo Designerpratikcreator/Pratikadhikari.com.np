@@ -183,12 +183,15 @@ html {
     scroll-behavior: smooth;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h4, h5, h6 {
     font-family: var(--font-heading);
     color: var(--primary-color);
     margin-top: 0;
     margin-bottom: var(--spacing-sm);
 }
+h3 {
+    color: var(--secondary-color);
+} 
 
 h1 { font-size: 3em; }
 h2 { font-size: 2.5em; margin-bottom: var(--spacing-xl); text-align: center; } /* Increased margin-bottom */
@@ -299,7 +302,7 @@ p {
     max-width: 800px;
     margin: 0 auto var(--spacing-xxl); /* Increased from xl */
     font-size: 1.1em;
-    color: var(--secondary-color);
+    color: var(--text-color);
 }
 body.dark-mode .section-description {
     color: var(--dark-secondary-color);
@@ -844,7 +847,7 @@ body.dark-mode .project-info p {
 
 .project-tech span {
     background-color: var(--hover-bg);
-    color: var(--text-color);
+    color: var(--secondary-color);
     padding: 0.5rem 0.9rem; /* Slightly adjusted padding */
     border-radius: var(--border-radius-sm);
     font-size: 0.85em; /* Slightly larger font */
@@ -1004,7 +1007,7 @@ body.dark-mode .contact-info-card {
 
 .contact-icon {
     font-size: 1.4em;
-    color: var(--primary-color);
+    color: var(--secondary-color);
     width: 30px; /* Fixed width for alignment */
     text-align: center;
 }
@@ -1049,7 +1052,7 @@ body.dark-mode .contact-item p a:hover {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background-color: var(--hover-bg);
+    background-color: var(--secondary-bg);
     padding: 0.6rem 1.2rem;
     border-radius: var(--border-radius-md);
     color: var(--text-color);
