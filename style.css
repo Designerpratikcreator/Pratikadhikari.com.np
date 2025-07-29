@@ -2,7 +2,7 @@
 :root {
     /* Colors - Light Mode (Refined Palette) */
     --primary-color: #0000FF;  /* blue */
-    --secondary-color: #6a737d; /* Slightly darker grey for better contrast */
+    --secondary-color: #FFC0CB; /* pink for better contrast */
     --accent-color: #83d475; /* A more subtle, natural green */
     --text-color: #FFFFFF; /* White for body text */
     --background-color:#D3D3D3; /* Light Grey */
