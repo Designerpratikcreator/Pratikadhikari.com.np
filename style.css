@@ -183,15 +183,13 @@ html {
     scroll-behavior: smooth;
 }
 
-h1, h2, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     color: var(--primary-color);
     margin-top: 0;
     margin-bottom: var(--spacing-sm);
 }
-h3 {
-    color: var(--secondary-color);
-} 
+
 
 h1 { font-size: 3em; }
 h2 { font-size: 2.5em; margin-bottom: var(--spacing-xl); text-align: center; } /* Increased margin-bottom */
