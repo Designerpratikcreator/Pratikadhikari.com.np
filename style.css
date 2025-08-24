@@ -1,7 +1,7 @@
 /* --- Global Reset & Variables --- */
 :root {
     /* Colors - Light Mode (Refined Palette) */
-    --primary-color: #0000FF;  /* blue */
+    --primary-color: #FFFF00;  /* Yellow */
     --secondary-color: #FFC0CB; /* pink for better contrast */
     --accent-color: #83d475; /* A more subtle, natural green */
     --text-color: #FFFFFF; /* White for body text */
