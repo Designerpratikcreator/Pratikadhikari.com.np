@@ -52,172 +52,267 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Hero Section Typing Effect ---
-    const typingTextElement = document.getElementById('typing-text');
-    if (typingTextElement) {
-        const phrases = [
-            "creative websites.",
-            "dynamic web applications.",
-            "intuitive user interfaces.",
-            "seamless user experiences."
-        ];
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typingSpeed = 100; // milliseconds per character
-        const deletingSpeed = 60; // milliseconds per character
-        const pauseBetweenPhrases = 1500; // milliseconds
+  // --- Canvas 2D Graphics Animation JavaScript ---
+        const canvas = document.getElementById('graphicsCanvas');
+        const ctx = canvas.getContext('2d');
 
-        function type() {
-            const currentPhrase = phrases[phraseIndex];
-            let displayText = '';
+        let animationFrameId; // To store the requestAnimationFrame ID
 
-            if (isDeleting) {
-                displayText = currentPhrase.substring(0, charIndex - 1);
-            } else {
-                displayText = currentPhrase.substring(0, charIndex + 1);
-            }
-
-            typingTextElement.textContent = displayText;
-
-            let typeSpeed = typingSpeed;
-            if (isDeleting) {
-                typeSpeed = deletingSpeed;
-            }
-
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                typeSpeed = pauseBetweenPhrases;
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-            }
-
-            if (isDeleting) {
-                charIndex--;
-            } else {
-                charIndex++;
-            }
-
-            setTimeout(type, typeSpeed);
+        // Function to resize canvas
+        function resizeCanvas() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
         }
 
-        type(); // Start the typing effect
-    }
+        // Particle class for general animated elements
+        class Particle {
+            constructor(x, y, size, color, speedX, speedY) {
+                this.x = x;
+                this.y = y;
+                this.size = size;
+                this.color = color;
+                this.speedX = speedX;
+                this.speedY = speedY;
+                this.opacity = 1;
+            }
 
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                // Fade out as it moves
+                this.opacity -= 0.005;
+                if (this.opacity < 0) this.opacity = 0;
+            }
 
-// --- 3D Geometric Motion Graphics for Hero Section ---
-    const canvas = document.getElementById('hero-background-canvas');
-    if (canvas && typeof THREE !== 'undefined') { // Ensure THREE is loaded
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true }); // alpha: true for transparent background
-
-        // Set initial size
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(window.devicePixelRatio);
-
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-
-        // Lights
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Softer ambient light
-        scene.add(ambientLight);
-
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-        directionalLight.position.set(5, 10, 7.5);
-        scene.add(directionalLight);
-
-        const pointLight1 = new THREE.PointLight(0x00aaff, 1, 100); // Blueish light
-        pointLight1.position.set(-10, 5, 10);
-        scene.add(pointLight1);
-
-        const pointLight2 = new THREE.PointLight(0xff00aa, 1, 100); // Pinkish light
-        pointLight2.position.set(10, -5, -10);
-        scene.add(pointLight2);
-
-        // Geometries and Materials
-        const geometries = [
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.SphereGeometry(0.75, 16, 16), // Reduced segments for performance
-            new THREE.ConeGeometry(0.8, 1.5, 16),
-            new THREE.TorusGeometry(0.7, 0.3, 10, 30), // Reduced segments
-            new THREE.DodecahedronGeometry(0.9) // Simpler dodecahedron
-        ];
-
-        const materials = [
-            new THREE.MeshStandardMaterial({ color: 0x00CED1, metalness: 0.7, roughness: 0.4 }), // Dark Cyan
-            new THREE.MeshStandardMaterial({ color: 0xFFD700, metalness: 0.7, roughness: 0.4 }), // Gold
-            new THREE.MeshStandardMaterial({ color: 0xBA55D3, metalness: 0.7, roughness: 0.4 }), // Medium Orchid
-            new THREE.MeshStandardMaterial({ color: 0x7FFF00, metalness: 0.7, roughness: 0.4 }),  // Chartreuse
-            new THREE.MeshStandardMaterial({ color: 0x1E90FF, metalness: 0.7, roughness: 0.4 })   // Dodger Blue
-        ];
-
-        const objects = [];
-        const numberOfObjects = 40; // Increased number of objects for a richer background
-
-        for (let i = 0; i < numberOfObjects; i++) {
-            const geometry = geometries[Math.floor(Math.random() * geometries.length)];
-            const material = materials[Math.floor(Math.random() * materials.length)];
-            const mesh = new THREE.Mesh(geometry, material);
-
-            // Spread objects over a larger volume
-            mesh.position.x = (Math.random() - 0.5) * 60;
-            mesh.position.y = (Math.random() - 0.5) * 60;
-            mesh.position.z = (Math.random() - 0.5) * 60;
-
-            mesh.rotation.x = Math.random() * Math.PI;
-            mesh.rotation.y = Math.random() * Math.PI;
-            mesh.rotation.z = Math.random() * Math.PI;
-
-            const scale = Math.random() * 0.8 + 0.3; // Random scale between 0.3 and 1.1
-            mesh.scale.set(scale, scale, scale);
-
-            scene.add(mesh);
-            objects.push(mesh);
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
         }
 
-        camera.position.z = 25; // Move camera back to view more of the objects
+        // Glitter particle specific
+        class Glitter extends Particle {
+            constructor(x, y) {
+                super(x, y, Math.random() * 2 + 0.5, `rgba(255, 255, 255, ${Math.random() * 0.8 + 0.2})`, (Math.random() - 0.5) * 0.5, (Math.random() - 0.5) * 0.5);
+                this.brightness = Math.random() * 0.5 + 0.5;
+                this.phase = Math.random() * Math.PI * 2;
+            }
 
-        // Animation Loop
-        const animate = () => {
-            requestAnimationFrame(animate);
+            update() {
+                super.update();
+                this.phase += 0.1;
+                this.opacity = (Math.sin(this.phase) * 0.5 + 0.5) * this.brightness;
+                if (this.opacity < 0.1) this.opacity = 0.1; // Ensure it doesn't fully disappear
+            }
+        }
 
-            objects.forEach(obj => {
-                obj.rotation.x += 0.002 * (Math.random() * 0.5 + 0.5); // Slower, varied rotation
-                obj.rotation.y += 0.002 * (Math.random() * 0.5 + 0.5);
-                obj.rotation.z += 0.002 * (Math.random() * 0.5 + 0.5);
+        // Blinking Light particle specific
+        class BlinkingLight extends Particle {
+            constructor(x, y) {
+                super(x, y, Math.random() * 5 + 2, `hsl(${Math.random() * 360}, 100%, 50%)`, 0, 0); // Static position
+                this.blinkSpeed = Math.random() * 0.05 + 0.02;
+                this.phase = Math.random() * Math.PI * 2;
+            }
 
-                // Subtle floating/drifting motion
-                obj.position.x += Math.sin(Date.now() * 0.00003 + obj.uuid.charCodeAt(0)) * 0.01;
-                obj.position.y += Math.cos(Date.now() * 0.00003 + obj.uuid.charCodeAt(1)) * 0.01;
-                obj.position.z += Math.sin(Date.now() * 0.00003 + obj.uuid.charCodeAt(2)) * 0.01;
+            update() {
+                this.phase += this.blinkSpeed;
+                this.opacity = Math.sin(this.phase) * 0.8 + 0.2; // Blinking effect
+            }
+        }
 
-                // Simple wrap-around logic for objects that go too far
-                const bound = 30; // Half of the 60 unit spread
-                if (obj.position.x > bound) obj.position.x = -bound;
-                if (obj.position.x < -bound) obj.position.x = bound;
-                if (obj.position.y > bound) obj.position.y = -bound;
-                if (obj.position.y < -bound) obj.position.y = bound;
-                if (obj.position.z > bound) obj.position.z = -bound;
-                if (obj.position.z < -bound) obj.position.z = bound;
+        // Shooting Star particle specific
+        class ShootingStar extends Particle {
+            constructor() {
+                const startX = Math.random() * canvas.width;
+                const startY = Math.random() * canvas.height * 0.2; // Start from top 20%
+                const speed = Math.random() * 5 + 3;
+                const angle = Math.PI / 4 + (Math.random() * Math.PI / 8 - Math.PI / 16); // Down-right angle
+                super(startX, startY, 1.5, 'white', speed * Math.cos(angle), speed * Math.sin(angle));
+                this.tailLength = Math.random() * 50 + 30;
+                this.history = [];
+            }
+
+            update() {
+                super.update();
+                this.history.push({ x: this.x, y: this.y });
+                if (this.history.length > this.tailLength) {
+                    this.history.shift();
+                }
+                // Reset if out of bounds
+                if (this.x > canvas.width + this.tailLength || this.y > canvas.height + this.tailLength) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.strokeStyle = this.color;
+                ctx.lineWidth = this.size;
+                ctx.lineCap = 'round';
+
+                ctx.beginPath();
+                if (this.history.length > 1) {
+                    ctx.moveTo(this.history[0].x, this.history[0].y);
+                    for (let i = 1; i < this.history.length; i++) {
+                        ctx.lineTo(this.history[i].x, this.history[i].y);
+                    }
+                }
+                ctx.stroke();
+                ctx.restore();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height * 0.2;
+                this.speedX = (Math.random() * 5 + 3) * Math.cos(Math.PI / 4 + (Math.random() * Math.PI / 8 - Math.PI / 16));
+                this.speedY = (Math.random() * 5 + 3) * Math.sin(Math.PI / 4 + (Math.random() * Math.PI / 8 - Math.PI / 16));
+                this.opacity = 1;
+                this.history = [];
+            }
+        }
+
+        // Snowfall particle specific
+        class Snowflake extends Particle {
+            constructor() {
+                super(Math.random() * canvas.width, Math.random() * canvas.height, Math.random() * 3 + 1, 'white', 0, Math.random() * 1 + 0.5);
+                this.drift = (Math.random() - 0.5) * 0.5; // Horizontal drift
+            }
+
+            update() {
+                this.x += this.drift;
+                this.y += this.speedY;
+                if (this.y > canvas.height) {
+                    this.y = -this.size; // Reset to top
+                    this.x = Math.random() * canvas.width; // New random x
+                }
+            }
+        }
+
+        const glitters = [];
+        const blinkingLights = [];
+        const shootingStars = [];
+        const snowflakes = [];
+
+        // Initialize particles
+        function initParticles() {
+            for (let i = 0; i < 100; i++) glitters.push(new Glitter(Math.random() * canvas.width, Math.random() * canvas.height));
+            for (let i = 0; i < 50; i++) blinkingLights.push(new BlinkingLight(Math.random() * canvas.width, Math.random() * canvas.height));
+            for (let i = 0; i < 3; i++) shootingStars.push(new ShootingStar());
+            for (let i = 0; i < 200; i++) snowflakes.push(new Snowflake());
+        }
+
+        // Moving text
+        const textContent = "PRATIK Graphics Studio"; // Updated text to include "PRATIK"
+        let textX = -200; // Start off-screen left
+        const textSpeed = 2; // Pixels per frame
+        let textOpacity = 0;
+        const fadeInDuration = 100; // Frames for fade in
+        const fadeOutDuration = 100; // Frames for fade out
+        const displayDuration = 300; // Frames for display
+        let frameCount = 0;
+
+        function drawMovingText() {
+            frameCount++;
+
+            // Calculate opacity based on phase
+            if (frameCount < fadeInDuration) {
+                textOpacity = frameCount / fadeInDuration;
+            } else if (frameCount > fadeInDuration + displayDuration) {
+                textOpacity = 1 - ((frameCount - (fadeInDuration + displayDuration)) / fadeOutDuration);
+            } else {
+                textOpacity = 1;
+            }
+
+            // Reset animation cycle
+            if (frameCount > fadeInDuration + displayDuration + fadeOutDuration) {
+                frameCount = 0;
+                textX = -ctx.measureText(textContent).width - 50; // Reset text off-screen
+            }
+
+            // Update position
+            textX += textSpeed;
+
+            // Draw text
+            ctx.save();
+            ctx.globalAlpha = textOpacity;
+            ctx.fillStyle = 'rgba(255, 255, 255, 1)'; // White color for text
+            ctx.font = '50px "Inter"';
+            ctx.fillText(textContent, textX, canvas.height / 2);
+            ctx.restore();
+        }
+
+
+        // Main animation loop
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
+
+            // Update and draw glitters
+            glitters.forEach((g, index) => {
+                g.update();
+                g.draw();
+                if (g.opacity <= 0.1) { // Re-spawn glitters that fade out
+                    glitters[index] = new Glitter(Math.random() * canvas.width, Math.random() * canvas.height);
+                }
             });
 
-            renderer.render(scene, camera);
+            // Update and draw blinking lights
+            blinkingLights.forEach(bl => {
+                bl.update();
+                bl.draw();
+            });
+
+            // Update and draw shooting stars
+            shootingStars.forEach(ss => {
+                ss.update();
+                ss.draw();
+            });
+
+            // Update and draw snowflakes
+            snowflakes.forEach(sf => {
+                sf.update();
+                sf.draw();
+            });
+
+            // Draw moving text
+            drawMovingText();
+
+            animationFrameId = requestAnimationFrame(animate);
+        }
+
+        // Event listeners for responsiveness
+        window.addEventListener('resize', resizeCanvas);
+
+        // Initial setup
+        window.onload = function() {
+            resizeCanvas(); // Set initial canvas size
+            initParticles(); // Initialize particles
+            animate(); // Start the animation loop
         };
-        animate();
-    } else if (canvas) {
-        console.warn("Three.js not loaded. Hero background animation will not be displayed.");
-    } 
-    // --- Set current year in footer ---
-    const currentYearSpan = document.getElementById('current-year');
-    if (currentYearSpan) {
-        currentYearSpan.textContent = new Date().getFullYear();
-    }
+
+        // Stop animation when leaving the section (optional, for performance)
+        const homeSection = document.getElementById('home');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (!animationFrameId) {
+                        animate(); // Start animation if entering and not already running
+                    }
+                } else {
+                    if (animationFrameId) {
+                        cancelAnimationFrame(animationFrameId); // Stop animation if leaving
+                        animationFrameId = null;
+                    }
+                }
+            });
+        }, { threshold: 0.1 }); // Trigger when 10% of the section is visible
+
+        observer.observe(homeSection);
 
     // --- Navbar Active State on Scroll ---
     const sections = document.querySelectorAll('section');
