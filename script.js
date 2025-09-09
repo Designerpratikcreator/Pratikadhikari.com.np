@@ -55,7 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const typingTextElement = document.getElementById('typing-text');
     if (typingTextElement) {
         const phrases = [
-            "GENZ CLAN.",
+            "creative websites.",
+            "dynamic web applications.",
+            "intuitive user interfaces.",
+            "seamless user experiences.",
          
         ];
         let phraseIndex = 0;
