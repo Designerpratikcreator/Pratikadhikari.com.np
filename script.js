@@ -356,79 +356,147 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// **IMPORTANT: Replace 'YOUR_ACTUAL_Maps_API_KEY_HERE' with your real API Key.**
-const apiKey = "YOUR_ACTUAL_Maps_API_KEY_HERE";
+<script>
+    // **IMPORTANT: The API key is set by the environment.**
+    // **DO NOT** replace this with your own key.
+    const apiKey = "";
+    let map, motorbikeMarker, polyline, animationId;
+    let isAnimating = false;
+    let currentIndex = 0;
+    let progress = 0;
+    const animationSpeed = 0.005; // Adjust this value for speed (0.001 to 0.01)
 
-// Load the Google Maps JavaScript API dynamically
-function loadScript() {
-  const script = document.createElement("script");
-  script.src = `http://googleusercontent.com/maps.google.com/3{apiKey}&callback=initMap`;
-  script.async = true;
-  document.head.appendChild(script);
-}
+    // The SVG icon for the motorbike as a Data URI
+    // This keeps the entire solution in a single file
+    const motorbikeIcon = {
+        url: 'data:image/svg+xml;utf-8,' +
+            '<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg">' +
+            '<path d="M20,5 Q20,0 25,5 T30,10 T25,15 T20,20 T15,15 T10,10 T15,5 T20,5 Z" ' +
+            'fill="#FF0000" stroke="#FFFFFF" stroke-width="2"/>' +
+            '<path d="M20,20 C15,25 15,35 20,35 S25,30 25,25" ' +
+            'fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round"/>' +
+            '<circle cx="15" cy="25" r="5" fill="#FFFFFF" stroke="#FF0000" stroke-width="2"/>' +
+            '<circle cx="25" cy="25" r="5" fill="#FFFFFF" stroke="#FF0000" stroke-width="2"/>' +
+            '</svg>',
+        scaledSize: new google.maps.Size(40, 40),
+        anchor: new google.maps.Point(20, 20)
+    };
 
-// Initialize and animate the map
-function initMap() {
-  // Define the map's center and zoom level
-  const mapCenter = { lat: 27.7029, lng: 85.3090 }; // A central point in Kathmandu
+    // Pre-defined path coordinates for the motorbike to follow
+    // These points trace a winding path in Lalitpur, Nepal (Gwarko area).
+    const pathCoordinates = [
+        { lat: 27.68725, lng: 85.33758 },
+        { lat: 27.68750, lng: 85.33950 },
+        { lat: 27.68800, lng: 85.34000 },
+        { lat: 27.68900, lng: 85.34050 },
+        { lat: 27.69000, lng: 85.34100 },
+        { lat: 27.69100, lng: 85.34050 },
+        { lat: 27.69200, lng: 85.33900 },
+        { lat: 27.69150, lng: 85.33700 },
+        { lat: 27.69100, lng: 85.33600 },
+        { lat: 27.69000, lng: 85.33500 },
+        { lat: 27.68900, lng: 85.33550 },
+        { lat: 27.68800, lng: 85.33650 },
+        { lat: 27.68725, lng: 85.33758 }
+    ];
 
-  // Create the map
-  const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 15,
-    center: mapCenter,
-    mapId: "YOUR_MAP_ID", // Optional: use your own map style ID
-  });
-
-  // Define the path for the motorbike to follow
-  const pathCoordinates = [
-    { lat: 27.7029, lng: 85.3090 },
-    { lat: 27.7050, lng: 85.3115 },
-    { lat: 27.7070, lng: 85.3130 },
-    { lat: 27.7085, lng: 85.3140 },
-    // Add more coordinates to define a longer, more complex path
-  ];
-
-  // Create the animated path
-  const motorbikePath = new google.maps.Polyline({
-    path: pathCoordinates,
-    geodesic: true,
-    strokeColor: "#FF0000",
-    strokeOpacity: 1.0,
-    strokeWeight: 2,
-  });
-
-  motorbikePath.setMap(map);
-
-  // Define the motorbike icon
-  const motorbikeIcon = {
-    url: "http://googleusercontent.com/maps.google.com/4",
-    scaledSize: new google.maps.Size(40, 40),
-    origin: new google.maps.Point(0, 0),
-    anchor: new google.maps.Point(20, 20),
-  };
-
-  // Create the marker for the motorbike
-  const motorbikeMarker = new google.maps.Marker({
-    position: pathCoordinates[0],
-    icon: motorbikeIcon,
-    map: map,
-    title: "Motorbike",
-  });
-
-  // Function to animate the motorbike along the path
-  let pathIndex = 0;
-  function animateMotorbike() {
-    if (pathIndex < pathCoordinates.length - 1) {
-      pathIndex++;
-      motorbikeMarker.setPosition(pathCoordinates[pathIndex]);
-      setTimeout(animateMotorbike, 1000); // Adjust speed by changing the delay (in milliseconds)
+    /**
+     * Helper function to get an intermediate point between two coordinates.
+     * @param {Object} start - The starting LatLng object.
+     * @param {Object} end - The ending LatLng object.
+     * @param {number} t - The progress (0.0 to 1.0).
+     * @returns {Object} The interpolated LatLng object.
+     */
+    function interpolate(start, end, t) {
+        return {
+            lat: start.lat + (end.lat - start.lat) * t,
+            lng: start.lng + (end.lng - start.lng) * t
+        };
     }
-  }
 
-  // Start the animation
-  animateMotorbike();
-}
+    /**
+     * Animates the motorbike marker along the predefined path.
+     */
+    function animateMotorbike() {
+        progress += animationSpeed;
 
-// Load the script when the page is ready
-window.onload = loadScript;
+        if (progress >= 1) {
+            progress = 0;
+            currentIndex = (currentIndex + 1) % pathCoordinates.length;
+        }
 
+        const nextIndex = (currentIndex + 1) % pathCoordinates.length;
+        const newPosition = interpolate(pathCoordinates[currentIndex], pathCoordinates[nextIndex], progress);
+
+        motorbikeMarker.setPosition(newPosition);
+        animationId = requestAnimationFrame(animateMotorbike);
+    }
+
+    /**
+     * Initializes the Google Map and all its components.
+     */
+    function initMap() {
+        const mapCenter = pathCoordinates[0];
+
+        map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 17,
+            center: mapCenter,
+            mapId: "YOUR_MAP_ID", // Optional: use your own map style ID
+        });
+
+        // Create the path on the map
+        polyline = new google.maps.Polyline({
+            path: pathCoordinates,
+            geodesic: true,
+            strokeColor: "#FF0000",
+            strokeOpacity: 0.8,
+            strokeWeight: 4,
+            map: map,
+        });
+
+        // Create the motorbike marker at the start of the path
+        motorbikeMarker = new google.maps.Marker({
+            position: mapCenter,
+            icon: motorbikeIcon,
+            map: map,
+            title: "Motorbike",
+        });
+
+        // Hide the loading overlay once the map is ready
+        document.getElementById("loading-overlay").style.display = 'none';
+
+        // Event listener for the toggle button
+        document.getElementById("toggle-animation").addEventListener('click', () => {
+            if (isAnimating) {
+                cancelAnimationFrame(animationId);
+                document.getElementById("toggle-animation").textContent = "Start Animation";
+            } else {
+                animateMotorbike();
+                document.getElementById("toggle-animation").textContent = "Stop Animation";
+            }
+            isAnimating = !isAnimating;
+        });
+
+        // Initial animation start
+        animateMotorbike();
+        isAnimating = true;
+    }
+
+    /**
+     * Dynamically loads the Google Maps JavaScript API script.
+     */
+    function loadScript() {
+        const script = document.createElement("script");
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
+        script.async = true;
+        document.head.appendChild(script);
+
+        // Fallback if the script doesn't load
+        script.onerror = () => {
+            document.getElementById("loading-overlay").innerHTML = '<p class="text-red-500">Failed to load Google Maps. Please check your network connection.</p>';
+        };
+    }
+
+    // Start the whole process when the window loads
+    window.onload = loadScript;
+</script>
