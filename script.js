@@ -356,47 +356,79 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// Function to initialize the Google Map
-function initializeMap() {
-    var mapIframe = document.getElementById("map-iframe");
+// **IMPORTANT: Replace 'YOUR_ACTUAL_Maps_API_KEY_HERE' with your real API Key.**
+const apiKey = "YOUR_ACTUAL_Maps_API_KEY_HERE";
 
-    // **IMPORTANT: Replace 'YOUR_ACTUAL_Maps_API_KEY_HERE' with your real API Key.**
-    // You MUST get this from the Google Cloud Console.
-    const apiKey = "YOUR_ACTUAL_Maps_API_KEY_HERE";
-
-    // **Define the place ID for your location.**
-    // The Place ID 'ChIJg2a6uWlY7zARg3PzL7G1lJk' is for Kathmandu Durbar Square.
-    // If you want a different location (e.g., your university, home, etc.),
-    // find its Place ID using the Google Maps Place ID Finder:
-    // https://developers.google.com/maps/documentation/embed/get-started#place-id
-    const placeId = "ChIJg2a6uWlY7zARg3PzL7G1lJk"; // Example: Kathmandu Durbar Square, Nepal
-
-    // Construct the correct Google Maps Embed API URL
-    // The 'place' mode is used here to show a specific point of interest identified by its place ID.
-    const embedApiUrl = `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=place_id:${placeId}`;
-
-    mapIframe.src = embedApiUrl;
+// Load the Google Maps JavaScript API dynamically
+function loadScript() {
+  const script = document.createElement("script");
+  script.src = `http://googleusercontent.com/maps.google.com/3{apiKey}&callback=initMap`;
+  script.async = true;
+  document.head.appendChild(script);
 }
 
-// Use Intersection Observer to load the map only when the contact section becomes visible
-// This optimizes page load performance.
-const contactSection = document.getElementById("contact");
-if (contactSection) {
-    const observerOptions = {
-        root: null, // relative to the viewport
-        rootMargin: "0px",
-        threshold: 0.1, // Trigger when 10% of the section is visible
-    };
+// Initialize and animate the map
+function initMap() {
+  // Define the map's center and zoom level
+  const mapCenter = { lat: 27.7029, lng: 85.3090 }; // A central point in Kathmandu
 
-    const contactObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                initializeMap();
-                observer.unobserve(entry.target); // Stop observing once the map is loaded
-            }
-        });
-    }, observerOptions);
+  // Create the map
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 15,
+    center: mapCenter,
+    mapId: "YOUR_MAP_ID", // Optional: use your own map style ID
+  });
 
-    contactObserver.observe(contactSection);
+  // Define the path for the motorbike to follow
+  const pathCoordinates = [
+    { lat: 27.7029, lng: 85.3090 },
+    { lat: 27.7050, lng: 85.3115 },
+    { lat: 27.7070, lng: 85.3130 },
+    { lat: 27.7085, lng: 85.3140 },
+    // Add more coordinates to define a longer, more complex path
+  ];
+
+  // Create the animated path
+  const motorbikePath = new google.maps.Polyline({
+    path: pathCoordinates,
+    geodesic: true,
+    strokeColor: "#FF0000",
+    strokeOpacity: 1.0,
+    strokeWeight: 2,
+  });
+
+  motorbikePath.setMap(map);
+
+  // Define the motorbike icon
+  const motorbikeIcon = {
+    url: "http://googleusercontent.com/maps.google.com/4",
+    scaledSize: new google.maps.Size(40, 40),
+    origin: new google.maps.Point(0, 0),
+    anchor: new google.maps.Point(20, 20),
+  };
+
+  // Create the marker for the motorbike
+  const motorbikeMarker = new google.maps.Marker({
+    position: pathCoordinates[0],
+    icon: motorbikeIcon,
+    map: map,
+    title: "Motorbike",
+  });
+
+  // Function to animate the motorbike along the path
+  let pathIndex = 0;
+  function animateMotorbike() {
+    if (pathIndex < pathCoordinates.length - 1) {
+      pathIndex++;
+      motorbikeMarker.setPosition(pathCoordinates[pathIndex]);
+      setTimeout(animateMotorbike, 1000); // Adjust speed by changing the delay (in milliseconds)
+    }
+  }
+
+  // Start the animation
+  animateMotorbike();
 }
+
+// Load the script when the page is ready
+window.onload = loadScript;
 
