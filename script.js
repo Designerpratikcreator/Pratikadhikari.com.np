@@ -355,8 +355,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-
-<script>
     // **IMPORTANT: The API key is set by the environment.**
     // **DO NOT** replace this with your own key.
     const apiKey = "";
@@ -499,4 +497,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Start the whole process when the window loads
     window.onload = loadScript;
-</script>
+
