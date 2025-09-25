@@ -1269,6 +1269,7 @@ footer p {
     .contact-item p, .social-links-contact a {
         font-size: 0.9em;
     }
+    <style>
   body {
             font-family: 'Inter', sans-serif;
             background-color: #f3f4f6;
@@ -1329,5 +1330,6 @@ footer p {
             transform: translateX(-50%);
             z-index: 11;
         }
+    </style>
     }
 }
