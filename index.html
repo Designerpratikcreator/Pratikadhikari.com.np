@@ -24,6 +24,7 @@
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4ZbcS13C9A/6g+a14c33f2c5e5541656f45207c4" crossorigin=""/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
@@ -142,226 +143,172 @@
 
         <section id="experiences" class="experiences-section common-section">
             <div class="container">
-                <h2><i class="fas fa-graduation-cap"></i> My Journey & Experiences</h2>
+                <h2><i class="fas fa-graduation-cap"></i> My Experiences</h2>
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
-                            <h3> Front end Designer</h3>
-                            <h4> PRATIK DESIGN | 2023 - Present</h4>
-                            <p>Designing custom front end websites and front end web applications for various clients, from concept to deployment. Focused on creating responsive, performant, and user-friendly solutions. Managed client communications and project timelines effectively.</p>
+                            <h3>Full Stack Engineer - Tech Solutions Inc.</h3>
+                            <span class="timeline-date">Jan 2022 - Present</span>
                             <ul>
-                                <li>Designed and built several front end portfolio websites to any data oriented organizations.</li>
-                                <li>Designed a custom front end e-education landing page with integrated payment gateway mock-ups.</li>
-                                <li>Utilized new media and technology including HTML, CSS, JavaScript, and various frameworks.</li>
+                                <li>Developed and maintained a company-wide internal reporting dashboard using React and Node.js.</li>
+                                <li>Implemented responsive UI designs that improved user engagement by 40%.</li>
+                                <li>Collaborated with a team of 5 to debug and optimize application performance, reducing load times by 25%.</li>
                             </ul>
                         </div>
                     </div>
-                    <div class="timeline-item">
+                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
-                            <h3>Bachelor in Visual Arts- Creative Painting</h3>
-                            <h4>Bangalore University | June 2017 - June 2022</h4>
-                            <p>Gained hands-on experience in a professional school of design training under an educational environment. Contributed to front-end tasks like Graphic designing, learned various Adobe software version control best practices, and participated in agile educational sprints.</p>
+                            <h3>Freelance Frontend Developer</h3>
+                            <span class="timeline-date">2020 - 2021</span>
                             <ul>
-                                <li>Assisted in designing UI components for an internal CRM (Customer Relationship Management) system using React referencing interaction design.</li>
-                                <li>Fixed bugs and implemented minor features in existing front end web applications.</li>
-                                <li>Collaborated with senior designers on code reviews and project planning.</li>
+                                <li>Designed and built custom websites for various small businesses, focusing on clean, modern, and user-friendly interfaces.</li>
+                                <li>Managed client communication, project timelines, and deployment processes from start to finish.</li>
+                                <li>Utilized HTML5, CSS3, and JavaScript to create dynamic and interactive web applications.</li>
                             </ul>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <h3>Master in Human and Natural Resource</h3>
-                            <h4>Kathmandu University | 2023 - 2024 </h4>
-                            <p>Completed a comprehensive academics in Human and Natural Resource, building a strong foundation in development studies.
-                                I am currently doing Climate change education at secondary schools in Nepal as my master major and running theses/dissertation using analytical and deductive method. Focuisng more to behaviour, perception and awareness as an objectives of the research linking design background under educational environment.  </p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
+        
         <section id="projects" class="projects-section common-section">
             <div class="container">
-                <h2><i class="fas fa-rocket"></i> My Recent Projects</h2>
+                <h2><i class="fas fa-folder-open"></i> My Projects</h2>
+                <p class="section-description"> A showcase of my latest work, from personal projects to professional applications. Each project highlights my skills in design, functionality, and problem-solving. </p>
                 <div class="projects-grid">
                     <div class="project-card">
-                        <img src="/Assets/images/template 1.jpg" alt="E-commerce Website Screenshot">
+                        <img src="/Assets/images/Project_1.png" alt="Project 1: E-commerce Website" class="project-img">
                         <div class="project-info">
-                            <h3>Modern E-Entrepreneur Platform</h3>
-                            <p> E-entrepreneur solution with user authentication, product listings, shopping cart, and order processing.</p>
+                            <h3>E-commerce Website</h3>
+                            <p>A full-stack e-commerce platform featuring secure user authentication, product management, and a dynamic shopping cart system.</p>
                             <div class="project-tech">
-                                <span>React</span><span>Node.js</span><span>MongoDB</span><span>Stripe API</span>
+                                <span>React</span>
+                                <span>Node.js</span>
+                                <span>Express</span>
+                                <span>MongoDB</span>
                             </div>
                             <div class="project-links">
-                                <a href="https://pratikautomobile.vercel.app/" target="_blank" class="btn-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                                <a href="https://github.com/Designerpratikcreator/" target="_blank" class="btn-link"><i class="fab fa-github"></i> GitHub</a>
+                                <a href="https://github.com/pratikadhikari/ecommerce-app" target="_blank" class="btn btn-primary">GitHub <i class="fab fa-github"></i></a>
+                                <a href="#" target="_blank" class="btn btn-secondary">Live Demo <i class="fas fa-external-link-alt"></i></a>
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
-                        <img src="/Assets/images/templates 2.jpg" alt="Personal Blog Screenshot">
+                     <div class="project-card">
+                        <img src="/Assets/images/Project_2.png" alt="Project 2: Portfolio Website" class="project-img">
                         <div class="project-info">
-                            <h3> Art Project Platform </h3>
-                            <p>A custom blog platform with an intuitive Art project platform for easy display of an art.</p>
+                            <h3>Portfolio Website</h3>
+                            <p>This very portfolio website you are viewing, built from scratch to showcase my skills and design aesthetic.</p>
                             <div class="project-tech">
-                                <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Firebase</span>
+                                <span>HTML5</span>
+                                <span>CSS3</span>
+                                <span>JavaScript</span>
+                                <span>Vercel</span>
                             </div>
                             <div class="project-links">
-                                <a href="https://gwarkorestaurant.vercel.app/" target="_blank" class="btn-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                                <a href="https://github.com/Designerpratikcreator/" target="_blank" class="btn-link"><i class="fab fa-github"></i> GitHub</a>
+                                <a href="https://github.com/pratikadhikari/my-portfolio" target="_blank" class="btn btn-primary">GitHub <i class="fab fa-github"></i></a>
+                                <a href="https://pratikadhikari-com-np.vercel.app/" target="_blank" class="btn btn-secondary">Live Demo <i class="fas fa-external-link-alt"></i></a>
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
-                        <img src="/Assets/images/template 3.png" alt="Another Portfolio Screenshot">
-                        <div class="project-info">
-                            <h3>Interactive Portfolio Site</h3>
-                            <p>Designed a dynamic front end portfolio showcasing various web page design skills and projects.</p>
-                            <div class="project-tech">
-                                <span>HTML</span><span>CSS</span><span>JavaScript</span><span>GSAP</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://pratikdesign.vercel.app/" target="_blank" class="btn-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                                <a href="https://github.com/Designerpratikcreator/" target="_blank" class="btn-link"><i class="fab fa-github"></i> GitHub</a>
-                            </div>
-                        </div>
                     </div>
-                </div>
             </div>
         </section>
-
-        <section id="propose-project" class="application-section common-section">
+        
+        <section id="propose-project" class="proposal-section common-section">
             <div class="container">
-                <h2><i class="fas fa-handshake"></i> We're Reporting </h2>
-                <p class="section-description"> Want to get an exciting internship ? Let's discuss how I can help at your internship by being myself as Front end design company for reporting. Please fill out the form below. Protocols are based on country Nepal constitution 2015 Ad and 2072 BS to Educational Law. </p>
-                <form id="application-form" class="main-form" action="https://formspree.io/f/xdkzqdlq" method="POST">
-                    <div class="form-group">
-                        <label for="appName">Your Name:</label>
-                        <input type="text" id="appName" name="appName" required>
-                    </div>
-                     <div class="form-group">
-                        <label for="appAge">Your Age:</label>
-                        <input type="number" id="appAge" name="appAge" required>
-                    </div> 
-                     <div class="form-group">
-                        <label for="appGender">Your Gender:</label>
-                        <input type="gender" id="appGender" name="appGender" required>
-                    </div> 
-                    <div class="form-group">
-                        <label for="appEmail">Your Email:</label>
-                        <input type="email" id="appEmail" name="email" required>
-                    </div> 
-                      <div class="form-group">
-                        <label for="appAddress">Your Home Address:</label>
-                        <input type="Address" id="appAddress" name="Address" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="appPhone">Phone Number (Optional):</label>
-                        <input type="tel" id="appPhone" name="appPhone">
-                    </div>
-                    <div class="form-group">
-                        <label for="projectType">Types of Reports:</label>
-                        <select id="projectType" name="projectType" required>
-                            <option value="">-- Select Report Type --</option>
-                            <option value="Academic">Academic Reports</option>
-                            <option value="Informational">Descriptive Reports</option>
-                            <option value="Analytical">Analytical Reports</option>
-                            <option value="Specialized">Progress Reports</option>
-                            <option value="Specialized">Project Reports</option>
-                            <option value="consultation">Lab Reports</option> 
-                            <option value="consultation">Literature Reviews</option> 
-                            <option value="consultation">Case Study Reports</option> 
-                            <option value="other">Other (Please specify in details)</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="projectBudget">Estimated Time (e.g., JANUARY - DECEMBER ):</label>
-                        <input type="Date" id="projecttime" name="projecttime" placeholder="e.g., JAN - DEC">
-                    </div>
-                    <div class="form-group">
-                        <label for="appDetails"> Write your Research:</label>
-                        <textarea id="appDetails" name="message" rows="12" placeholder="Write your research" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-submit"> Print <i class="fas fa-paper-plane"></i></button>
-                </form> 
-            </div>
-        </section>
-        <section id="contact" class="contact-section common-section">
-            <div class="container">
-                <h2><i class="fas fa-headset"></i> Get In Touch</h2>
-                <p class="section-description">Feel free to reach out to me directly or connect through social media.</p>
-                <div class="contact-grid">
-                    <div class="contact-info-card">
-                        <h3>Direct Contact</h3>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt contact-icon"></i>
-                            <p>Gwarko, Lalitpur, Bagmati Province, Nepal</p>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone-alt contact-icon"></i>
-                            <p><a href="tel:+9779861347187">+977 9861347187</a></p>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope contact-icon"></i>
-                            <p><a href="mailto:pratik_mhnrs2023@kusoa.edu.np">pratik_mhnrs2023@kusoa.edu.np</a></p>
-                        </div>
+                <h2><i class="fas fa-handshake"></i> Reporting Section</h2>
+                <div class="proposal-grid">
+                    <div class="main-form">
+                        <h3>Got a Report? I can help!</h3>
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Your Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="report-type">Report Type</label>
+                                <select id="report-type" name="report-type" required>
+                                    <option value="">Select an option</option>
+                                    <option value="report-error">Report an Error</option>
+                                    <option value="suggestion">Suggestions</option>
+                                    <option value="business">Business Inquiry</option>
+                                    <option value="general">General Report</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Your Report</label>
+                                <textarea id="message" name="message" rows="6" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-submit">Send Report <i class="fas fa-paper-plane"></i></button>
+                        </form>
                     </div>
                     <div class="contact-info-card">
-                        <h3>Connect Online</h3>
+                        <h3>Connect with me</h3>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <p>pratikadhikari03@gmail.com</p>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <p>+977 9803154247</p>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>Kathmandu, Nepal</p>
+                        </div>
                         <div class="social-links-contact">
-                            <a href="https://www.facebook.com/DreamerPratik/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
-                            <a href="https://www.instagram.com/adhikari_pratik/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i> Instagram</a>
-                            <a href="https://github.com/Designerpratikcreator/" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i> GitHub</a>
-                            <a href="https://www.linkedin.com/in/pratik-adhikari-developer/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                            <a href="https://www.linkedin.com/in/pratik-adhikari-developer/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/pratikadhikari" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="https://twitter.com/pratik_adhikari" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                         </div>
                     </div>
                 </div>
-
-    <div class="map-container relative">
-        <body class="bg-gray-900 flex flex-col items-center justify-center min-h-screen p-4">
-             <header class="header w-full max-w-4xl p-6 rounded-t-xl text-center mb-6">
-        <h1 class="text-3xl md:text-4xl font-bold text-teal-300">Animated Map Showcase</h1>
-        <p class="mt-2 text-sm md:text-base text-gray-400">A smooth animation for your map container.</p>
-    </header>
-
-    <!-- Main Map Container -->
-    <div id="map-container" class="container w-full max-w-4xl h-[60vh] md:h-[70vh] rounded-b-xl border-4 border-teal-500 overflow-hidden relative shadow-lg map-container pulse-effect">
-        <!-- Placeholder for your map content.
-             Replace the div below with the initialization code for your map library (e.g., Leaflet, Mapbox). -->
-         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.990230230206!2d85.33758231505307!3d27.68725838279899!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19a0a8b9e691%3A0x6a213b78c4a0e980!2sGwarko%2C%20Lalitpur%2044700%2C%20Nepal!5e0!3m2!1sen!2snp!4v1678901234567!5m2!1sen!2snp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>  
-        <div class="absolute inset-0 flex items-center justify-center p-4 text-center">
-            <div class="text-gray-500 text-xl md:text-2xl font-semibold leading-relaxed">
-                This is the animated container. <br>
-                Your map will appear here.
             </div>
-        </div>
-    </div>
+        </section>
+        
+        <section id="contact" class="map-section common-section">
+            <div class="container">
+                <h2><i class="fas fa-map-marked-alt"></i> Map of Location</h2>
+                <div class="map-place-holder">
+                    <div class="maps-container pulse-effect" >
+                       <div class="loading-overlay" id="loading-overlay">
+                            <i class="fas fa-spinner fa-spin text-4xl mb-4"></i>
+                            <p>Loading Map...</p>
+                        </div>
+                       <div id="map"></div>
+                    </div>
+                    <p class="mt-4 text-center section-description">
+                       This is a an interactive map with an animated navigation path. Click the button to toggle the animation.
+                    </p>
+                    <div class="controls-panel">
+                        <button id="toggle-animation" class="btn btn-primary">
+                            Start Animation
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- Instructions -->
-    <div class="w-full max-w-4xl mt-6 p-4 md:p-6 bg-gray-800 rounded-xl shadow-lg">
-        <h2 class="text-xl md:text-2xl font-bold mb-3 text-teal-300">How to use this code:</h2>
-        <ol class="list-decimal list-inside text-gray-400 space-y-2">
-            <li>Find the `map-container` div in the code.</li>
-            <li>Replace the placeholder content inside this div with the HTML and JavaScript for your map library.</li>
-            <li>The `map-container` div's classes (`map-container`, `pulse-effect`, etc.) will apply the animations and styling to your map.</li>
-            <li>Adjust the animation properties in the `<style>` block to fit your desired effect.</li>
-        </ol>
-    </div>
-        <div class="controls-panel">
-            <button id="toggle-animation" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full shadow-lg transition-transform transform hover:scale-105 active:scale-95">
-                Start Animation
-            </button>
-        </div>
-
+    </main>
+    
     <footer>
         <div class="container">
-            <p>© <span id="current-year"></span> Pratik Adhikari. All rights reserved. | Create with passion.</p>
+            <p>© <span id="current-year"></span> Pratik Adhikari. All rights reserved.</p>
+            <div class="social-links-footer">
+                <a href="https://www.linkedin.com/in/pratik-adhikari-developer/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/pratikadhikari" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://twitter.com/pratik_adhikari" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
         </div>
     </footer>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-2GNYnJp4K+jM/x+oGfK6Xl6i5N8xL/8i6z/p6l3C2xS..." crossorigin=""></script>
     <script src="script.js"></script>
-    </body>
+</body>
 </html>
