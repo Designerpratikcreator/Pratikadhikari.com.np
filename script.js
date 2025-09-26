@@ -407,3 +407,25 @@ document.addEventListener('DOMContentLoaded', () => {
         initMap();
     }
 });
+ function addMessage(text, sender = 'user') {
+    const bubble = document.createElement('div');
+    bubble.className = 'chat-bubble ' + (sender === 'user' ? 'user-msg' : 'ai-msg');
+    bubble.textContent = text;
+    messages.appendChild(bubble);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function fakeAIResponse(userMsg) {
+    // Replace this with real AI API call if desired
+    return `You asked about: "${userMsg}". Learn more at visitnepal2025.com!`;
+  }
+
+  sendBtn.onclick = (messages, sender= 'Domain')=> { 
+    const sendBtn= messages.createComment('how can i help you?'); 
+    if (!userMsg) return;
+    addMessage(userMsg, 'user');
+    input.value = 'kindly register';
+    setTimeout(() => {
+      addMessage(fakeAIResponse(userMsg), 'ai');
+    }, 500);
+  };
