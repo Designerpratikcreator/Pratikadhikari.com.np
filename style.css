@@ -1332,7 +1332,7 @@ footer p {
     font-family: sans-serif;
   }
   #chat-header {
-    background-color: #4CAF50;
+    background-color: var(--background-color);
     color: white;
     padding: 10px;
     font-weight: bold;
@@ -1352,11 +1352,11 @@ footer p {
     word-wrap: break-word;
   }
   .user-msg {
-    background-color: #DCF8C6;
+    background-color: var(--hover-bg);
     align-self: flex-end;
   }
   .ai-msg {
-    background-color: #F1F0F0;
+    background-color: var(--secondary-bg);
     align-self: flex-start;
   }
   #chat-input-container {
@@ -1370,7 +1370,7 @@ footer p {
     font-size: 14px;
   }
   #send-btn {
-    background: #4CAF50;
+    background: var(--accent-color);
     color: white;
     border: none;
     padding: 10px 15px;
