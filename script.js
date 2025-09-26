@@ -1,17 +1,20 @@
-
-
 document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    const themeSwitcher = document.getElementById('theme-switcher');
+    // --- Common Elements ---
     const body = document.body;
 
-    // --- Hamburger Menu Toggle ---
+    // --- Hamburger Menu and Mobile Navigation ---
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
     if (hamburger && navLinks) {
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-            hamburger.querySelector('i').classList.toggle('fa-bars');
-            hamburger.querySelector('i').classList.toggle('fa-times'); // Change icon to 'X'
+            // Toggle hamburger icon between bars and an 'X'
+            const icon = hamburger.querySelector('i');
+            if (icon) {
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            }
         });
 
         // Close mobile nav when a link is clicked
@@ -19,15 +22,22 @@ document.addEventListener('DOMContentLoaded', () => {
             link.addEventListener('click', () => {
                 if (navLinks.classList.contains('active')) {
                     navLinks.classList.remove('active');
-                    hamburger.querySelector('i').classList.remove('fa-times');
-                    hamburger.querySelector('i').classList.add('fa-bars');
+                    const icon = hamburger.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
                 }
             });
         });
     }
 
     // --- Theme Switcher (Light/Dark Mode) ---
+    // This is the more robust version from your original code.
+    const themeSwitcher = document.getElementById('theme-switcher');
+
     if (themeSwitcher) {
+        // Apply saved theme on page load
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme) {
             body.classList.add(savedTheme);
@@ -35,202 +45,77 @@ document.addEventListener('DOMContentLoaded', () => {
                 themeSwitcher.checked = true;
             }
         } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // Check for user's system preference
             body.classList.add('dark-mode');
             themeSwitcher.checked = true;
         }
 
         themeSwitcher.addEventListener('change', () => {
             if (themeSwitcher.checked) {
+                body.classList.remove('light-mode');
                 body.classList.add('dark-mode');
-                body.classList.remove('light-mode'); // Ensure light-mode is removed if present
                 localStorage.setItem('theme', 'dark-mode');
             } else {
                 body.classList.remove('dark-mode');
-                body.classList.add('light-mode'); // Add light-mode class for explicit light theme
+                body.classList.add('light-mode');
                 localStorage.setItem('theme', 'light-mode');
             }
+            // Re-apply skill bar colors after theme change
+            updateSkillBarColors();
         });
     }
-     // --- Hero Section Typing Effect ---
+
+    // --- Hero Section Typing Effect ---
     const typingTextElement = document.getElementById('typing-text');
     if (typingTextElement) {
-        const phrases = [
-            "Searches.",
-            "Cases.",
-            "Privacy.",
-            "Supports.",
-         
-        ];
+        const phrases = ["Searches.", "Cases.", "Privacy.", "Supports."];
         let phraseIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
-        const typingSpeed = 100; // milliseconds per character
-        const deletingSpeed = 60; // milliseconds per character
-        const pauseBetweenPhrases = 1500; // milliseconds
+        const typingSpeed = 100;
+        const deletingSpeed = 60;
+        const pauseBetweenPhrases = 1500;
 
         function type() {
             const currentPhrase = phrases[phraseIndex];
-            let displayText = '';
-
             if (isDeleting) {
-                displayText = currentPhrase.substring(0, charIndex - 1);
+                typingTextElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
             } else {
-                displayText = currentPhrase.substring(0, charIndex + 1);
+                typingTextElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
             }
 
-            typingTextElement.textContent = displayText;
-
-            let typeSpeed = typingSpeed;
-            if (isDeleting) {
-                typeSpeed = deletingSpeed;
-            }
+            let speed = isDeleting ? deletingSpeed : typingSpeed;
 
             if (!isDeleting && charIndex === currentPhrase.length) {
-                typeSpeed = pauseBetweenPhrases;
+                speed = pauseBetweenPhrases;
                 isDeleting = true;
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 phraseIndex = (phraseIndex + 1) % phrases.length;
             }
 
-            if (isDeleting) {
-                charIndex--;
-            } else {
-                charIndex++;
-            }
-
-            setTimeout(type, typeSpeed);
+            setTimeout(type, speed);
         }
+        type();
+    }
 
-        type(); // Start the typing effect
-    } 
-
-
-// --- 3D Geometric Motion Graphics for Hero Section ---
-    const canvas = document.getElementById('hero-background-canvas');
-    if (canvas && typeof THREE !== 'undefined') { // Ensure THREE is loaded
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true }); // alpha: true for transparent background
-
-        // Set initial size
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(window.devicePixelRatio);
-
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-
-        // Lights
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Softer ambient light
-        scene.add(ambientLight);
-
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-        directionalLight.position.set(5, 10, 7.5);
-        scene.add(directionalLight);
-
-        const pointLight1 = new THREE.PointLight(0x00aaff, 1, 100); // Blueish light
-        pointLight1.position.set(-10, 5, 10);
-        scene.add(pointLight1);
-
-        const pointLight2 = new THREE.PointLight(0xff00aa, 1, 100); // Pinkish light
-        pointLight2.position.set(10, -5, -10);
-        scene.add(pointLight2);
-
-        // Geometries and Materials
-        const geometries = [
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.SphereGeometry(0.75, 16, 16), // Reduced segments for performance
-            new THREE.ConeGeometry(0.8, 1.5, 16),
-            new THREE.TorusGeometry(0.7, 0.3, 10, 30), // Reduced segments
-            new THREE.DodecahedronGeometry(0.9) // Simpler dodecahedron
-        ];
-
-        const materials = [
-            new THREE.MeshStandardMaterial({ color: 0x00CED1, metalness: 0.7, roughness: 0.4 }), // Dark Cyan
-            new THREE.MeshStandardMaterial({ color: 0xFFD700, metalness: 0.7, roughness: 0.4 }), // Gold
-            new THREE.MeshStandardMaterial({ color: 0xBA55D3, metalness: 0.7, roughness: 0.4 }), // Medium Orchid
-            new THREE.MeshStandardMaterial({ color: 0x7FFF00, metalness: 0.7, roughness: 0.4 }),  // Chartreuse
-            new THREE.MeshStandardMaterial({ color: 0x1E90FF, metalness: 0.7, roughness: 0.4 })   // Dodger Blue
-        ];
-
-        const objects = [];
-        const numberOfObjects = 40; // Increased number of objects for a richer background
-
-        for (let i = 0; i < numberOfObjects; i++) {
-            const geometry = geometries[Math.floor(Math.random() * geometries.length)];
-            const material = materials[Math.floor(Math.random() * materials.length)];
-            const mesh = new THREE.Mesh(geometry, material);
-
-            // Spread objects over a larger volume
-            mesh.position.x = (Math.random() - 0.5) * 60;
-            mesh.position.y = (Math.random() - 0.5) * 60;
-            mesh.position.z = (Math.random() - 0.5) * 60;
-
-            mesh.rotation.x = Math.random() * Math.PI;
-            mesh.rotation.y = Math.random() * Math.PI;
-            mesh.rotation.z = Math.random() * Math.PI;
-
-            const scale = Math.random() * 0.8 + 0.3; // Random scale between 0.3 and 1.1
-            mesh.scale.set(scale, scale, scale);
-
-            scene.add(mesh);
-            objects.push(mesh);
-        }
-
-        camera.position.z = 25; // Move camera back to view more of the objects
-
-        // Animation Loop
-        const animate = () => {
-            requestAnimationFrame(animate);
-
-            objects.forEach(obj => {
-                obj.rotation.x += 0.002 * (Math.random() * 0.5 + 0.5); // Slower, varied rotation
-                obj.rotation.y += 0.002 * (Math.random() * 0.5 + 0.5);
-                obj.rotation.z += 0.002 * (Math.random() * 0.5 + 0.5);
-
-                // Subtle floating/drifting motion
-                obj.position.x += Math.sin(Date.now() * 0.00003 + obj.uuid.charCodeAt(0)) * 0.01;
-                obj.position.y += Math.cos(Date.now() * 0.00003 + obj.uuid.charCodeAt(1)) * 0.01;
-                obj.position.z += Math.sin(Date.now() * 0.00003 + obj.uuid.charCodeAt(2)) * 0.01;
-
-                // Simple wrap-around logic for objects that go too far
-                const bound = 30; // Half of the 60 unit spread
-                if (obj.position.x > bound) obj.position.x = -bound;
-                if (obj.position.x < -bound) obj.position.x = bound;
-                if (obj.position.y > bound) obj.position.y = -bound;
-                if (obj.position.y < -bound) obj.position.y = bound;
-                if (obj.position.z > bound) obj.position.z = -bound;
-                if (obj.position.z < -bound) obj.position.z = bound;
-            });
-
-            renderer.render(scene, camera);
-        };
-        animate();
-    } else if (canvas) {
-        console.warn("Three.js not loaded. Hero background animation will not be displayed.");
-    } 
     // --- Set current year in footer ---
     const currentYearSpan = document.getElementById('current-year');
     if (currentYearSpan) {
         currentYearSpan.textContent = new Date().getFullYear();
     }
 
-
     // --- Navbar Active State on Scroll ---
     const sections = document.querySelectorAll('section');
     const navLinksList = document.querySelectorAll('.nav-links li a');
-
     const observerOptions = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.5 // Adjust threshold as needed
+        threshold: 0.5
     };
-
-    const observer = new IntersectionObserver((entries, observer) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 navLinksList.forEach(link => {
@@ -243,129 +128,174 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    sections.forEach(section => {
-        observer.observe(section);
-    });
+    sections.forEach(section => observer.observe(section));
 
-    // Optional: Highlight Home when at top of page or scrolling fast
     window.addEventListener('scroll', () => {
-        if (window.scrollY < 100) { // If near top, activate home
+        if (window.scrollY < 100) {
             navLinksList.forEach(link => link.classList.remove('active'));
-            document.querySelector('.nav-links li a[href="#home"]').classList.add('active');
+            const homeLink = document.querySelector('.nav-links li a[href="#home"]');
+            if (homeLink) {
+                homeLink.classList.add('active');
+            }
         }
     });
 
     // --- Skill Level Indicators ---
     const skillListItems = document.querySelectorAll('.skill-category ul li');
-
     const skillsObserverOptions = {
         root: null,
-        rootMargin: '0px 0px -100px 0px', // Trigger when 100px from bottom of viewport
-        threshold: 0.2 // Trigger when 20% of the item is visible
+        rootMargin: '0px 0px -100px 0px',
+        threshold: 0.2
     };
-
     const skillsObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const skillLevel = parseInt(entry.target.dataset.level, 10);
                 const skillBar = entry.target.querySelector('.skill-level-bar');
-
                 if (skillBar) {
-                    // Set width
                     skillBar.style.width = `${skillLevel}%`;
-
-                    // Set color based on level
-                    let colorVar;
-                    if (skillLevel < 40) {
-                        colorVar = body.classList.contains('dark-mode') ? '--dark-skill-level-low' : '--skill-level-low';
-                    } else if (skillLevel < 70) {
-                        colorVar = body.classList.contains('dark-mode') ? '--dark-skill-level-medium' : '--skill-level-medium';
-                    } else if (skillLevel < 90) {
-                        colorVar = body.classList.contains('dark-mode') ? '--dark-skill-level-high' : '--skill-level-high';
-                    } else {
-                        colorVar = body.classList.contains('dark-mode') ? '--dark-skill-level-expert' : '--skill-level-expert';
-                    }
-                    skillBar.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue(colorVar);
+                    updateSkillBarColor(skillBar, skillLevel);
                 }
-                observer.unobserve(entry.target); // Stop observing once animated
+                observer.unobserve(entry.target);
             }
         });
     }, skillsObserverOptions);
 
-    skillListItems.forEach(item => {
-        skillsObserver.observe(item);
-    });
+    skillListItems.forEach(item => skillsObserver.observe(item));
 
-    // Re-apply skill colors on theme change
-    themeSwitcher.addEventListener('change', () => {
+    function updateSkillBarColor(skillBar, skillLevel) {
+        let colorVar;
+        if (skillLevel < 40) {
+            colorVar = body.classList.contains('dark-mode') ? '--dark-skill-level-low' : '--skill-level-low';
+        } else if (skillLevel < 70) {
+            colorVar = body.classList.contains('dark-mode') ? '--dark-skill-level-medium' : '--skill-level-medium';
+        } else if (skillLevel < 90) {
+            colorVar = body.classList.contains('dark-mode') ? '--dark-skill-level-high' : '--skill-level-high';
+        } else {
+            colorVar = body.classList.contains('dark-mode') ? '--dark-skill-level-expert' : '--skill-level-expert';
+        }
+        skillBar.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue(colorVar);
+    }
+
+    function updateSkillBarColors() {
         skillListItems.forEach(item => {
             const skillLevel = parseInt(item.dataset.level, 10);
             const skillBar = item.querySelector('.skill-level-bar');
             if (skillBar) {
-                let colorVar;
-                if (skillLevel < 40) {
-                    colorVar = body.classList.contains('dark-mode') ? '--dark-skill-level-low' : '--skill-level-low';
-                } else if (skillLevel < 70) {
-                    colorVar = body.classList.contains('dark-mode') ? '--dark-skill-level-medium' : '--skill-level-medium';
-                } else if (skillLevel < 90) {
-                    colorVar = body.classList.contains('dark-mode') ? '--dark-skill-level-high' : '--skill-level-high';
-                } else {
-                    colorVar = body.classList.contains('dark-mode') ? '--dark-skill-level-expert' : '--skill-level-expert';
-                }
-                skillBar.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue(colorVar);
+                updateSkillBarColor(skillBar, skillLevel);
             }
-        });
-    });
-
-}); 
-// Function to toggle the navigation menu on small screens
-document.addEventListener('DOMContentLoaded', () => {
-    const navToggle = document.querySelector('.nav-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-
-    if (navToggle && navMenu) {
-        navToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
         });
     }
-});
 
-// Theme toggle functionality
-document.addEventListener('DOMContentLoaded', () => {
-    const themeToggle = document.getElementById('theme-toggle');
-    if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('light-theme');
-            // Store theme preference in localStorage
-            if (document.body.classList.contains('light-theme')) {
-                localStorage.setItem('theme', 'light');
-            } else {
-                localStorage.setItem('theme', 'dark');
-            }
+    // --- 3D Geometric Motion Graphics for Hero Section ---
+    const canvas = document.getElementById('hero-background-canvas');
+    if (canvas && typeof THREE !== 'undefined') {
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
-        // Apply saved theme on page load
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-            document.body.classList.add('light-theme');
-        } else {
-            // Default to dark theme if no preference or 'dark' saved
-            document.body.classList.remove('light-theme');
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        scene.add(ambientLight);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        directionalLight.position.set(5, 10, 7.5);
+        scene.add(directionalLight);
+
+        const pointLight1 = new THREE.PointLight(0x00aaff, 1, 100);
+        pointLight1.position.set(-10, 5, 10);
+        scene.add(pointLight1);
+
+        const pointLight2 = new THREE.PointLight(0xff00aa, 1, 100);
+        pointLight2.position.set(10, -5, -10);
+        scene.add(pointLight2);
+
+        const geometries = [
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.SphereGeometry(0.75, 16, 16),
+            new THREE.ConeGeometry(0.8, 1.5, 16),
+            new THREE.TorusGeometry(0.7, 0.3, 10, 30),
+            new THREE.DodecahedronGeometry(0.9)
+        ];
+
+        const materials = [
+            new THREE.MeshStandardMaterial({ color: 0x00CED1, metalness: 0.7, roughness: 0.4 }),
+            new THREE.MeshStandardMaterial({ color: 0xFFD700, metalness: 0.7, roughness: 0.4 }),
+            new THREE.MeshStandardMaterial({ color: 0xBA55D3, metalness: 0.7, roughness: 0.4 }),
+            new THREE.MeshStandardMaterial({ color: 0x7FFF00, metalness: 0.7, roughness: 0.4 }),
+            new THREE.MeshStandardMaterial({ color: 0x1E90FF, metalness: 0.7, roughness: 0.4 })
+        ];
+
+        const objects = [];
+        const numberOfObjects = 40;
+
+        for (let i = 0; i < numberOfObjects; i++) {
+            const geometry = geometries[Math.floor(Math.random() * geometries.length)];
+            const material = materials[Math.floor(Math.random() * materials.length)];
+            const mesh = new THREE.Mesh(geometry, material);
+
+            mesh.position.x = (Math.random() - 0.5) * 60;
+            mesh.position.y = (Math.random() - 0.5) * 60;
+            mesh.position.z = (Math.random() - 0.5) * 60;
+
+            mesh.rotation.x = Math.random() * Math.PI;
+            mesh.rotation.y = Math.random() * Math.PI;
+            mesh.rotation.z = Math.random() * Math.PI;
+
+            const scale = Math.random() * 0.8 + 0.3;
+            mesh.scale.set(scale, scale, scale);
+
+            scene.add(mesh);
+            objects.push(mesh);
         }
-    }
-});
 
-    // **IMPORTANT: The API key is set by the environment.**
-    // **DO NOT** replace this with your own key.
+        camera.position.z = 25;
+
+        const animate = () => {
+            requestAnimationFrame(animate);
+            objects.forEach(obj => {
+                obj.rotation.x += 0.002 * (Math.random() * 0.5 + 0.5);
+                obj.rotation.y += 0.002 * (Math.random() * 0.5 + 0.5);
+                obj.rotation.z += 0.002 * (Math.random() * 0.5 + 0.5);
+
+                const driftSpeed = 0.01;
+                obj.position.x += Math.sin(Date.now() * 0.00003 + obj.uuid.charCodeAt(0)) * driftSpeed;
+                obj.position.y += Math.cos(Date.now() * 0.00003 + obj.uuid.charCodeAt(1)) * driftSpeed;
+                obj.position.z += Math.sin(Date.now() * 0.00003 + obj.uuid.charCodeAt(2)) * driftSpeed;
+
+                const bound = 30;
+                if (obj.position.x > bound) obj.position.x = -bound;
+                if (obj.position.x < -bound) obj.position.x = bound;
+                if (obj.position.y > bound) obj.position.y = -bound;
+                if (obj.position.y < -bound) obj.position.y = bound;
+                if (obj.position.z > bound) obj.position.z = -bound;
+                if (obj.position.z < -bound) obj.position.z = bound;
+            });
+            renderer.render(scene, camera);
+        };
+        animate();
+    } else if (canvas) {
+        console.warn("Three.js not loaded. Hero background animation will not be displayed.");
+    }
+
+    // --- Google Maps Animation ---
+    // You must replace "YOUR_MAP_ID" with your own Map ID to get this to work.
+    // The API Key is expected to be set by the environment.
     const apiKey = "";
     let map, motorbikeMarker, polyline, animationId;
     let isAnimating = false;
     let currentIndex = 0;
     let progress = 0;
-    const animationSpeed = 0.005; // Adjust this value for speed (0.001 to 0.01)
+    const animationSpeed = 0.005;
 
-    // The SVG icon for the motorbike as a Data URI
-    // This keeps the entire solution in a single file
     const motorbikeIcon = {
         url: 'data:image/svg+xml;utf-8,' +
             '<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg">' +
@@ -380,31 +310,16 @@ document.addEventListener('DOMContentLoaded', () => {
         anchor: new google.maps.Point(20, 20)
     };
 
-    // Pre-defined path coordinates for the motorbike to follow
-    // These points trace a winding path in Lalitpur, Nepal (Gwarko area).
     const pathCoordinates = [
-        { lat: 27.68725, lng: 85.33758 },
-        { lat: 27.68750, lng: 85.33950 },
-        { lat: 27.68800, lng: 85.34000 },
-        { lat: 27.68900, lng: 85.34050 },
-        { lat: 27.69000, lng: 85.34100 },
-        { lat: 27.69100, lng: 85.34050 },
-        { lat: 27.69200, lng: 85.33900 },
-        { lat: 27.69150, lng: 85.33700 },
-        { lat: 27.69100, lng: 85.33600 },
-        { lat: 27.69000, lng: 85.33500 },
-        { lat: 27.68900, lng: 85.33550 },
-        { lat: 27.68800, lng: 85.33650 },
+        { lat: 27.68725, lng: 85.33758 }, { lat: 27.68750, lng: 85.33950 },
+        { lat: 27.68800, lng: 85.34000 }, { lat: 27.68900, lng: 85.34050 },
+        { lat: 27.69000, lng: 85.34100 }, { lat: 27.69100, lng: 85.34050 },
+        { lat: 27.69200, lng: 85.33900 }, { lat: 27.69150, lng: 85.33700 },
+        { lat: 27.69100, lng: 85.33600 }, { lat: 27.69000, lng: 85.33500 },
+        { lat: 27.68900, lng: 85.33550 }, { lat: 27.68800, lng: 85.33650 },
         { lat: 27.68725, lng: 85.33758 }
     ];
 
-    /**
-     * Helper function to get an intermediate point between two coordinates.
-     * @param {Object} start - The starting LatLng object.
-     * @param {Object} end - The ending LatLng object.
-     * @param {number} t - The progress (0.0 to 1.0).
-     * @returns {Object} The interpolated LatLng object.
-     */
     function interpolate(start, end, t) {
         return {
             lat: start.lat + (end.lat - start.lat) * t,
@@ -412,12 +327,8 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    /**
-     * Animates the motorbike marker along the predefined path.
-     */
     function animateMotorbike() {
         progress += animationSpeed;
-
         if (progress >= 1) {
             progress = 0;
             currentIndex = (currentIndex + 1) % pathCoordinates.length;
@@ -430,19 +341,14 @@ document.addEventListener('DOMContentLoaded', () => {
         animationId = requestAnimationFrame(animateMotorbike);
     }
 
-    /**
-     * Initializes the Google Map and all its components.
-     */
     function initMap() {
         const mapCenter = pathCoordinates[0];
-
         map = new google.maps.Map(document.getElementById("map"), {
             zoom: 17,
             center: mapCenter,
-            mapId: "YOUR_MAP_ID", // Optional: use your own map style ID
+            mapId: "YOUR_MAP_ID",
         });
 
-        // Create the path on the map
         polyline = new google.maps.Polyline({
             path: pathCoordinates,
             geodesic: true,
@@ -452,7 +358,6 @@ document.addEventListener('DOMContentLoaded', () => {
             map: map,
         });
 
-        // Create the motorbike marker at the start of the path
         motorbikeMarker = new google.maps.Marker({
             position: mapCenter,
             icon: motorbikeIcon,
@@ -460,41 +365,45 @@ document.addEventListener('DOMContentLoaded', () => {
             title: "Motorbike",
         });
 
-        // Hide the loading overlay once the map is ready
-        document.getElementById("loading-overlay").style.display = 'none';
+        const loadingOverlay = document.getElementById("loading-overlay");
+        if (loadingOverlay) {
+            loadingOverlay.style.display = 'none';
+        }
 
-        // Event listener for the toggle button
-        document.getElementById("toggle-animation").addEventListener('click', () => {
-            if (isAnimating) {
-                cancelAnimationFrame(animationId);
-                document.getElementById("toggle-animation").textContent = "Start Animation";
-            } else {
-                animateMotorbike();
-                document.getElementById("toggle-animation").textContent = "Stop Animation";
-            }
-            isAnimating = !isAnimating;
-        });
+        const toggleButton = document.getElementById("toggle-animation");
+        if (toggleButton) {
+            toggleButton.addEventListener('click', () => {
+                if (isAnimating) {
+                    cancelAnimationFrame(animationId);
+                    toggleButton.textContent = "Start Animation";
+                } else {
+                    animateMotorbike();
+                    toggleButton.textContent = "Stop Animation";
+                }
+                isAnimating = !isAnimating;
+            });
+        }
 
-        // Initial animation start
         animateMotorbike();
         isAnimating = true;
     }
 
-    /**
-     * Dynamically loads the Google Maps JavaScript API script.
-     */
-    function loadScript() {
+    // Check if the Google Maps API has already been loaded, if not, load it.
+    // This is a safer way to handle the script loading.
+    if (typeof google === 'undefined' || typeof google.maps === 'undefined') {
         const script = document.createElement("script");
         script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
         script.async = true;
         document.head.appendChild(script);
 
-        // Fallback if the script doesn't load
         script.onerror = () => {
-            document.getElementById("loading-overlay").innerHTML = '<p class="text-red-500">Failed to load Google Maps. Please check your network connection.</p>';
+            const loadingOverlay = document.getElementById("loading-overlay");
+            if (loadingOverlay) {
+                loadingOverlay.innerHTML = '<p class="text-red-500">Failed to load Google Maps. Please check your network connection.</p>';
+            }
         };
+    } else {
+        // If the map API is already loaded, just initialize the map
+        initMap();
     }
-
-    // Start the whole process when the window loads
-    window.onload = loadScript;
-
+});
