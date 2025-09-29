@@ -32,6 +32,39 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    document.addEventListener('DOMContentLoaded', () => {
+  const hrSection = document.querySelector('nav ul > li');
+  const dropdown = document.querySelector('.dropdown');
+
+  // Toggle dropdown on click for better mobile support
+  hrSection.addEventListener('click', () => {
+    dropdown.classList.toggle('visible');
+  });
+
+  // Example of handling content for each dropdown item
+  const executiveProfileLink = document.querySelector('.dropdown li:first-child a');
+  executiveProfileLink.addEventListener('click', () => {
+    displayExecutiveProfiles();
+  });
+});
+
+function displayExecutiveProfiles() {
+  const contentArea = document.getElementById('content-area');
+  contentArea.innerHTML = `
+    <h2>Executive Profile</h2>
+    <div class="profile-card">
+      <img src="ceo.jpg" alt="CEO" />
+      <h3>CEO</h3>
+      <p>Educational Background: MBA from Harvard Business School</p>
+    </div>
+    <div class="profile-card">
+      <img src="md.jpg" alt="Managing Director" />
+      <h3>Managing Director</h3>
+      <p>Educational Background: Masters in Engineering from Stanford University</p>
+    </div>
+    `;
+}
+
     // --- Theme Switcher (Light/Dark Mode) ---
     // This is the more robust version from your original code.
     const themeSwitcher = document.getElementById('theme-switcher');
