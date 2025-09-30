@@ -150,20 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (skillBar) updateSkillBarColor(skillBar, skillLevel);
         });
     }
-
-    // --- Slideshow ---
-    const slides = document.querySelectorAll('.slideshow img');
-    let current = 0;
-
-    function showNextSlide() {
-        if (slides.length === 0) return;
-        slides[current].classList.remove('active');
-        current = (current + 1) % slides.length;
-        slides[current].classList.add('active');
-    }
-
-    if (slides.length > 0) setInterval(showNextSlide, 5000);
-
+    
     // --- Chatbot ---
     const messages = document.getElementById('chat-messages');
     const input = document.getElementById('chat-input');
