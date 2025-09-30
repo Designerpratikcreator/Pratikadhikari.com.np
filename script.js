@@ -286,6 +286,18 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn("Three.js not loaded. Hero background animation will not be displayed.");
     }
 
+    const slides = document.querySelectorAll('.slideshow img');
+    let current = 0;
+
+    function showNextSlide() {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }
+
+    // Change slide every 5 seconds
+    setInterval(showNextSlide, 5000);
+
     // --- Google Maps Animation ---
     // You must replace "YOUR_MAP_ID" with your own Map ID to get this to work.
     // The API Key is expected to be set by the environment.
