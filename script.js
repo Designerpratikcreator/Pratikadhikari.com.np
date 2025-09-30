@@ -193,5 +193,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 addMessage(fakeAIResponse(userMsg), 'ai');
             }, 500);
         };
+
+        // Send with Enter key
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                sendBtn.click();
+            }
+        });
     }
 });
