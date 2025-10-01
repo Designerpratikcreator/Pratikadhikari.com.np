@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Hero Section Typing Effect ---
     const typingTextElement = document.getElementById('typing-text');
     if (typingTextElement) {
-        const phrases = ["Equality.", "Education.", "Liberty.", "Vulnerable."];
+        const phrases = ["Equality.", "Education.", "Liberty.", "Vulnerable.","Sustainable Development."];
         let phraseIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
