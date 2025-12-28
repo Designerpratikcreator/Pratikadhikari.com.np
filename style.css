@@ -784,105 +784,19 @@ body.dark-mode .timeline-content ul {
 
  
 /* --- Projects Section --- */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-xl);
+.project{max-width:900px;margin:auto}
+.slides{height:280px;position:relative;overflow:hidden}
+.slides img{
+  position:absolute;width:100%;height:100%;object-fit:cover;
+  animation:slide 9s infinite;opacity:0
 }
+.slides img:nth-child(1){animation-delay:0s}
+.slides img:nth-child(2){animation-delay:3s}
+.slides img:nth-child(3){animation-delay:6s}
 
-.project-card {
-    background-color: var(--card-background);
-    border-radius: var(--border-radius-md);
-    box-shadow: 0 4px 15px var(--shadow-light);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid var(--border-color);
-}
-.project-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 25px var(--shadow-light);
-}
-body.dark-mode .project-card {
-    background-color: var(--dark-card-background);
-    border-color: var(--dark-border-color);
-    box-shadow: 0 4px 15px var(--dark-shadow);
-}
-body.dark-mode .project-card:hover {
-    box-shadow: 0 8px 25px var(--dark-shadow);
-}
-
-.project-card img {
-    width: 100%;
-    height: 220px; /* Slightly increased height for better visual */
-    object-fit: cover;
-    display: block;
-}
-
-.project-info {
-    padding: var(--spacing-lg); /* Increased from md */
-}
-
-.project-info h3 {
-    font-size: 1.5em;
-    color: var(--text-color);
-    margin-bottom: var(--spacing-xs);
-}
-
-.project-info p {
-    font-size: 1em; /* Slightly increased */
-    color: var(--text-color);
-    margin-bottom: var(--spacing-md);
-}
-body.dark-mode .project-info p {
-    color: var(--dark-secondary-color);
-}
-
-.project-tech {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-sm); /* Increased from xs */
-    margin-bottom: var(--spacing-md);
-}
-
-.project-tech span {
-    background-color: var(--hover-bg);
-    color: var(--secondary-color);
-    padding: 0.5rem 0.9rem; /* Slightly adjusted padding */
-    border-radius: var(--border-radius-sm);
-    font-size: 0.85em; /* Slightly larger font */
-    font-weight: 500;
-    white-space: nowrap;
-    border: 1px solid var(--border-color);
-}
-body.dark-mode .project-tech span {
-    background-color: var(--dark-hover-bg);
-    border-color: var(--dark-border-color);
-    color: var(--dark-text-color);
-}
-
-.project-links {
-    display: flex;
-    gap: var(--spacing-md);
-    flex-wrap: wrap;
-}
-
-.btn-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--text-color);
-    font-weight: 600;
-    transition: color 0.2s ease, transform 0.2s ease;
-}
-.btn-link:hover {
-    color: var(--accent-color);
-    transform: translateX(5px);
-}
-body.dark-mode .btn-link {
-    color: var(--dark-primary-color);
-}
-body.dark-mode .btn-link:hover {
-    color: var(--dark-accent-color);
+@keyframes slide{
+  0%,100%{opacity:0}
+  10%,30%{opacity:1}
 }
 
 
