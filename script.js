@@ -187,6 +187,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+<script>
+let i=0,p=document.querySelectorAll('.project');
+setInterval(()=>{p.forEach(x=>x.style.display='none');p[i].style.display='block';i=(i+1)%p.length},8000);
+</script>
+
     // --- 3D Geometric Motion Graphics for Hero Section ---
     const canvas = document.getElementById('hero-background-canvas');
     if (canvas && typeof THREE !== 'undefined') {
