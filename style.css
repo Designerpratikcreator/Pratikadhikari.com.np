@@ -4,9 +4,9 @@
     --primary-color: #212122;  /* INK BLACK */
     --secondary-color: #FFC0CB; /* pink for better contrast */
     --accent-color: #990000; /* A more subtle, natural green */
-    --text-color: #FFFFFF; /* Purple for body text */
-    --background-color: #2C5F2D; /* green color */
-    --card-background: #87CEEB;
+    --text-color: #6ca0dc; /* Skyblue for body text */
+    --background-color: #e49b0f; /* orange color */
+    --card-background: #369369;
     --border-color: #f96161; /* Light border */
     --header-bg: rgba(255, 255, 255, 0.95);
     --footer-bg: #2d3748; /* Darker footer for contrast */
