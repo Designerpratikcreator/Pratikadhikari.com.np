@@ -442,3 +442,102 @@ document.addEventListener('DOMContentLoaded', () => {
       addMessage(fakeAIResponse(userMsg), 'ai');
     }, 500);
   };
+/* ===============================
+ADVANCED UX FEATURES
+=============================== */
+
+// PRELOADER
+window.addEventListener("load", ()=>{
+const preloader = document.getElementById("preloader");
+if(preloader){
+preloader.style.opacity="0";
+setTimeout(()=>preloader.style.display="none",500);
+}
+});
+
+
+// SCROLL PROGRESS BAR
+window.addEventListener("scroll", ()=>{
+const progress = document.getElementById("scroll-progress");
+const scrollTop = document.documentElement.scrollTop;
+const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+const scrolled = (scrollTop / height) * 100;
+if(progress) progress.style.width = scrolled + "%";
+});
+
+
+// BACK TO TOP BUTTON
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll",()=>{
+if(window.scrollY > 400){
+backToTop.style.display="block";
+}else{
+backToTop.style.display="none";
+}
+});
+
+if(backToTop){
+backToTop.addEventListener("click",()=>{
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+});
+}
+
+
+// CUSTOM CURSOR
+const cursor = document.querySelector(".custom-cursor");
+
+document.addEventListener("mousemove",(e)=>{
+if(cursor){
+cursor.style.left = e.clientX + "px";
+cursor.style.top = e.clientY + "px";
+}
+});
+
+
+// SCROLL REVEAL
+const revealElements = document.querySelectorAll("section, .card, .project-card");
+
+const revealObserver = new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("active");
+}
+});
+},{threshold:0.15});
+
+revealElements.forEach(el=>{
+el.classList.add("reveal");
+revealObserver.observe(el);
+});
+
+
+// ACTIVE NAV LINK
+const sections = document.querySelectorAll("section");
+const navLi = document.querySelectorAll(".nav-links a");
+
+window.addEventListener("scroll",()=>{
+
+let current="";
+
+sections.forEach(section=>{
+const sectionTop = section.offsetTop - 200;
+
+if(pageYOffset >= sectionTop){
+current = section.getAttribute("id");
+}
+});
+
+navLi.forEach(a=>{
+a.classList.remove("active");
+
+if(a.getAttribute("href") === "#"+current){
+a.classList.add("active");
+}
+
+});
+
+});
