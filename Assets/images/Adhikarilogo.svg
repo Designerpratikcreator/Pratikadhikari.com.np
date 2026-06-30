@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Emotional Atmosphere Gradients -->
+    <linearGradient id="skyPerspective" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2A0845" /> <!-- Deep Velvet Inner World -->
+      <stop offset="50%" stop-color="#64001F" />
+      <stop offset="100%" stop-color="#120D0A" /> <!-- Dark Creative Void -->
+    </linearGradient>
+
+    <linearGradient id="expressiveGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF5D6" />
+      <stop offset="35%" stop-color="#FF9000" /> <!-- Pure Creative Ignition -->
+      <stop offset="70%" stop-color="#B83F00" />
+      <stop offset="100%" stop-color="#4A1200" /> <!-- Terracotta Root -->
+    </linearGradient>
+
+    <filter id="creativeGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Deep Velvet Studio Canvas Background -->
+  <rect width="100%" height="100%" fill="#0E0A08" />
+
+  <!-- Perspective Grid Lines (The Artist Mapping the Surrounding World) -->
+  <g stroke="#3A251C" stroke-width="0.5" opacity="0.6">
+    <line x1="250" y1="220" x2="0" y2="500" />
+    <line x1="250" y1="220" x2="100" y2="500" />
+    <line x1="250" y1="220" x2="200" y2="500" />
+    <line x1="250" y1="220" x2="300" y2="500" />
+    <line x1="250" y1="220" x2="400" y2="500" />
+    <line x1="250" y1="220" x2="500" y2="500" />
+    <!-- Transverse Horizon Rings -->
+    <ellipse cx="250" cy="220" rx="120" ry="40" fill="none" />
+    <ellipse cx="250" cy="220" rx="180" ry="60" fill="none" />
+  </g>
+
+  <!-- The Main Frame: Fluid, Asymmetrical Palette Rim -->
+  <path d="M 120,420 C 40,360 20,220 100,120 C 180,20 340,40 410,140 C 480,240 440,380 350,430 C 270,470 180,460 120,420 Z" 
+        fill="url(#skyPerspective)" stroke="url(#expressiveGold)" stroke-width="4" filter="url(#creativeGlow)" />
+
+  <!-- Surrounding Environment: Abstract Organic Swirls (Your Impression of the World) -->
+  <g fill="none" stroke="url(#expressiveGold)" stroke-linecap="round">
+    <!-- Left Atmospheric Flow -->
+    <path d="M 90,200 C 60,260 80,340 140,370" stroke-width="2" opacity="0.7"/>
+    <path d="M 75,180 C 40,250 60,360 130,400" stroke-width="1" opacity="0.4"/>
+    
+    <!-- Right Structured Perspective Swirl (Mirroring Fine Art Brushstrokes) -->
+    <path d="M 380,160 C 430,220 420,320 340,380" stroke-width="3" />
+    <path d="M 360,140 C 410,190 440,290 360,350" stroke-width="1.5" />
+  </g>
+
+  <!-- The Character Core: The Creative Observer Looking Inward/Outward -->
+  <g id="character-avatar" transform="translate(250, 240)">
+    <!-- Abstract Head & Third Eye / Creative Vision Node -->
+    <circle cx="0" cy="-55" r="16" fill="url(#expressiveGold)" />
+    <circle cx="0" cy="-55" r="4" fill="#FFF" filter="url(#creativeGlow)" />
+    
+    <!-- Expressive, Chiseled Silhouette of the Artist's Form -->
+    <path d="M -30,40 C -25,-10 -20,-30 0,-35 C 20,-30 25,-10 30,40 C 15,35 0,35 -30,40 Z" fill="url(#expressiveGold)" />
+    
+    <!-- Horizon Line Crossing the Mind -->
+    <line x1="-80" y1="-35" x2="80" y2="-35" stroke="#FFF" stroke-width="1" opacity="0.3" stroke-dasharray="4 4" />
+  </g>
+
+  <!-- Flowing Text Paths wrapped along your personal expression curves -->
+  <path id="adhikariTextPath" d="M 95,150 C 150,50 320,50 385,140" fill="none" stroke="none" />
+  <path id="experienceTextPath" d="M 130,410 C 200,465 310,455 365,395" fill="none" stroke="none" />
+
+  <!-- Typographic Layout -->
+  <text font-family="'Cinzel', 'Georgia', serif" font-weight="700" font-size="26" fill="url(#expressiveGold)" letter-spacing="6" text-anchor="middle">
+    <textPath href="#adhikariTextPath" startOffset="50%">ADHIKARI</textPath>
+  </text>
+
+  <text font-family="'Montserrat', 'Helvetica', sans-serif" font-weight="600" font-size="12" fill="#FFF" opacity="0.9" letter-spacing="5" text-anchor="middle">
+    <textPath href="#experienceTextPath" startOffset="50%">VISUAL EXPRESSION</textPath>
+  </text>
+
+  <!-- Focal Dynamic Spark (The Moment of Interpretation) -->
+  <circle cx="250" cy="225" r="2" fill="#FFF" filter="url(#creativeGlow)" />
+</svg>
