@@ -1,543 +1,141 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Common Elements ---
-    const body = document.body;
-
-    // --- Hamburger Menu and Mobile Navigation ---
+    // Nav / Hamburger Menu
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
 
     if (hamburger && navLinks) {
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-            // Toggle hamburger icon between bars and an 'X'
             const icon = hamburger.querySelector('i');
             if (icon) {
                 icon.classList.toggle('fa-bars');
                 icon.classList.toggle('fa-times');
             }
         });
-
-        // Close mobile nav when a link is clicked
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    const icon = hamburger.querySelector('i');
-                    if (icon) {
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
-                    }
-                }
-            });
-        });
     }
 
-    // --- Theme Switcher (Light/Dark Mode) ---
-    // This is the more robust version from your original code.
+    // Theme Switcher
     const themeSwitcher = document.getElementById('theme-switcher');
-
     if (themeSwitcher) {
-        // Apply saved theme on page load
         const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            body.classList.add(savedTheme);
-            if (savedTheme === 'dark-mode') {
-                themeSwitcher.checked = true;
-            }
-        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            // Check for user's system preference
-            body.classList.add('dark-mode');
+        if (savedTheme === 'dark-mode') {
+            document.body.classList.add('dark-mode');
             themeSwitcher.checked = true;
         }
 
         themeSwitcher.addEventListener('change', () => {
             if (themeSwitcher.checked) {
-                body.classList.remove('light-mode');
-                body.classList.add('dark-mode');
+                document.body.classList.add('dark-mode');
                 localStorage.setItem('theme', 'dark-mode');
             } else {
-                body.classList.remove('dark-mode');
-                body.classList.add('light-mode');
+                document.body.classList.remove('dark-mode');
                 localStorage.setItem('theme', 'light-mode');
             }
-            // Re-apply skill bar colors after theme change
-            updateSkillBarColors();
         });
     }
 
-    // --- Hero Section Typing Effect ---
-    const typingTextElement = document.getElementById('typing-text');
-    if (typingTextElement) {
-        const phrases = ["EVERY CLASS TO ANY NUMBER"];
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typingSpeed = 100;
-        const deletingSpeed = 60;
-        const pauseBetweenPhrases = 1500;
-
+    // Typing Effect
+    const typingText = document.getElementById('typing-text');
+    if (typingText) {
+        const text = "EVERY CLASS TO ANY NUMBER";
+        let idx = 0;
         function type() {
-            const currentPhrase = phrases[phraseIndex];
-            if (isDeleting) {
-                typingTextElement.textContent = currentPhrase.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typingTextElement.textContent = currentPhrase.substring(0, charIndex + 1);
-                charIndex++;
+            if (idx < text.length) {
+                typingText.textContent += text.charAt(idx);
+                idx++;
+                setTimeout(type, 100);
             }
-
-            let speed = isDeleting ? deletingSpeed : typingSpeed;
-
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                speed = pauseBetweenPhrases;
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-            }
-
-            setTimeout(type, speed);
         }
         type();
     }
 
-    // --- Set current year in footer ---
-    const currentYearSpan = document.getElementById('current-year');
-    if (currentYearSpan) {
-        currentYearSpan.textContent = new Date().getFullYear();
-    }
+    // Set Year
+    const yearSpan = document.getElementById('current-year');
+    if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
-    // --- Navbar Active State on Scroll ---
-    const sections = document.querySelectorAll('section');
-    const navLinksList = document.querySelectorAll('.nav-links li a');
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.5
-    };
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                navLinksList.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + entry.target.id) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-        });
-    }, observerOptions);
-
-    sections.forEach(section => observer.observe(section));
-
-    window.addEventListener('scroll', () => {
-        if (window.scrollY < 100) {
-            navLinksList.forEach(link => link.classList.remove('active'));
-            const homeLink = document.querySelector('.nav-links li a[href="#home"]');
-            if (homeLink) {
-                homeLink.classList.add('active');
-            }
-        }
-    });
-
-    // --- Skill Level Indicators ---
-    const skillListItems = document.querySelectorAll('.skill-category ul li');
-    const skillsObserverOptions = {
-        root: null,
-        rootMargin: '0px 0px -100px 0px',
-        threshold: 0.2
-    };
-    const skillsObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const skillLevel = parseInt(entry.target.dataset.level, 10);
-                const skillBar = entry.target.querySelector('.skill-level-bar');
-                if (skillBar) {
-                    skillBar.style.width = `${skillLevel}%`;
-                    updateSkillBarColor(skillBar, skillLevel);
-                }
-                observer.unobserve(entry.target);
-            }
-        });
-    }, skillsObserverOptions);
-
-    skillListItems.forEach(item => skillsObserver.observe(item));
-
-    function updateSkillBarColor(skillBar, skillLevel) {
-        let colorVar;
-        if (skillLevel < 40) {
-            colorVar = body.classList.contains('dark-mode') ? '--dark-skill-level-low' : '--skill-level-low';
-        } else if (skillLevel < 70) {
-            colorVar = body.classList.contains('dark-mode') ? '--dark-skill-level-medium' : '--skill-level-medium';
-        } else if (skillLevel < 90) {
-            colorVar = body.classList.contains('dark-mode') ? '--dark-skill-level-high' : '--skill-level-high';
-        } else {
-            colorVar = body.classList.contains('dark-mode') ? '--dark-skill-level-expert' : '--skill-level-expert';
-        }
-        skillBar.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue(colorVar);
-    }
-
-    function updateSkillBarColors() {
-        skillListItems.forEach(item => {
-            const skillLevel = parseInt(item.dataset.level, 10);
-            const skillBar = item.querySelector('.skill-level-bar');
-            if (skillBar) {
-                updateSkillBarColor(skillBar, skillLevel);
-            }
-        });
-    }
-
-
-    // --- 3D Geometric Motion Graphics for Hero Section ---
+    // 3D Three.js Visualizer
     const canvas = document.getElementById('hero-background-canvas');
     if (canvas && typeof THREE !== 'undefined') {
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
-
         renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(window.devicePixelRatio);
 
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
+        const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+        const material = new THREE.MeshBasicMaterial({ color: 0x5b86e5, wireframe: true });
+        const torus = new THREE.Mesh(geometry, material);
+        scene.add(torus);
 
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-        scene.add(ambientLight);
+        camera.position.z = 30;
 
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-        directionalLight.position.set(5, 10, 7.5);
-        scene.add(directionalLight);
-
-        const pointLight1 = new THREE.PointLight(0x00aaff, 1, 100);
-        pointLight1.position.set(-10, 5, 10);
-        scene.add(pointLight1);
-
-        const pointLight2 = new THREE.PointLight(0xff00aa, 1, 100);
-        pointLight2.position.set(10, -5, -10);
-        scene.add(pointLight2);
-
-        const geometries = [
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.SphereGeometry(0.75, 16, 16),
-            new THREE.ConeGeometry(0.8, 1.5, 16),
-            new THREE.TorusGeometry(0.7, 0.3, 10, 30),
-            new THREE.DodecahedronGeometry(0.9)
-        ];
-
-        const materials = [
-            new THREE.MeshStandardMaterial({ color: 0x00CED1, metalness: 0.7, roughness: 0.4 }),
-            new THREE.MeshStandardMaterial({ color: 0xFFD700, metalness: 0.7, roughness: 0.4 }),
-            new THREE.MeshStandardMaterial({ color: 0xBA55D3, metalness: 0.7, roughness: 0.4 }),
-            new THREE.MeshStandardMaterial({ color: 0x7FFF00, metalness: 0.7, roughness: 0.4 }),
-            new THREE.MeshStandardMaterial({ color: 0x1E90FF, metalness: 0.7, roughness: 0.4 })
-        ];
-
-        const objects = [];
-        const numberOfObjects = 40;
-
-        for (let i = 0; i < numberOfObjects; i++) {
-            const geometry = geometries[Math.floor(Math.random() * geometries.length)];
-            const material = materials[Math.floor(Math.random() * materials.length)];
-            const mesh = new THREE.Mesh(geometry, material);
-
-            mesh.position.x = (Math.random() - 0.5) * 60;
-            mesh.position.y = (Math.random() - 0.5) * 60;
-            mesh.position.z = (Math.random() - 0.5) * 60;
-
-            mesh.rotation.x = Math.random() * Math.PI;
-            mesh.rotation.y = Math.random() * Math.PI;
-            mesh.rotation.z = Math.random() * Math.PI;
-
-            const scale = Math.random() * 0.8 + 0.3;
-            mesh.scale.set(scale, scale, scale);
-
-            scene.add(mesh);
-            objects.push(mesh);
-        }
-
-        camera.position.z = 25;
-
-        const animate = () => {
+        function animate() {
             requestAnimationFrame(animate);
-            objects.forEach(obj => {
-                obj.rotation.x += 0.002 * (Math.random() * 0.5 + 0.5);
-                obj.rotation.y += 0.002 * (Math.random() * 0.5 + 0.5);
-                obj.rotation.z += 0.002 * (Math.random() * 0.5 + 0.5);
-
-                const driftSpeed = 0.01;
-                obj.position.x += Math.sin(Date.now() * 0.00003 + obj.uuid.charCodeAt(0)) * driftSpeed;
-                obj.position.y += Math.cos(Date.now() * 0.00003 + obj.uuid.charCodeAt(1)) * driftSpeed;
-                obj.position.z += Math.sin(Date.now() * 0.00003 + obj.uuid.charCodeAt(2)) * driftSpeed;
-
-                const bound = 30;
-                if (obj.position.x > bound) obj.position.x = -bound;
-                if (obj.position.x < -bound) obj.position.x = bound;
-                if (obj.position.y > bound) obj.position.y = -bound;
-                if (obj.position.y < -bound) obj.position.y = bound;
-                if (obj.position.z > bound) obj.position.z = -bound;
-                if (obj.position.z < -bound) obj.position.z = bound;
-            });
+            torus.rotation.x += 0.01;
+            torus.rotation.y += 0.005;
             renderer.render(scene, camera);
-        };
+        }
         animate();
-    } else if (canvas) {
-        console.warn("Three.js not loaded. Hero background animation will not be displayed.");
     }
 
-    const slides = document.querySelectorAll('.slideshow img');
-    let current = 0;
+    // PAYMENT GATEWAY UX/UI TAB SYSTEM
+    const payTabs = document.querySelectorAll('.pay-tab');
+    const payForms = document.querySelectorAll('.payment-form, .payment-tab-content');
 
-    function showNextSlide() {
-      slides[current].classList.remove('active');
-      current = (current + 1) % slides.length;
-      slides[current].classList.add('active');
-    }
+    payTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            payTabs.forEach(t => t.classList.remove('active'));
+            payForms.forEach(f => f.classList.remove('active'));
 
-    // Change slide every 5 seconds
-    setInterval(showNextSlide, 5000);
-
-    // --- Google Maps Animation ---
-    // You must replace "YOUR_MAP_ID" with your own Map ID to get this to work.
-    // The API Key is expected to be set by the environment.
-    const apiKey = "";
-    let map, motorbikeMarker, polyline, animationId;
-    let isAnimating = false;
-    let currentIndex = 0;
-    let progress = 0;
-    const animationSpeed = 0.005;
-
-    const motorbikeIcon = {
-        url: 'data:image/svg+xml;utf-8,' +
-            '<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg">' +
-            '<path d="M20,5 Q20,0 25,5 T30,10 T25,15 T20,20 T15,15 T10,10 T15,5 T20,5 Z" ' +
-            'fill="#FF0000" stroke="#FFFFFF" stroke-width="2"/>' +
-            '<path d="M20,20 C15,25 15,35 20,35 S25,30 25,25" ' +
-            'fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round"/>' +
-            '<circle cx="15" cy="25" r="5" fill="#FFFFFF" stroke="#FF0000" stroke-width="2"/>' +
-            '<circle cx="25" cy="25" r="5" fill="#FFFFFF" stroke="#FF0000" stroke-width="2"/>' +
-            '</svg>',
-        scaledSize: new google.maps.Size(40, 40),
-        anchor: new google.maps.Point(20, 20)
-    };
-
-    const pathCoordinates = [
-        { lat: 27.68725, lng: 85.33758 }, { lat: 27.68750, lng: 85.33950 },
-        { lat: 27.68800, lng: 85.34000 }, { lat: 27.68900, lng: 85.34050 },
-        { lat: 27.69000, lng: 85.34100 }, { lat: 27.69100, lng: 85.34050 },
-        { lat: 27.69200, lng: 85.33900 }, { lat: 27.69150, lng: 85.33700 },
-        { lat: 27.69100, lng: 85.33600 }, { lat: 27.69000, lng: 85.33500 },
-        { lat: 27.68900, lng: 85.33550 }, { lat: 27.68800, lng: 85.33650 },
-        { lat: 27.68725, lng: 85.33758 }
-    ];
-
-    function interpolate(start, end, t) {
-        return {
-            lat: start.lat + (end.lat - start.lat) * t,
-            lng: start.lng + (end.lng - start.lng) * t
-        };
-    }
-
-    function animateMotorbike() {
-        progress += animationSpeed;
-        if (progress >= 1) {
-            progress = 0;
-            currentIndex = (currentIndex + 1) % pathCoordinates.length;
-        }
-
-        const nextIndex = (currentIndex + 1) % pathCoordinates.length;
-        const newPosition = interpolate(pathCoordinates[currentIndex], pathCoordinates[nextIndex], progress);
-
-        motorbikeMarker.setPosition(newPosition);
-        animationId = requestAnimationFrame(animateMotorbike);
-    }
-
-    function initMap() {
-        const mapCenter = pathCoordinates[0];
-        map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 17,
-            center: mapCenter,
-            mapId: "YOUR_MAP_ID",
+            tab.classList.add('active');
+            const target = tab.getAttribute('data-tab');
+            const targetEl = document.getElementById(target) || document.getElementById(target + '-form');
+            if (targetEl) targetEl.classList.add('active');
         });
+    });
 
-        polyline = new google.maps.Polyline({
-            path: pathCoordinates,
-            geodesic: true,
-            strokeColor: "#FF0000",
-            strokeOpacity: 0.8,
-            strokeWeight: 4,
-            map: map,
+    // CARD FORMATTING & VALIDATION
+    const cardNumberInput = document.getElementById('cardNumber');
+    if (cardNumberInput) {
+        cardNumberInput.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.replace(/(.{4})/g, '$1 ').trim();
+            e.target.value = value;
+            
+            // Icon Auto Switch Validation
+            const icon = document.querySelector('.input-brand-icon');
+            if (value.startsWith('4')) icon.className = 'fab fa-cc-visa input-brand-icon';
+            else if (value.startsWith('5')) icon.className = 'fab fa-cc-mastercard input-brand-icon';
+            else if (value.startsWith('3')) icon.className = 'fab fa-cc-amex input-brand-icon';
+            else icon.className = 'fas fa-credit-card input-brand-icon';
         });
-
-        motorbikeMarker = new google.maps.Marker({
-            position: mapCenter,
-            icon: motorbikeIcon,
-            map: map,
-            title: "Motorbike",
-        });
-
-        const loadingOverlay = document.getElementById("loading-overlay");
-        if (loadingOverlay) {
-            loadingOverlay.style.display = 'none';
-        }
-
-        const toggleButton = document.getElementById("toggle-animation");
-        if (toggleButton) {
-            toggleButton.addEventListener('click', () => {
-                if (isAnimating) {
-                    cancelAnimationFrame(animationId);
-                    toggleButton.textContent = "Start Animation";
-                } else {
-                    animateMotorbike();
-                    toggleButton.textContent = "Stop Animation";
-                }
-                isAnimating = !isAnimating;
-            });
-        }
-
-        animateMotorbike();
-        isAnimating = true;
     }
 
-    // Check if the Google Maps API has already been loaded, if not, load it.
-    // This is a safer way to handle the script loading.
-    if (typeof google === 'undefined' || typeof google.maps === 'undefined') {
-        const script = document.createElement("script");
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
-        script.async = true;
-        document.head.appendChild(script);
+    const cardExpiry = document.getElementById('cardExpiry');
+    if (cardExpiry) {
+        cardExpiry.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            e.target.value = value;
+        });
+    }
 
-        script.onerror = () => {
-            const loadingOverlay = document.getElementById("loading-overlay");
-            if (loadingOverlay) {
-                loadingOverlay.innerHTML = '<p class="text-red-500">Failed to load Google Maps. Please check your network connection.</p>';
-            }
-        };
-    } else {
-        // If the map API is already loaded, just initialize the map
-        initMap();
+    const cardPayForm = document.getElementById('card-pay-form');
+    if (cardPayForm) {
+        cardPayForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Payment authorization initiated successfully via secure gateway.');
+        });
     }
 });
- function addMessage(text, sender = 'user') {
-    const bubble = document.createElement('div');
-    bubble.className = 'chat-bubble ' + (sender === 'user' ? 'user-msg' : 'ai-msg');
-    bubble.textContent = text;
-    messages.appendChild(bubble);
-    messages.scrollTop = messages.scrollHeight;
-  }
 
-  function fakeAIResponse(userMsg) {
-    // Replace this with real AI API call if desired
-    return `You asked about: "${userMsg}". Learn more at visitnepal2025.com!`;
-  }
-
-  sendBtn.onclick = (messages, sender= 'Domain')=> { 
-    const sendBtn= messages.createComment('how can i help you?'); 
-    if (!userMsg) return;
-    addMessage(userMsg, 'user');
-    input.value = 'kindly register';
-    setTimeout(() => {
-      addMessage(fakeAIResponse(userMsg), 'ai');
-    }, 500);
-  };
-/* ===============================
-ADVANCED UX FEATURES
-=============================== */
-
-// PRELOADER
-window.addEventListener("load", ()=>{
-const preloader = document.getElementById("preloader");
-if(preloader){
-preloader.style.opacity="0";
-setTimeout(()=>preloader.style.display="none",500);
-}
+// Preloader & Scroll Progress
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    if (preloader) preloader.style.display = 'none';
 });
 
-
-// SCROLL PROGRESS BAR
-window.addEventListener("scroll", ()=>{
-const progress = document.getElementById("scroll-progress");
-const scrollTop = document.documentElement.scrollTop;
-const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-const scrolled = (scrollTop / height) * 100;
-if(progress) progress.style.width = scrolled + "%";
-});
-
-
-// BACK TO TOP BUTTON
-const backToTop = document.getElementById("backToTop");
-
-window.addEventListener("scroll",()=>{
-if(window.scrollY > 400){
-backToTop.style.display="block";
-}else{
-backToTop.style.display="none";
-}
-});
-
-if(backToTop){
-backToTop.addEventListener("click",()=>{
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-});
-}
-
-
-// CUSTOM CURSOR
-const cursor = document.querySelector(".custom-cursor");
-
-document.addEventListener("mousemove",(e)=>{
-if(cursor){
-cursor.style.left = e.clientX + "px";
-cursor.style.top = e.clientY + "px";
-}
-});
-
-
-// SCROLL REVEAL
-const revealElements = document.querySelectorAll("section, .card, .project-card");
-
-const revealObserver = new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add("active");
-}
-});
-},{threshold:0.15});
-
-revealElements.forEach(el=>{
-el.classList.add("reveal");
-revealObserver.observe(el);
-});
-
-
-// ACTIVE NAV LINK
-const sections = document.querySelectorAll("section");
-const navLi = document.querySelectorAll(".nav-links a");
-
-window.addEventListener("scroll",()=>{
-
-let current="";
-
-sections.forEach(section=>{
-const sectionTop = section.offsetTop - 200;
-
-if(pageYOffset >= sectionTop){
-current = section.getAttribute("id");
-}
-});
-
-navLi.forEach(a=>{
-a.classList.remove("active");
-
-if(a.getAttribute("href") === "#"+current){
-a.classList.add("active");
-}
-
-});
-
+window.addEventListener('scroll', () => {
+    const progress = document.getElementById('scroll-progress');
+    const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    if (progress) progress.style.width = (window.scrollY / totalHeight) * 100 + '%';
 });
