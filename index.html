@@ -24,20 +24,22 @@
     <link rel="apple-touch-icon" href="/Assets/icons/apple-touch-icon.png">
 
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script> 
 </head>
 <body>
     <!-- Preloader -->
-<div id="preloader">
-    <div class="loader"></div>
-</div>
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
 
-<!-- Scroll Progress Bar -->
-<div id="scroll-progress"></div>
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
 
-<!-- Custom Cursor -->
-<div class="custom-cursor"></div>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+
     <header>
         <nav class="navbar">
             <a href="#home" class="logo-brand">
@@ -52,7 +54,7 @@
                 <li><a href="#skills"><i class="fas fa-chart-line"></i> Art Specs</a></li>
                 <li><a href="#projects"><i class="fas fa-images"></i> Collections</a></li>
                 <li><a href="#experiences"><i class="fas fa-fingerprint"></i> Medium Details</a></li>
-                <li><a href="#product-delivery"><i class="fas fa-shopping-bag"></i> Acquisition</a></li>
+                <li><a href="#product-delivery"><i class="fas fa-shopping-bag"></i> Acquisition & Payment</a></li>
                 <li><a href="#contact"><i class="fas fa-envelope-open-text"></i> Contact</a></li>       
             </ul>
             <div class="theme-toggle">
@@ -81,9 +83,6 @@
                     <a href="#projects" class="btn btn-primary">Explore Gallery <i class="fas fa-arrow-right"></i></a>
                     <a href="#contact" class="btn btn-secondary">Commission Art <i class="fas fa-handshake"></i></a>
                 </div>
-               <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-               <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script> 
-               <script src="hero-butterfly-animation.js"></script>
             </div>
         </section>
 
@@ -97,16 +96,14 @@
 
                     <div class="about-text-content">
                         <h3> Adhikari Digital Arts </h3>
-                        <p> Rooted in the design art, Adhikari Digital Arts represents a masterful creative painting to the cutting edge of digital canvases and cryptographic assets[cite: 1]. Founded by Pratik Adhikari, a visual arts academic and digital designer, this platform redefines art ownership for a decentralized, global era[cite: 1]. </p>
-
+                        <p> Rooted in design art, Adhikari Digital Arts represents a masterful transition from creative painting to the cutting edge of digital canvases and cryptographic assets[cite: 1]. Founded by Pratik Adhikari, a visual arts academic and digital designer, this platform redefines art ownership for a decentralized, global era[cite: 1]. </p>
                         <p> We merge structural clarity with profound emotional resonance, taking the wisdom of classical spatial form and re-interpreting it into high-fidelity dynamic visuals, vector graphics, and immersive Web3 motion art[cite: 1]. </p>
-
-                        <p> Immerse yourself in a curated environment built explicitly for serious art collectors, fine-art enthusiasts, and digital token pioneers looking to anchor their premium digital curation portfolios[cite: 1].
-                            
+                        <p> Immerse yourself in a curated environment built explicitly for serious art collectors, fine-art enthusiasts, and digital token pioneers looking to anchor their premium digital curation portfolios[cite: 1]. </p>
+                        <blockquote class="artist-quote">
                             "We are not leaving classical fine art behind; we are empowering it with a borderless digital language to converse with the future."
-                                                                                        — The Creative Strategy Vision </p>
-
-                          <div class="about-links">
+                            <cite>— The Creative Strategy Vision</cite>
+                        </blockquote>
+                        <div class="about-links">
                             <a href="/Assets/images/Residency.pdf" target="_blank" class="btn btn-tertiary"><i class="fas fa-download"></i> View Artist CV</a>
                             <a href="https://www.linkedin.com/in/pratik-adhikari-53a35b32a" target="_blank" class="btn btn-linkedin"><i class="fab fa-linkedin"></i> LinkedIn</a>
                         </div>
@@ -115,55 +112,55 @@
             </div>
         </section>
 
-<section id="skills" class="skills-section common-section">
-<div class="container">
-<h2><i class="fas fa-tools"></i> DIGITAL ART METRICS & SPECIFICATIONS</h2>
-<div class="skills-grid">
-<div class="skill-category">
-<h3> CANVAS & RENDER QUALITY </h3>
-<ul>
-    <li data-level="100"> <i class="fas fa-vector-square skill-icon"></i> Resolution Scaling <div class="skill-level-bar"></div> </li>
-    <li data-level="95"> <i class="fas fa-palette skill-icon"></i> Wide Color Gamut (P3) <div class="skill-level-bar"></div> </li>
-    <li data-level="90"> <i class="fas fa-cube skill-icon"></i> 3D Texture Depth <div class="skill-level-bar"></div> </li>
-    <li data-level="85"> <i class="fas fa-running skill-icon"></i> Motion Frame Optimization <div class="skill-level-bar"></div> </li>
-    <li data-level="95"> <i class="fas fa-file-code skill-icon"></i> Vector Path Precision <div class="skill-level-bar"></div> </li>
-</ul>
-</div>
+        <section id="skills" class="skills-section common-section">
+            <div class="container">
+                <h2><i class="fas fa-tools"></i> DIGITAL ART METRICS & SPECIFICATIONS</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3> CANVAS & RENDER QUALITY </h3>
+                        <ul>
+                            <li data-level="100"> <i class="fas fa-vector-square skill-icon"></i> Resolution Scaling <div class="skill-level-bar"></div> </li>
+                            <li data-level="95"> <i class="fas fa-palette skill-icon"></i> Wide Color Gamut (P3) <div class="skill-level-bar"></div> </li>
+                            <li data-level="90"> <i class="fas fa-cube skill-icon"></i> 3D Texture Depth <div class="skill-level-bar"></div> </li>
+                            <li data-level="85"> <i class="fas fa-running skill-icon"></i> Motion Frame Optimization <div class="skill-level-bar"></div> </li>
+                            <li data-level="95"> <i class="fas fa-file-code skill-icon"></i> Vector Path Precision <div class="skill-level-bar"></div> </li>
+                        </ul>
+                    </div>
 
-<div class="skill-category">
-  <h3> AUTHENTICITY & SECURITY </h3> 
-  <ul class="security-attainment">  
-    <li data-level="100%"> <i class="fas fa-shield-halved"></i> Cryptographic Provenance <div class="skill-level-bar"></div> </li>
-    <li data-level="100%"> <i class="fas fa-file-contract"></i> Smart Contract Verification <div class="skill-level-bar"></div> </li>
-    <li data-level="100%"> <i class="fas fa-database"></i> IPFS Decentralized Storage <div class="skill-level-bar"></div> </li>
-    <li data-level="100%"> <i class="fas fa-certificate"></i> Signed Digital Certificate <div class="skill-level-bar"></div> </li>
-    <li data-level="100%"> <i class="fas fa-copyright"></i> Commercial Licensing Rights <div class="skill-level-bar"></div> </li>
-  </ul>
-</div>
+                    <div class="skill-category">
+                        <h3> AUTHENTICITY & SECURITY </h3> 
+                        <ul class="security-attainment">  
+                            <li data-level="100"> <i class="fas fa-shield-halved skill-icon"></i> Cryptographic Provenance <div class="skill-level-bar"></div> </li>
+                            <li data-level="100"> <i class="fas fa-file-contract skill-icon"></i> Smart Contract Verification <div class="skill-level-bar"></div> </li>
+                            <li data-level="100"> <i class="fas fa-database skill-icon"></i> IPFS Decentralized Storage <div class="skill-level-bar"></div> </li>
+                            <li data-level="100"> <i class="fas fa-certificate skill-icon"></i> Signed Digital Certificate <div class="skill-level-bar"></div> </li>
+                            <li data-level="100"> <i class="fas fa-copyright skill-icon"></i> Commercial Licensing Rights <div class="skill-level-bar"></div> </li>
+                        </ul>
+                    </div>
 
-<div class="skill-category">
-    <h3> ECO-FRIENDLY & BLOCKCHAIN SPECS</h3>
-    <ul>
-        <li data-level="95"> <i class="fas fa-leaf skill-icon"></i> Carbon-Neutral Minting <div class="skill-level-bar"></div> </li>
-        <li data-level="80"> <i class="fas fa-network-wired skill-icon"></i> Layer-2 Scaling Support <div class="skill-level-bar"></div> </li>
-        <li data-level="90"> <i class="fas fa-gas-pump skill-icon"></i> Gas-Optimized Transactions <div class="skill-level-bar"></div> </li>
-        <li data-level="75"> <i class="fas fa-sync skill-icon"></i> Dynamic Metadata Adaptability <div class="skill-level-bar"></div> </li>
-        <li data-level="85"> <i class="fas fa-link skill-icon"></i> Cross-Chain Interoperability <div class="skill-level-bar"></div> </li>
-        <li data-level="95"> <i class="fas fa-id-badge skill-icon"></i> Creator Royalty Enforcement <div class="skill-level-bar"></div> </li>
-    </ul>
-</div>
-</div>
-</div>
-</section>
+                    <div class="skill-category">
+                        <h3> ECO-FRIENDLY & BLOCKCHAIN SPECS</h3>
+                        <ul>
+                            <li data-level="95"> <i class="fas fa-leaf skill-icon"></i> Carbon-Neutral Minting <div class="skill-level-bar"></div> </li>
+                            <li data-level="80"> <i class="fas fa-network-wired skill-icon"></i> Layer-2 Scaling Support <div class="skill-level-bar"></div> </li>
+                            <li data-level="90"> <i class="fas fa-gas-pump skill-icon"></i> Gas-Optimized Transactions <div class="skill-level-bar"></div> </li>
+                            <li data-level="75"> <i class="fas fa-sync skill-icon"></i> Dynamic Metadata Adaptability <div class="skill-level-bar"></div> </li>
+                            <li data-level="85"> <i class="fas fa-link skill-icon"></i> Cross-Chain Interoperability <div class="skill-level-bar"></div> </li>
+                            <li data-level="95"> <i class="fas fa-id-badge skill-icon"></i> Creator Royalty Enforcement <div class="skill-level-bar"></div> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-         <section id="projects" class="projects-section common-section">
+        <section id="projects" class="projects-section common-section">
             <div class="container">
                 <h2><i class="fas fa-rocket"></i> Featured Art Collections</h2>
                 <div class="projects-grid">
                     <div class="project-card">
-                        <img src="/Assets/images/chicago .png" alt="E-commerce Website Screenshot">
+                        <img src="/Assets/images/chicago .png" alt="NFT Collectibles Artwork">
                         <div class="project-info">
-                            <h3>NFt Collectibles</h3>
+                            <h3>NFT Collectibles</h3>
                             <p>A premier collection showcasing painterly digital techniques blended flawlessly into advanced digital motion assets.</p>
                             <div class="project-tech">
                                 <span>Digital Arts</span><span>SVG</span><span>Three.js</span><span>Web3 Wallet</span>
@@ -175,7 +172,7 @@
                         </div>
                     </div>
                     <div class="project-card">
-                        <img src="/Assets/images/burger.jpg" alt="Personal Blog Screenshot">
+                        <img src="/Assets/images/burger.jpg" alt="Generative Concept Portals Artwork">
                         <div class="project-info">
                             <h3> Generative Concept Portals </h3>
                             <p>An interactive, algorithmically fueled layout displaying spatial arrangements and dynamic lighting scripts[cite: 1].</p>
@@ -189,7 +186,7 @@
                         </div>
                     </div>
                     <div class="project-card">
-                        <img src="/Assets/images/pratik cartoon.jpg" alt="Another Portfolio Screenshot">
+                        <img src="/Assets/images/pratik cartoon.jpg" alt="Chronicles Vector Collection Artwork">
                         <div class="project-info">
                             <h3>Chronicles Vector Collection</h3>
                             <p>A striking thematic visual series exploring global climates, natural landscapes, and strategic creative design layouts[cite: 1].</p>
@@ -206,15 +203,15 @@
             </div>
         </section>
 
-          <section id="experiences" class="experiences-section common-section">
+        <section id="experiences" class="experiences-section common-section">
             <div class="container">
                 <h2><i class="fas fa-graduation-cap"></i> Digital Medium Details</h2>
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
-                            <h3> Interactive Canvas | </h3>
-                            <p> “Art that responds to your environment.”</p>
+                            <h3> Interactive Canvas </h3>
+                            <p>“Art that responds to your environment.”</p>
                             <ul>
                                 <li>Procedural renders, interactive nodes, dynamic shading scripts, and responsive canvases optimized perfectly for modern high-definition displays[cite: 1].</li>
                                 <li>Every pixel follows an aesthetic rule. Generative layouts, mathematical balance, and optimized shaders ensure beauty never strains performance[cite: 1].</li>
@@ -224,8 +221,8 @@
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
-                            <h3> Vector & Pixels |</h3>
-                            <p> “The structural foundation of infinite scale.”</p>
+                            <h3> Vector & Pixels </h3>
+                            <p>“The structural foundation of infinite scale.”</p>
                             <ul>
                                 <li>Mathematically pure geometry capable of rendering infinitely sharp at billboard scales or small mobile viewing contexts[cite: 1].</li>
                                 <li>Advanced rendering engines regulate complex micro-gradients, allowing smooth transitions, vivid textures, and flawless structural composition[cite: 1].</li>
@@ -236,77 +233,189 @@
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
-                        <h3> Smart Contracts | </h3>
+                            <h3> Smart Contracts </h3>
                             <p>“Precision digital provenance.”</p> 
-                           <ul> 
-                               <li>Secured distributed ledgers resist altering, providing absolute immutability, programmatic creator proof, and clean verified historical logs[cite: 1].</li>
-                               <li>When structured properly, custom smart contracts execute seamless transactions, instantaneous digital custody updates, and direct peer-to-peer transfers[cite: 1].</li>
-                               <li>Deployed protocols bypass centralized intermediaries and guarantee autonomous execution for perpetual creator royalties[cite: 1].</li> 
-                           </ul>
+                            <ul> 
+                                <li>Secured distributed ledgers resist altering, providing absolute immutability, programmatic creator proof, and clean verified historical logs[cite: 1].</li>
+                                <li>When structured properly, custom smart contracts execute seamless transactions, instantaneous digital custody updates, and direct peer-to-peer transfers[cite: 1].</li>
+                                <li>Deployed protocols bypass centralized intermediaries and guarantee autonomous execution for perpetual creator royalties[cite: 1].</li> 
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </section> 
 
+        <!-- ACQUISITION AND UX/UI PAYMENT GATEWAY SECTION -->
         <section id="product-delivery" class="application-section common-section">
             <div class="container">
-                <h2><i class="fas fa-handshake"></i> ACQUIRE YOUR NFT TODAY </h2>
-                <p class="section-description"> Please fill out the form below to initiate asset collection and licensing enrollment[cite: 1].</p>
-                <form id="application-form" class="main-form" action="https://formspree.io/f/xdkzqdlq" method="POST">
-                    <div class="form-group">
-                        <label for="appName">Collector's Name:</label>
-                        <input type="text" id="appName" name="appName" required>
+                <h2><i class="fas fa-shield-alt"></i> SECURE ACQUISITION & PAYMENT GATEWAY </h2>
+                <p class="section-description"> Fill out your information and select your preferred payment method below to complete digital asset acquisition[cite: 1].</p>
+                
+                <form id="acquisition-payment-form" class="main-form" action="https://formspree.io/f/xdkzqdlq" method="POST">
+                    <!-- SECTION 1: Collector Details -->
+                    <div class="form-section-title">
+                        <h3><i class="fas fa-user-check"></i> 1. Collector Details</h3>
                     </div>
-                     <div class="form-group">
-                        <label for="appAge">Collector's Identity Age (Optional):</label>
-                        <input type="number" id="appAge" name="appAge" required>
-                    </div> 
-                     <div class="form-group">
-                        <label for="appGender">Preferred Pronoun/Prefix:</label>
-                        <input type="text" id="appGender" name="appGender" required>
-                    </div> 
-                    <div class="form-group">
-                        <label for="appEmail">Your Secure Email:</label>
-                        <input type="email" id="appEmail" name="email" required>
-                    </div> 
-                      <div class="form-group">
-                        <label for="appAddress">Web3 Wallet Address or Destination URI:</label>
-                        <input type="text" id="appAddress" name="Address" required>
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label for="appName">Collector's Full Name *</label>
+                            <input type="text" id="appName" name="appName" placeholder="e.g., Jane Doe" required>
+                            <span class="error-msg" id="err-appName">Please enter your name</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="appEmail">Secure Email Address *</label>
+                            <input type="email" id="appEmail" name="email" placeholder="jane@example.com" required>
+                            <span class="error-msg" id="err-appEmail">Please enter a valid email</span>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="appPhone">Phone Number (Optional):</label>
-                        <input type="tel" id="appPhone" name="appPhone">
+
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label for="appAddress">Web3 Wallet Address / Destination URI *</label>
+                            <input type="text" id="appAddress" name="Address" placeholder="0x... or ENS / Solana Address" required>
+                            <span class="error-msg" id="err-appAddress">Destination address required</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="productType">Edition Category Selection *</label>
+                            <select id="propose-orderType" name="projectType" required>
+                                <option value="">-- Select Masterpiece Class --</option>
+                                <option value="1of1">1-of-1 Genesis Design Art ($1,500)</option>
+                                <option value="limited">Limited Dynamic Edition ($500)</option>
+                                <option value="generative">Generative Code Series ($350)</option>
+                                <option value="custom">Bespoke Commission Portfolio ($2,500)</option>
+                            </select>
+                            <span class="error-msg" id="err-orderType">Please select an edition category</span>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="productType">Edition Category Selection:</label>
-                        <select id="propose-orderType" name="projectType" required>
-                            <option value="">-- Select Masterpiece Class --</option>
-                            <option value="1of1"> 1-of-1 Genesis design Art </option>
-                            <option value="limited">Limited Dynamic Edition</option>
-                            <option value="generative">Generative Code Series</option>
-                            <option value="custom">Bespoke Commission Portfolio</option>
-                        </select>
+
+                    <!-- SECTION 2: Payment Gateway Selection -->
+                    <div class="form-section-title">
+                        <h3><i class="fas fa-credit-card"></i> 2. Choose Payment Method</h3>
                     </div>
-                    <div class="form-group">
-                        <label for="projecttime">Licensing Terms Duration (e.g., Extended, Commercial, Personal):</label>
-                        <input type="text" id="projecttime" name="projecttime" placeholder="e.g., Perpetual Commercial Use">
+
+                    <!-- Payment Selector Tabs -->
+                    <div class="payment-tabs" role="tablist">
+                        <button type="button" class="payment-tab active" data-method="card" role="tab">
+                            <i class="fas fa-credit-card"></i> Credit / Debit Card
+                        </button>
+                        <button type="button" class="payment-tab" data-method="visa-mc" role="tab">
+                            <i class="fab fa-cc-visa"></i> <i class="fab fa-cc-mastercard"></i> Visa / Mastercard
+                        </button>
+                        <button type="button" class="payment-tab" data-method="paypal" role="tab">
+                            <i class="fab fa-paypal"></i> PayPal
+                        </button>
+                        <button type="button" class="payment-tab" data-method="crypto" role="tab">
+                            <i class="fab fa-ethereum"></i> Web3 Crypto
+                        </button>
                     </div>
-                    <button type="submit" class="btn btn-submit"> SECURE ARTWORK <i class="fas fa-paper-plane"></i></button>
+
+                    <!-- Selected Payment Method Value Container -->
+                    <input type="hidden" name="payment_method" id="selected-payment-method" value="card">
+
+                    <!-- Gateway Panel 1: Generic Credit / Debit Card -->
+                    <div class="payment-panel active" id="panel-card">
+                        <div class="card-icons-preview">
+                            <i class="fab fa-cc-visa" title="Visa"></i>
+                            <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                            <i class="fab fa-cc-amex" title="American Express"></i>
+                            <i class="fab fa-cc-discover" title="Discover"></i>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-number-gen">Card Number *</label>
+                            <div class="input-icon-wrapper">
+                                <input type="text" id="card-number-gen" maxlength="19" placeholder="4532 •••• •••• 8890">
+                                <i class="fas fa-lock input-icon"></i>
+                            </div>
+                        </div>
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label for="card-expiry-gen">Expiry Date *</label>
+                                <input type="text" id="card-expiry-gen" placeholder="MM/YY" maxlength="5">
+                            </div>
+                            <div class="form-group">
+                                <label for="card-cvc-gen">Security Code (CVC/CVV) *</label>
+                                <input type="password" id="card-cvc-gen" placeholder="123" maxlength="4">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-name-gen">Cardholder Name *</label>
+                            <input type="text" id="card-name-gen" placeholder="Name as printed on card">
+                        </div>
+                    </div>
+
+                    <!-- Gateway Panel 2: Visa / Mastercard Focused -->
+                    <div class="payment-panel" id="panel-visa-mc">
+                        <div class="brand-badge-wrapper">
+                            <span class="badge visa"><i class="fab fa-cc-visa"></i> Visa Verified</span>
+                            <span class="badge mastercard"><i class="fab fa-cc-mastercard"></i> Mastercard ID Check</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="visa-mc-number">Visa/Mastercard Number *</label>
+                            <div class="input-icon-wrapper">
+                                <input type="text" id="visa-mc-number" maxlength="19" placeholder="4111 •••• •••• 2222">
+                                <i class="far fa-credit-card input-icon"></i>
+                            </div>
+                        </div>
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label for="visa-mc-expiry">Expiry Date *</label>
+                                <input type="text" id="visa-mc-expiry" placeholder="MM/YY" maxlength="5">
+                            </div>
+                            <div class="form-group">
+                                <label for="visa-mc-cvc">CVC / CVV *</label>
+                                <input type="password" id="visa-mc-cvc" placeholder="3 digits" maxlength="3">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gateway Panel 3: PayPal Express -->
+                    <div class="payment-panel" id="panel-paypal">
+                        <div class="paypal-box">
+                            <i class="fab fa-paypal paypal-hero-icon"></i>
+                            <p>You will be securely redirected to PayPal to complete your authentication and acquisition payment.</p>
+                            <div class="paypal-perks">
+                                <span><i class="fas fa-shield-alt"></i> Buyer Protection Included</span>
+                                <span><i class="fas fa-bolt"></i> One-Touch Instant Checkout</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gateway Panel 4: Web3 Crypto -->
+                    <div class="payment-panel" id="panel-crypto">
+                        <div class="crypto-box">
+                            <i class="fab fa-ethereum crypto-hero-icon"></i>
+                            <p>Connect your Web3 Wallet to complete dynamic contract execution.</p>
+                            <div class="wallet-options">
+                                <button type="button" class="btn btn-wallet"><i class="fas fa-wallet"></i> MetaMask</button>
+                                <button type="button" class="btn btn-wallet"><i class="fas fa-link"></i> WalletConnect</button>
+                                <button type="button" class="btn btn-wallet"><i class="fas fa-coins"></i> Coinbase Wallet</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Summary & Verification Indicator -->
+                    <div class="payment-security-footer">
+                        <p><i class="fas fa-lock"></i> 256-Bit SSL Encrypted & PCI-DSS Compliant Gateway</p>
+                    </div>
+
+                    <button type="submit" class="btn btn-submit btn-block">
+                        COMPLETE SECURE ACQUISITION <i class="fas fa-lock"></i>
+                    </button>
                 </form> 
             </div>
         </section>
         
         <section id="propose-project" class="application-section common-section">
             <div class="container">
-                <h2><i class="fas fa-handshake"></i> Inquiry Message </h2>
+                <h2><i class="fas fa-paper-plane"></i> Inquiry Message </h2>
                 <p class="section-description"> Reach out for specific curatorial requests or partnership offers[cite: 1]. </p>
-                 <form id="message-form" class="main-form" action="https://formspree.io/f/xdkzqdlq" method="POST"> 
-                <div class="form-group"> 
-                        <label for="appDetails"> Write your message :</label>
-                        <textarea id="appDetails" name="message" rows="12" placeholder="Detail your collection needs or creative strategy goals..." required></textarea>
-                </div>
-                    <button type="submit" class="btn btn-submit"> Send message <i class="fas fa-paper-plane"></i></button>
+                <form id="message-form" class="main-form" action="https://formspree.io/f/xdkzqdlq" method="POST"> 
+                    <div class="form-group"> 
+                        <label for="appDetails">Write your message:</label>
+                        <textarea id="appDetails" name="message" rows="8" placeholder="Detail your collection needs or creative strategy goals..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-submit"> Send Message <i class="fas fa-paper-plane"></i></button>
                 </form> 
             </div>
         </section>
@@ -342,39 +451,30 @@
                     </div>
                 </div>
 
-    <div class="map-container relative">
-        <div class="bg-gray-900 flex flex-col items-center justify-center min-h-screen p-4">
-             <header class="header w-full max-w-4xl p-6 rounded-t-xl text-center mb-6">
-        <h1 class="text-3xl md:text-4xl font-bold text-teal-300"> Studio Location Map </h1>
-    </header>
+                <div class="map-container relative">
+                    <div class="header text-center p-4">
+                        <h3 class="text-teal-300"> Studio Location Map </h3>
+                    </div>
+                    <div id="map-container" class="map-frame pulse-effect">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.990230230206!2d85.33758231505307!3d27.68725838279899!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19a0a8b9e691%3A0x6a213b78c4a0e980!2sGwarko%2C%20Lalitpur%2044700%2C%20Nepal!5e0!3m2!1sen!2snp!4v1678901234567!5m2!1sen!2snp" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>  
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <!-- Main Map Container -->
-    <div id="map-container" class="container w-full max-w-4xl h-[60vh] md:h-[70vh] rounded-b-xl border-4 border-teal-500 overflow-hidden relative shadow-lg map-container pulse-effect">
-         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.990230230206!2d85.33758231505307!3d27.68725838279899!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19a0a8b9e691%3A0x6a213b78c4a0e980!2sGwarko%2C%20Lalitpur%2044700%2C%20Nepal!5e0!3m2!1sen!2snp!4v1678901234567!5m2!1sen!2snp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>  
-        <div class="absolute inset-0 flex items-center justify-center p-4 text-center">
-        </div>
-    </div>
-
-    <!-- Instructions -->
-        <div class="controls-panel" style="text-align: center; margin-top: 20px;">
-            <button id="toggle-animation" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full shadow-lg transition-transform transform hover:scale-105 active:scale-95">
-                Start Directing
-            </button>
-        </div>
-    </div>
-</div>
-</section>
-</main>
+    <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
 
     <footer>
         <div class="container">
             <p>© <span id="current-year"></span> ADHIKARI DIGITAL ARTS. All rights reserved. | BUILT BY THOUGHT.</p>
+            <div class="qr-section">
+                <h3>Acquire with Scan</h3>
+                <img src="/Assets/images/Pratikscan.jpeg" alt="QR Code" class="qr-code-img">
+            </div>
         </div>
-    
-<div class="qr-section" style="margin-top:40px;text-align:center;">
-    <h3>Acquire with Scan</h3>
-    <img src="/Assets/images/Pratikscan.jpeg" alt="QR Code" style="max-width:150px;border-radius:10px;box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-</div>
-</footer>
+    </footer>
+
+    <script src="script_2.js"></script>
 </body>
 </html>
