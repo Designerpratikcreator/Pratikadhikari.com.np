@@ -152,3 +152,10 @@ footer { background: var(--footer-bg); color: var(--footer-text); text-align: ce
     .payment-options { grid-template-columns: 1fr; }
     .form-row { flex-direction: column; gap: 0; }
 }
+.contact-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
